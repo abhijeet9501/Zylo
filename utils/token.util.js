@@ -5,7 +5,7 @@ export const generateToken = (userID) => {
     try {
         return jwt.sign(
             {
-                _id: userID,
+                id: userID,
             },
             process.env.ACCESS_TOKEN_SECRET,
             {expiresIn: process.env.ACCESS_TOKEN_EXPIRY},
