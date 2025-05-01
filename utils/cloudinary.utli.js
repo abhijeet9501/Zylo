@@ -5,9 +5,9 @@ import fs from "fs";
 import "dotenv/config";
 
 cloudinary.config({ 
-    cloud_name: 'dufkkffxd', 
-    api_key: '363626323963312', 
-    api_secret: '5kBiHZGqOhg5KEsm2kmLOHKx9sE' 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.CLOUD_API_KEY, 
+    api_secret: process.env.CLOUD_API_SECRET, 
 });
 
 const file = fileURLToPath(import.meta.url);
