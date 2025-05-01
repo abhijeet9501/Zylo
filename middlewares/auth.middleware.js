@@ -18,10 +18,9 @@ const isLoggedIn =  asyncHandler( async (req, res, next) => {
         {
             name: user.name,
             username: user.username,
-            email: user.email,
             avatar: user.avatar,
-            bio: user.bio,
             message: "Already logged in!",
+            success: true,
         }
     );
 });

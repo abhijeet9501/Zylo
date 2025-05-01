@@ -21,10 +21,15 @@ const register = asyncHandler (async (req, res) => {
 
     const token = generateToken(user._id);
     if (token) {
-        res.cookie("uid", token);
-        res.status(200).json(
+        res.cookie("uid", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "Strict",
+        })
+        .status(200).json(
             {
                 message: "Register Sucessful!",
+                success: true,
             }
         );
     } else {
@@ -41,13 +46,18 @@ const login = asyncHandler (async (req, res) => {
     if (user && (await user.checkPassword(password)))
     {
         const token = generateToken(user._id);
-        res.cookie("uid", token);
-        res.status(200).json(
+        res.cookie("uid", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "Strict",
+        })
+        .status(200).json(
             {
                 name: user.name,
                 username: user.username,
                 avatar: user.avatar,
                 message: "Login successful!",
+                success: true,
             }
         );
     } else {
