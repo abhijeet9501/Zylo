@@ -11,8 +11,8 @@ cloudinary.config({
 });
 
 const file = fileURLToPath(import.meta.url);
-const dir = path.dirname(file);
-const __dir = path.dirname(dir);
+const dirname = path.dirname(file);
+const __dir = path.dirname(dirname);
 
 const uploadOnCloudinary = async (filePath) => {
     try {
