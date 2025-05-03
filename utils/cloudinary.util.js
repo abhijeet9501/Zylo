@@ -21,12 +21,16 @@ const uploadOnCloudinary = async (filePath) => {
        .upload(filePath, 
         {
             resource_type: "auto",
+            crop: "thumb",       
+            gravity: "face",     
+            width: 300,          
+            height: 300
         });
 
         fs.unlink(path.join(__dir, filePath), (e) => {
             if (e) {console.log(e)};
         }); 
-        return upload.secure_url;
+        return upload;
     }catch (err) {
         fs.unlink(path.join(__dir, filePath), (e) => {
             if (e) {console.log(e)};
@@ -35,4 +39,11 @@ const uploadOnCloudinary = async (filePath) => {
     };
 };
 
-export default uploadOnCloudinary;
+const deleteUpload = async (public_id) => {
+    return  await cloudinary.uploader.destroy(public_id);
+};
+
+export { 
+    uploadOnCloudinary,
+    deleteUpload,
+}
