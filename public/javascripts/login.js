@@ -20,7 +20,6 @@ toLogin.addEventListener('click', showLogin);
 
 
 const loginBtn = document.getElementById("login-submit-btn");
-const registerBtn = document.getElementById("register-submit-btn");
 
 loginBtn.addEventListener("click", () => {
     const username = document.getElementById("login-username");
@@ -48,8 +47,8 @@ loginBtn.addEventListener("click", () => {
                 username: data.username,
                 avatar: data.avatar,
             }));
-            window.location.href='/index.html';
             showPopUp(data.message);
+            window.location.href='/index.html';
         }
         else {
             showPopUp(data.message);
@@ -59,3 +58,48 @@ loginBtn.addEventListener("click", () => {
         showPopUp('Network error, try again');
     });
 });
+
+
+
+const registerBtn = document.getElementById("register-submit-btn");
+
+registerBtn.addEventListener("click", async () => {
+    const regUsername = document.getElementById("reg-username");
+    const regName = document.getElementById("reg-name");
+    const regEmail = document.getElementById("reg-email");
+    const regPassword = document.getElementById("reg-password");
+
+    if (!regUsername.value || !regName.value || !regEmail.value || !regPassword.value) showPopUp("All fields are required!");
+
+    const regData = {
+        username: regUsername.value,
+        name: regName.value,
+        email: regEmail.value,
+        password: regPassword.value,
+    }
+
+
+    const response = await fetch (`${baseUrl}/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        credentials: "include", 
+        body: JSON.stringify(regData),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    updateLocalStorageObject("user", {
+        name: data.name,
+        username: data.name,
+        avatar: data.avatar,
+    });
+
+    showPopUp(data.message);
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+});
+
+

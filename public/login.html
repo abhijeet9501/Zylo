@@ -6,6 +6,7 @@
   <title>Login & Register - ZYLO</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/login.css">
+  <link rel="stylesheet" href="./stylesheets/popup.css">
 </head>
 
 <body>
@@ -31,10 +32,6 @@
       <input id="reg-email" name="email" type="email" placeholder="your.email@example.com" required autocomplete="email" />
       <label for="reg-password">Password</label>
       <input id="reg-password" name="password" type="password" placeholder="Minimum 6 characters" required autocomplete="new-password" minlength="6" />
-      <div class="avatar-upload-container">
-        <label for="reg-avatar">Upload Avatar</label>
-        <input id="reg-avatar" name="avatar" type="file" accept="image/png, image/jpeg, image/jpg" />
-      </div>
       <button type="button" id="register-submit-btn"  class="submit-btn">Register</button>
       <p class="switch-text">Already have an account? <span id="to-login">Log In</span></p>
     </form>
@@ -42,7 +39,7 @@
 
   <p id="error-message">An error occurred.</p>
   
-  <script src="./javascripts/popUp.js"></script>
+  <script src="./javascripts/utils.js"></script>
   <script src="./javascripts/login.js"></script>
 </body>
 </html>
