@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.util.js";
 import User from "../models/user.model.js";
 import ApiError from "../utils/apiError.util.js";
-import uploadOnCloudinary from "../utils/cloudinary.util.js";
+import { uploadOnCloudinary, deleteUpload } from "../utils/cloudinary.util.js";
 
 const getMyProfile = asyncHandler (async (req, res) => 
     {
@@ -78,8 +78,13 @@ const uploadAvatar = asyncHandler (async (req, res) => {
     if (req.file) {
         const data = await uploadOnCloudinary(req.file.path);
         if (data) {
+            const userID = req?.userID;
+            const user = await User.findByIdAndUpdate(userID, {avatar: {url: data.secure_url, public_id: data.public_id}});
+            const publicID = user.avatar.public_id;
+            if (publicID) deleteUpload(publicID); 
+
             return res.status(200).json({
-                url: data,
+                url: data.secure_url,
                 message: "file uploaded!"
             });
         } 
