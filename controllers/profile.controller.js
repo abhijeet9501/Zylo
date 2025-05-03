@@ -1,20 +1,20 @@
 import asyncHandler from "../utils/asyncHandler.util.js";
 import User from "../models/user.model.js";
 import ApiError from "../utils/apiError.util.js";
-import uploadOnCloudinary from "../utils/cloudinary.utli.js";
+import uploadOnCloudinary from "../utils/cloudinary.util.js";
 
 const getMyProfile = asyncHandler (async (req, res) => 
     {
         const userID = req?.userID;
         if (!userID) throw new ApiError(401, "Unauthorized");
 
-        const user = await User.findById(userID).select("-password -_id");
+        const user = await User.findById(userID).select("name username avatar bio");
         if (!user) throw new ApiError(404, "User not found");
 
         return res.status(200)
         .json(
             {
-                sucess: true,
+                success: true,
                 data: user,
             }
         );
@@ -29,7 +29,7 @@ const getUserProfile = asyncHandler (async (req, res) => {
         return res.status(200)
         .json(
             {
-                sucess: true,
+                success: true,
                 user,
             }
         );
@@ -58,7 +58,7 @@ const updateMyProfile = asyncHandler (async (req, res) => {
     
         return res.status(200).json(
             {
-                sucess: true,
+                success: true,
                 message: "Profile updated successfully!",
                 user,
             }

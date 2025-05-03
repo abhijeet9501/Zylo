@@ -14,6 +14,22 @@ const isAuthenticated = asyncHandler (async (req, res, next) =>
     }
 );
 
+const logOut = asyncHandler(async (req, res) => {
+    const token = req.cookies?.uid;
+    if (!token) return ApiError(400);
+    if (verifyToken(token))
+    {
+        res.clearCookie('uid', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",    
+            sameSite: 'Strict',
+        });
+        return res.status(200).json({message: "logout success!"});
+    };
+    return ApiError(500);
+});
+
 export {
     isAuthenticated,
+    logOut,
 }
