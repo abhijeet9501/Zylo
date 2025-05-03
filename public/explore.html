@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explore - ZYLO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheets/explore.css">
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="top-bar" aria-label="Site header">
+    <div class="logo">ZYLO</div>
+    <div class="user-actions">
+      <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="User avatar" class="user-avatar" />
+      <div class="user-dropdown">
+        <div class="user-info">
+          <div class="name">John Smith</div>
+          <div class="username">@john_smith</div>
+        </div>
+        <a href="/profile">Profile</a>
+        <a href="/settings">Account Settings</a>
+        <button class="logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="app-container" role="main">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <nav class="sidebar-nav">
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true" onclick="window.location.href='./homepage.html'">
+            <path d="M12 1.5c-6.3 0-10.5 4.2-10.5 10.5S5.7 22.5 12 22.5 22.5 18.3 22.5 12 18.3 1.5 12 1.5zM12 16.5c-2.5 0-4.5-2-4.5-4.5S9.5 7.5 12 7.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/>
+          </svg>
+          Home
+        </button>
+        <button class="active">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.5 3.5h3v3h-3zM3.5 10.5h3v3h-3zM10.5 17.5h3v3h-3zM17.5 10.5h3v3h-3z"/>
+          </svg>
+          Explore
+        </button>
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 1.5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 13.5c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+          </svg>
+          Notifications
+        </button>
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16v2H4zm2 4h12v2H6zm-2 4h16v2H4zm2 4h12v2H6z"/>
+          </svg>
+          Messages
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1 class="main-header">Explore</h1>
+      <section class="search-bar" aria-label="Search users">
+        <input type="text" placeholder="Search users..." aria-label="Search for users by username" />
+      </section>
+      <section class="user-list" aria-live="polite" aria-label="Search results">
+        <!-- Populated by JS -->
+      </section>
+      <section class="tweets-list" aria-live="polite" aria-label="Random tweets">
+        <article class="tweet" role="article" aria-label="Tweet by Jane Doe">
+          <header class="tweet-header">
+            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg" alt="Jane Doe's avatar" class="avatar" />
+            <div>
+              <span class="name">Jane Doe</span>
+              <span class="username">@jane_doe</span>
+            </div>
+          </header>
+          <p class="tweet-content">Loving the retro vibes on ZYLO! 🕹️ #RetroGaming</p>
+          <div class="tweet-actions">
+            <button aria-pressed="false" aria-label="Like this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.45 4.42 3 7.5 3c1.74 0 3.41 1.01 4.5 2.44C13.09 4.01 14.76 3 16.5 3 19.58 3 22 5.45 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              12
+            </button>
+            <button aria-label="Comment on this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/>
+              </svg>
+              3
+            </button>
+          </div>
+        </article>
+        <article class="tweet" role="article" aria-label="Tweet by Alex Gamer">
+          <header class="tweet-header">
+            <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="Alex Gamer's avatar" class="avatar" />
+            <div>
+              <span class="name">Alex Gamer</span>
+              <span class="username">@alex_gamer</span>
+            </div>
+          </header>
+          <p class="tweet-content">Just found an old arcade cabinet in my garage! #Nostalgia</p>
+          <div class="tweet-actions">
+            <button aria-pressed="false" aria-label="Like this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.45 4.42 3 7.5 3c1.74 0 3.41 1.01 4.5 2.44C13.09 4.01 14.76 3 16.5 3 19.58 3 22 5.45 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              18
+            </button>
+            <button aria-label="Comment on this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/>
+              </svg>
+              6
+            </button>
+          </div>
+        </article>
+        <article class="tweet" role="article" aria-label="Tweet by Pixel Pro">
+          <header class="tweet-header">
+            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="Pixel Pro's avatar" class="avatar" />
+            <div>
+              <span class="name">Pixel Pro</span>
+              <span class="username">@pixel_pro</span>
+            </div>
+          </header>
+          <p class="tweet-content">Working on a new 8-bit game. Any ideas? #GameDev</p>
+          <div class="tweet-actions">
+            <button aria-pressed="false" aria-label="Like this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.45 4.42 3 7.5 3c1.74 0 3.41 1.01 4.5 2.44C13.09 4.01 14.76 3 16.5 3 19.58 3 22 5.45 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              25
+            </button>
+            <button aria-label="Comment on this tweet">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/>
+              </svg>
+              10
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 1.5c-6.3 0-10.5 4.2-10.5 10.5S5.7 22.5 12 22.5 22.5 18.3 22.5 12 18.3 1.5 12 1.5zM12 16.5c-2.5 0-4.5-2-4.5-4.5S9.5 7.5 12 7.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/>
+      </svg>
+    </button>
+    <button class="active">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10.5 3.5h3v3h-3zM3.5 10.5h3v3h-3zM10.5 17.5h3v3h-3zM17.5 10.5h3v3h-3z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 1.5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 13.5c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4h16v2H4zm2 4h12v2H6zm-2 4h16v2H4zm2 4h12v2H6z"/>
+      </svg>
+    </button>
+  </nav>
+
+  <script src="./javascripts/explore.js"></script>
+</body>
+</html>

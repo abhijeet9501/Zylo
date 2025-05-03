@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Settings - ZYLO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheets/account.css">
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="top-bar" aria-label="Site header">
+    <div class="logo">ZYLO</div>
+    <div class="user-actions">
+      <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="User avatar" class="user-avatar" />
+      <div class="user-dropdown">
+        <div class="user-info">
+          <div class="name">John Smith</div>
+          <div class="username">@john_smith</div>
+        </div>
+        <a href="/profile">Profile</a>
+        <a href="/settings">Account Settings</a>
+        <button class="logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="app-container" role="main">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <nav class="sidebar-nav">
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 1.5c-6.3 0-10.5 4.2-10.5 10.5S5.7 22.5 12 22.5 22.5 18.3 22.5 12 18.3 1.5 12 1.5zM12 16.5c-2.5 0-4.5-2-4.5-4.5S9.5 7.5 12 7.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/>
+          </svg>
+          Home
+        </button>
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.5 3.5h3v3h-3zM3.5 10.5h3v3h-3zM10.5 17.5h3v3h-3zM17.5 10.5h3v3h-3z"/>
+          </svg>
+          Explore
+        </button>
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 1.5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 13.5c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+          </svg>
+          Notifications
+        </button>
+        <button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16v2H4zm2 4h12v2H6zm-2 4h16v2H4zm2 4h12v2H6z"/>
+          </svg>
+          Messages
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1 class="main-header">Account Settings</h1>
+      <!-- Password Section -->
+      <section class="settings-section" aria-label="Change password">
+        <h2>Change Password</h2>
+        <form class="password-form" novalidate>
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input id="current-password" name="current-password" type="password" placeholder="Enter current password" required autocomplete="current-password" minlength="6" />
+            <div class="error-message" id="current-password-error">Current password is required</div>
+          </div>
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input id="new-password" name="new-password" type="password" placeholder="Enter new password" required autocomplete="new-password" minlength="6" />
+            <div class="error-message" id="new-password-error">New password must be at least 6 characters</div>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm new password" required autocomplete="new-password" minlength="6" />
+            <div class="error-message" id="confirm-password-error">Passwords must match</div>
+          </div>
+          <button type="submit" class="submit-btn" aria-label="Save new password">Save Password</button>
+        </form>
+      </section>
+      <!-- Username Section -->
+      <section class="settings-section" aria-label="Change username">
+        <h2>Username</h2>
+        <form class="username-form" novalidate>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Your username" value="@john_smith" required autocomplete="username" minlength="3" maxlength="20" />
+            <div class="error-message" id="username-error">Username must be 3–20 characters</div>
+          </div>
+          <button type="submit" class="submit-btn" aria-label="Save username">Save Username</button>
+        </form>
+      </section>
+      <!-- Name Section -->
+      <section class="settings-section" aria-label="Change name">
+        <h2>Full Name</h2>
+        <form class="name-form" novalidate>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="Your full name" value="John Smith" required autocomplete="name" />
+            <div class="error-message" id="name-error">Full name is required</div>
+          </div>
+          <button type="submit" class="submit-btn" aria-label="Save name">Save Name</button>
+        </form>
+      </section>
+      <!-- Bio Section -->
+      <section class="settings-section" aria-label="Change bio">
+        <h2>Bio</h2>
+        <form class="bio-form" novalidate>
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio" placeholder="Tell us about yourself" maxlength="160">Game dev by day, retro arcade enthusiast by night. #PixelLife</textarea>
+            <div class="bio-counter" aria-live="polite">160</div>
+            <div class="error-message" id="bio-error">Bio is required</div>
+          </div>
+          <button type="submit" class="submit-btn" aria-label="Save bio">Save Bio</button>
+        </form>
+      </section>
+      <!-- Email Section -->
+      <section class="settings-section" aria-label="Change email">
+        <h2>Email</h2>
+        <form class="email-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="your.email@example.com" value="john.smith@example.com" required autocomplete="email" />
+            <div class="error-message" id="email-error">Please enter a valid email</div>
+          </div>
+          <button type="submit" class="submit-btn" aria-label="Save email">Save Email</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 1.5c-6.3 0-10.5 4.2-10.5 10.5S5.7 22.5 12 22.5 22.5 18.3 22.5 12 18.3 1.5 12 1.5zM12 16.5c-2.5 0-4.5-2-4.5-4.5S9.5 7.5 12 7.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10.5 3.5h3v3h-3zM3.5 10.5h3v3h-3zM10.5 17.5h3v3h-3zM17.5 10.5h3v3h-3z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 1.5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 13.5c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4h16v2H4zm2 4h12v2H6zm-2 4h16v2H4zm2 4h12v2H6z"/>
+      </svg>
+    </button>
+  </nav>
+
+  <script src="./javascripts/account.js"></script>
+</body>
+</html>

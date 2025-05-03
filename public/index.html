@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home - ZYLO</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheets/homepage.css">
+</head>
+
+<body>
+  <header class="top-bar">
+    <div class="logo">ZYLO</div>
+    <div class="user-actions">
+      <div id="user-icon">
+        <img src="./img/png/user.png" alt="User avatar" id="profile-avatar" class="user-avatar" />
+        <div class="user-dropdown">
+          <div class="user-info">
+            <div id="profile-name" class="name">John Smith</div>
+            <div id="profile-username" class="username">@john_smith</div>
+          </div>
+          <a href="./profile.html">Profile</a>
+          <a href="./account.html">Account Settings</a>
+          <button class="logout" onclick=logout() >Logout</button>
+        </div>
+      </div>
+      <div id="login-icon">
+        <div class="login-register">
+          <a href="./login.html">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button class="active" onclick="window.location.href='./index.html'">
+          <span class="material-symbols-outlined">
+            home
+          </span>
+          Home
+        </button>
+        <button onclick="window.location.href='./explore.html'">
+          <span class="material-symbols-outlined">
+            search
+          </span>
+          Explore
+        </button>
+        <button>
+          <span class="material-symbols-outlined">
+            favorite
+            </span>
+          Notifications
+        </button>
+        <button>
+          <span class="material-symbols-outlined">
+            chat
+            </span>
+          Messages
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <h1 class="main-header">Home</h1>
+      <form class="tweet-box">
+        <textarea class="tweet-input" placeholder="What's happening?" maxlength="80"></textarea>
+        <div class="tweet-counter">80</div>
+        <button type="submit" class="tweet-submit">Tweet</button>
+      </form>
+      <section class="tweets-list">
+        <article class="tweet">
+          <header class="tweet-header">
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" alt="Alice's avatar" class="avatar" />
+            <div>
+              <span class="name">Alice Johnson</span>
+              <span class="username">@alice_j</span>
+            </div>
+          </header>
+          <p class="tweet-content">Learning code is fun! 🚀 #coding</p>
+          <div class="tweet-actions">
+            <button>
+              <svg viewBox="0 0 48 48">
+                <path d="M24 42l-3-3C10 29 6 25 6 18a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 7-4 11-15 21z"/>
+              </svg>
+              32
+            </button>
+            <button>
+              <svg viewBox="0 0 48 48">
+                <path d="M44 4H4v36l8-8h32z"/>
+              </svg>
+              10
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-nav">
+    <button class="active">
+      <svg viewBox="0 0 48 48">
+        <path d="M24 3C12 3 3 12 3 24s9 21 21 21 21-9 21-21S36 3 24 3zm0 30a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 48 48">
+        <path d="M20 8h8v8h-8zM8 20h8v8H8zM20 32h8v8h-8zM32 20h8v8h-8z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 48 48">
+        <path d="M24 3C13 3 4 12 4 24s9 21 20 21 20-9 20-21S35 3 24 3zm0 30a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+      </svg>
+    </button>
+    <button>
+      <svg viewBox="0 0 48 48">
+        <path d="M6 10h36v4H6zm4 8h28v4H10zm-4 8h36v4H6zm4 8h28v4H10z"/>
+      </svg>
+    </button>
+  </nav>
+
+  <script src="./javascripts/homepage.js"></script>
+</body>
+
+</html>
