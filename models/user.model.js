@@ -33,6 +33,30 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "",
         },
+        follower: [
+            {
+                user_id: mongoose.Types.ObjectId,
+                ref: "User",
+            },
+        ],
+        following: [
+            {
+                user_id: mongoose.Types.ObjectId,
+                ref: "User",
+            },
+        ],
+        posts: [
+            {
+                post_id: mongoose.Types.ObjectId,
+                ref: "Post",
+            }
+        ],
+        chat_room: [
+            {
+                room_id: mongoose.Types.ObjectId,
+                ref: "Room",
+            },
+        ],
     }, 
     {timestamps: true}
 );
