@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - ZYLO (Pixelated Retro)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <!-- Audio Elements for Sound Effects -->
+  <audio id="coin-sound" src="./wav/coin.wav" preload="auto"></audio>
+  <audio id="select-sound" src="./wav/laser.wav" preload="auto"></audio>
+  <audio id="update-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
+  <audio id="logout-sound" src="./wav/kill.wav" preload="auto"></audio>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a id="avatara" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce" alt="">
+    </a>
+    <div class="header-content">
+      <div class="logo">ZYLO</div>
+    </div>
+    <a href="login.html" class="login-btn">LOGIN</a>
+  </header>
+
+
+  <div class="app">
+    <!-- Left Sidebar (PC) -->
+    <aside class="sidebar">
+      <div class="logo">ZYLO</div>
+      <nav>
+        <a href="index.html"><span>HOME</span></a>
+        <a href="messages.html"><span>MESSAGES</span></a>
+        <a href="profile.html"><span>PROFILE</span></a>
+        <a href="settings.html" class="active"><span>SETTINGS</span></a>
+      </nav>
+      <div class="user-info">
+        <a href="login.html" class="login-btn">LOGIN</a>
+        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin">
+        <div class="loggedin">
+          <div class="username">pixel_guru</div>
+          <div class="handle">@pixel_guru</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Settings Menu and Mobile Panels -->
+    <main>
+      <div class="settings-menu">
+        <h2>SETTINGS</h2>
+        <ul>
+          <li><button class="menu-btn active" data-target="account-info">CHANGE ACCOUNT INFO</button></li>
+          <li><button class="menu-btn" data-target="change-password">CHANGE PASSWORD</button></li>
+          <li><button class="menu-btn" data-target="mute">MUTE</button></li>
+          <li><button class="menu-btn" data-target="logout">LOGOUT</button></li>
+        </ul>
+      </div>
+      <!-- Mobile Panels -->
+      <div class="settings-panel mobile-panel" id="account-info-mobile" style="display: none;">
+        <h2>ACCOUNT INFO</h2>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="avatar-upload-mobile">Avatar:</label>
+            <input type="file" id="avatar-upload-mobile" accept="image/*" aria-label="Upload avatar">
+            <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview">
+          </div>
+          <div class="form-group">
+            <label for="name-mobile">Name:</label>
+            <input type="text" id="name-mobile" placeholder="Pixel Guru" aria-label="Name">
+          </div>
+          <div class="form-group">
+            <label for="username-mobile">Username:</label>
+            <input type="text" id="username-mobile" placeholder="@pixel_guru" aria-label="Username">
+          </div>
+          <div class="form-group">
+            <label for="email-mobile">Email:</label>
+            <input type="email" id="email-mobile" placeholder="pixel@example.com" aria-label="Email">
+          </div>
+          <button type="submit" class="update-btn" aria-label="Update account info">UPDATE</button>
+        </form>
+        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
+      </div>
+      <div class="settings-panel mobile-panel" id="change-password-mobile" style="display: none;">
+        <h2>CHANGE PASSWORD</h2>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="current-password-mobile">Current Password:</label>
+            <input type="password" id="current-password-mobile" value="current123" aria-label="Current password">
+          </div>
+          <div class="form-group">
+            <label for="new-password-mobile">New Password:</label>
+            <input type="password" id="new-password-mobile" value="new123" aria-label="New password">
+          </div>
+          <button type="submit" class="update-btn" aria-label="Update password">UPDATE</button>
+        </form>
+        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
+      </div>
+      <div class="settings-panel mobile-panel" id="mute-mobile" style="display: none;">
+        <h2>MUTE</h2>
+        <div class="toggle-wrapper">
+          <label for="mute-toggle-mobile">Sound:</label>
+          <input type="checkbox" id="mute-toggle-mobile" aria-label="Toggle sound">
+          <span class="toggle-label">ON</span>
+        </div>
+        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
+      </div>
+      <div class="settings-panel mobile-panel" id="logout-mobile" style="display: none;">
+        <h2>LOGOUT</h2>
+        <button class="logout-btn" aria-label="Logout">LOGOUT</button>
+        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
+      </div>
+    </main>
+
+    <!-- Right Sidebar (Desktop Only) -->
+    <aside class="right-sidebar">
+      <div class="settings-panel" id="account-info" style="display: block;">
+        <h2>ACCOUNT INFO</h2>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="avatar-upload">Avatar:</label>
+            <input type="file" id="avatar-upload" accept="image/*" aria-label="Upload avatar">
+            <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview">
+          </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Pixel Guru" aria-label="Name">
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="@pixel_guru" aria-label="Username">
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="pixel@example.com" aria-label="Email">
+          </div>
+          <button type="submit" class="update-btn" aria-label="Update account info">UPDATE</button>
+        </form>
+      </div>
+      <div class="settings-panel" id="change-password" style="display: none;">
+        <h2>CHANGE PASSWORD</h2>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" value="current123" aria-label="Current password">
+          </div>
+          <div class="form-group">
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" value="new123" aria-label="New password">
+          </div>
+          <button type="submit" class="update-btn" aria-label="Update password">UPDATE</button>
+        </form>
+      </div>
+      <div class="settings-panel" id="mute" style="display: none;">
+        <h2>MUTE</h2>
+        <div class="toggle-wrapper">
+          <label for="mute-toggle">Sound:</label>
+          <input type="checkbox" id="mute-toggle" aria-label="Toggle sound">
+          <span class="toggle-label">ON</span>
+        </div>
+      </div>
+      <div class="settings-panel" id="logout" style="display: none;">
+        <h2>LOGOUT</h2>
+        <button class="logout-btn" aria-label="Logout">LOGOUT</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="./index.html" class="active" aria-current="page" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+    </a>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+    </a>
+    <a href="./settings.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z"/></svg>
+    </a>
+  </nav>
+
+  <script>
+    // Play sound function
+    const playSound = (soundId) => {
+      const sound = document.getElementById(soundId);
+      if (!document.getElementById('mute-toggle').checked && !document.getElementById('mute-toggle-mobile').checked) {
+        sound.currentTime = 0;
+        sound.volume = 0.5;
+        sound.play();
+      }
+    };
+
+    // Menu item switching
+    document.querySelectorAll('.menu-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        playSound('select-sound');
+
+        // Desktop: Switch right sidebar panels
+        document.querySelectorAll('.right-sidebar .settings-panel').forEach(panel => panel.style.display = 'none');
+        const desktopTarget = document.getElementById(button.dataset.target);
+        desktopTarget.style.display = 'block';
+
+        // Mobile: Switch middle panel if in mobile view
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll('.settings-menu, .mobile-panel').forEach(panel => panel.style.display = 'none');
+          const mobileTarget = document.getElementById(button.dataset.target + '-mobile');
+          mobileTarget.style.display = 'block';
+        }
+      });
+    });
+
+    // Back button (mobile only)
+    document.querySelectorAll('.back-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.mobile-panel').forEach(panel => panel.style.display = 'none');
+        document.querySelector('.settings-menu').style.display = 'block';
+        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+        playSound('coin-sound');
+      });
+    });
+
+    // Clear input on click
+    document.querySelectorAll('.settings-form input:not([type="file"])').forEach(input => {
+      input.addEventListener('click', () => {
+        input.value = '';
+      });
+    });
+
+    // Update button sound
+    document.querySelectorAll('.update-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent form submission for demo
+        playSound('update-sound');
+      });
+    });
+
+    // Mute toggle sync
+    const muteToggle = document.getElementById('mute-toggle');
+    const muteToggleMobile = document.getElementById('mute-toggle-mobile');
+    const toggleLabel = document.querySelector('#mute .toggle-label');
+    const toggleLabelMobile = document.querySelector('#mute-mobile .toggle-label');
+    const syncToggles = (source, target, labelSource, labelTarget) => {
+      target.checked = source.checked;
+      labelSource.textContent = source.checked ? 'OFF' : 'ON';
+      labelTarget.textContent = source.checked ? 'OFF' : 'ON';
+    };
+    muteToggle.addEventListener('change', () => {
+      syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
+      playSound('coin-sound');
+    });
+    muteToggleMobile.addEventListener('change', () => {
+      syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
+      playSound('coin-sound');
+    });
+
+    // Logout button sound (script to be handled by you)
+    document.querySelectorAll('.logout-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        playSound('logout-sound');
+        // Add your logout script here
+      });
+    });
+  </script>
+</body>
+</html>

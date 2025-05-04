@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - ZYLO (Pixelated Retro)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <!-- Audio Elements for Sound Effects -->
+  <audio id="like-sound" src="./wav/coin.wav" preload="auto"></audio>
+  <audio id="comment-sound" src="./wav/laser.wav" preload="auto"></audio>
+  <audio id="post-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
+  <audio id="follow-sound" src="./wav/kill.wav" preload="auto"></audio>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a id="avatara" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce" alt="">
+    </a>
+    <div class="header-content">
+      <div class="logo">ZYLO</div>
+    </div>
+    <a href="login.html" class="login-btn">LOGIN</a>
+  </header>
+
+
+  <div class="app">
+    <!-- Left Sidebar (PC) -->
+    <aside class="sidebar">
+      <div class="logo">ZYLO</div>
+      <nav>
+        <a href="index.html"><span>HOME</span></a>
+        <a href="messages.html"><span>MESSAGES</span></a>
+        <a href="profile.html" class="active" aria-current="page"><span>PROFILE</span></a>
+        <a href="settings.html"><span>SETTINGS</span></a>
+      </nav>
+      <div class="user-info">
+        <a href="login.html" class="login-btn">LOGIN</a>
+        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin">
+        <div class="loggedin">
+          <div class="username">pixel_guru</div>
+          <div class="handle">@pixel_guru</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Profile -->
+    <main>
+      <div class="profile-header">
+        <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar-bounce">
+        <div class="profile-info">
+          <div class="username">pixel_guru</div>
+          <div class="handle">@pixel_guru</div>
+          <p class="bio">Retro gaming enthusiast. Lover of 8-bit adventures and pixel art. #PixelFest</p>
+          <div class="follow-stats">
+            <button class="follow-btn" data-target="following">Following: <span>150</span></button>
+            <button class="follow-btn" data-target="followers">Followers: <span>200</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="profile-posts">
+        <article class="post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce">
+            <div class="username">pixel_guru</div>
+            <div class="handle">@pixel_guru</div>
+            <div class="timestamp">· 1h</div>
+          </div>
+          <div class="post-content">
+            <p>Just beat my high score in #PixelFest! 🕹️ Who's joining me next weekend? #RetroGaming</p>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" aria-label="Like">
+              <svg class="like-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 12H6V20H4V12ZM8 10H10V20H8V10ZM12 8H14V20H12V8ZM16 10H18V20H16V10ZM20 12H22V20H20V12ZM8 8H10V6H12V4H14V6H16V8H14V10H12V8H10V6H8V8Z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="action-btn comment-btn" aria-label="Comment">
+              <svg class="comment-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H20V16H8L4 20V4ZM6 6V14H18V6H6Z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="action-btn delete-btn" aria-label="Delete Post">DELETE</button>
+          </div>
+          <div class="comments-section" style="display: none;">
+            <div class="comments-list">
+              <div class="comment">
+                <img src="https://via.placeholder.com/30" alt="Commenter avatar" class="avatar-bounce">
+                <div class="comment-content">
+                  <div class="comment-username">retro_fan</div>
+                  <p>Amazing score! Count me in!</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-composer">
+              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
+              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
+            </div>
+          </div>
+        </article>
+        <!-- Additional posts can be added here -->
+      </div>
+    </main>
+
+    <!-- Right Sidebar (PC) -->
+    <aside class="right-sidebar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search ZYLO..." aria-label="Search">
+      </div>
+      <div class="who-to-follow">
+        <h2>WHO TO FOLLOW</h2>
+        <div class="follow-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce">
+          <div>
+            <div class="username">real_pixel</div>
+            <div class="handle">@real_pixel</div>
+          </div>
+          <button aria-label="Follow">FOLLOW</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="./index.html" class="active" aria-current="page" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+    </a>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+    </a>
+    <a href="./settings.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z"/></svg>
+    </a>
+  </nav>
+
+  <!-- Followers/Following Modals -->
+  <div class="modal" id="following-modal" style="display: none;">
+    <div class="modal-content">
+      <h2>FOLLOWING</h2>
+      <button class="modal-close" aria-label="Close modal">X</button>
+      <div class="modal-list">
+        <div class="modal-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce">
+          <div>
+            <div class="username">retro_fan</div>
+            <div class="name">@retro_fan</div>
+          </div>
+          <button class="unfollow-btn" aria-label="Unfollow">UNFOLLOW</button>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+  <div class="modal" id="followers-modal" style="display: none;">
+    <div class="modal-content">
+      <h2>FOLLOWERS</h2>
+      <button class="modal-close" aria-label="Close modal">X</button>
+      <div class="modal-list">
+        <div class="modal-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce">
+          <div>
+            <div class="username">pixel_lover</div>
+            <div class="name">@pixel_lover</div>
+          </div>
+          <button class="remove-follower-btn" aria-label="Remove Follower">REMOVE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Play sound function
+    const playSound = (soundId) => {
+      const sound = document.getElementById(soundId);
+      sound.currentTime = 0;
+      sound.volume = 0.5;
+      sound.play();
+    };
+
+    // Like button interaction
+    document.querySelectorAll('.like-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('liked');
+        playSound('like-sound');
+      });
+    });
+
+    // Comment button interaction
+    document.querySelectorAll('.comment-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const commentsSection = button.closest('.post').querySelector('.comments-section');
+        commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+        button.classList.toggle('active');
+        playSound('comment-sound');
+      });
+    });
+
+    // Send comment interaction
+    document.querySelectorAll('.send-comment-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const commentInput = button.previousElementSibling;
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+          const commentsList = button.closest('.comments-section').querySelector('.comments-list');
+          const newComment = document.createElement('div');
+          newComment.classList.add('comment');
+          newComment.innerHTML = `
+            <img src="https://via.placeholder.com/30" alt="Commenter avatar" class="avatar-bounce">
+            <div class="comment-content">
+              <div class="comment-username">pixel_guru</div>
+              <p>${commentText}</p>
+            </div>
+          `;
+          commentsList.appendChild(newComment);
+          commentInput.value = '';
+          playSound('comment-sound');
+        }
+      });
+    });
+
+    // Delete post interaction
+    document.querySelectorAll('.delete-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const post = button.closest('.post');
+        post.remove();
+        playSound('follow-sound');
+      });
+    });
+
+    // Follow button interaction (Who to Follow)
+    document.querySelectorAll('.follow-item button').forEach(button => {
+      button.addEventListener('click', () => {
+        playSound('follow-sound');
+      });
+    });
+
+    // Modal interactions
+    document.querySelectorAll('.follow-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const modalId = button.dataset.target + '-modal';
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'flex';
+      });
+    });
+
+    document.querySelectorAll('.modal-close').forEach(button => {
+      button.addEventListener('click', () => {
+        button.closest('.modal').style.display = 'none';
+      });
+    });
+
+    document.querySelectorAll('.unfollow-btn, .remove-follower-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        button.closest('.modal-item').remove();
+        playSound('follow-sound');
+      });
+    });
+
+    // Post load animation
+    const posts = document.querySelectorAll('.post');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('post-appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    posts.forEach(post => observer.observe(post));
+  </script>
+</body>
+</html>
