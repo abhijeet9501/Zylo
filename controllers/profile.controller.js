@@ -97,9 +97,30 @@ const uploadAvatar = asyncHandler (async (req, res) => {
     }
 });
 
+const updatePassword = asyncHandler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+
+    const user = await User.findById(req.userID);
+    if (!user) {
+        return  ApiError(404, "User not found!");
+    }
+
+    const isMatch = await user.checkPassword(currentPassword);
+    if (!isMatch) {
+        return  ApiError(404, "Incorrect current password!");
+    }
+
+    user.password = newPassword; 
+    await user.save();
+
+    res.status(200).json({ message: "Password updated successfully" });
+});
+
+
 export {
     getMyProfile,
     getUserProfile,
     updateMyProfile,
     uploadAvatar,
-}
+    updatePassword,
+};

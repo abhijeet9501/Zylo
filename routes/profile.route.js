@@ -1,4 +1,4 @@
-import { getMyProfile, getUserProfile, updateMyProfile, uploadAvatar } from "../controllers/profile.controller.js";
+import { getMyProfile, getUserProfile, updateMyProfile, updatePassword, uploadAvatar } from "../controllers/profile.controller.js";
 import { isAuthenticated, logOut } from "../middlewares/profile.middleware.js";
 import upload from "../middlewares/multer.middleware.js";
 
@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get("/me", isAuthenticated, getMyProfile);
 router.put("/update", isAuthenticated, updateMyProfile);
+router.put("/password", isAuthenticated, updatePassword);
 router.get("/:username", isAuthenticated, getUserProfile);
 router.post("/avatar", isAuthenticated, upload.single("avatar"), uploadAvatar);
 router.post("/logout", logOut);
