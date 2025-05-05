@@ -53,7 +53,8 @@ const updateMyProfile = asyncHandler (async (req, res) => {
     
     try {
         const user = await User.findByIdAndUpdate(req.userID, updates, {new: true})
-        .select("name username email bio avatar");
+        .select("name username email bio avatar -_id");
+        const avatar = user?.avatar?.url;
         if (!user) throw new ApiError(404, "User not found");
     
         return res.status(200).json(
@@ -61,6 +62,7 @@ const updateMyProfile = asyncHandler (async (req, res) => {
                 success: true,
                 message: "Profile updated successfully!",
                 user,
+                avatar,
             }
         );
     }catch (error) {
@@ -84,6 +86,7 @@ const uploadAvatar = asyncHandler (async (req, res) => {
             if (publicID) deleteUpload(publicID); 
 
             return res.status(200).json({
+                success: true,
                 url: data.secure_url,
                 message: "file uploaded!"
             });

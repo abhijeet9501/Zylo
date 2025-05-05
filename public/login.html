@@ -6,226 +6,7 @@
   <title>Login & Register - ZYLO (Pixelated Retro)</title>
   <!-- Google Fonts for Press Start 2P and Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Variables (Dark Mode Only, Light for Future) */
-    :root {
-      --primary: #FF4D94; /* Muted hot pink */
-      --accent: #26D9B3; /* Softer cyan-green */
-      --bg: #1A1A2E; /* Dark retro background */
-      --card-bg: #2A2A4A; /* Dark card for forms */
-      --text: #FFFFFF;
-      --text-muted: #A0A0C0;
-      --border: 2px solid #FFFFFF; /* Pixelated white border */
-      --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      /* Light Mode (for future homepage settings) */
-      --light-bg: #F5F5F5;
-      --light-card-bg: #FFFFFF;
-      --light-text: #262626;
-      --light-border: 1px solid #DBDBDB;
-    }
-
-    /* Base */
-    body {
-      background: var(--bg);
-      font-family: 'Roboto', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Pixelated Scanline Flicker (on load) */
-    @keyframes scanline {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.1; }
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: repeating-linear-gradient(
-        rgba(0, 0, 0, 0.1) 0,
-        rgba(0, 0, 0, 0.1) 2px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
-      animation: scanline 2s ease-in-out;
-    }
-
-    /* Container */
-    .container {
-      width: 100%;
-      max-width: 350px; /* Instagram’s narrow form */
-      background: var(--card-bg);
-      border: var(--border);
-      border-radius: 0; /* Blocky for pixelation */
-      padding: 24px;
-      margin: 20px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      image-rendering: pixelated;
-      animation: gameLoad 0.5s ease forwards;
-    }
-    @keyframes gameLoad {
-      0% { opacity: 0; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Logo */
-    .logo {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 0 var(--accent);
-      animation: logoPulse 2s infinite ease-in-out;
-    }
-    @keyframes logoPulse {
-      0%, 100% { text-shadow: 2px 2px 0 var(--accent); }
-      50% { text-shadow: 2px 2px 4px var(--primary); }
-    }
-
-    /* Forms */
-    form {
-      display: none;
-      animation: fadeIn 0.3s ease forwards;
-    }
-    form.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Form Groups */
-    .form-group {
-      margin-bottom: 12px;
-    }
-    label {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem; /* Smaller for 8-bit vibe */
-      color: var(--text);
-      margin-bottom: 8px;
-      display: block;
-      text-shadow: 1px 1px 0 var(--accent);
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      font-size: 0.9rem;
-      border: var(--border);
-      border-radius: 0; /* Blocky for pixelation */
-      background: #333355; /* Darker input for retro */
-      color: var(--text);
-      outline: none;
-      font-family: 'Roboto', sans-serif;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      image-rendering: pixelated;
-    }
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 6px var(--accent);
-    }
-    input::placeholder {
-      color: var(--text-muted);
-    }
-
-    /* Submit Button */
-    .submit-btn {
-      width: 100%;
-      padding: 10px;
-      background: var(--primary);
-      border: var(--border);
-      border-radius: 0;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.8rem;
-      color: var(--text);
-      cursor: pointer;
-      margin: 12px 0;
-      transition: background 0.2s ease, transform 0.1s ease;
-      image-rendering: pixelated;
-    }
-    .submit-btn:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
-    }
-    .submit-btn:active {
-      transform: scale(0.95);
-      animation: buttonFlash 0.2s ease;
-    }
-    @keyframes buttonFlash {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.5); }
-    }
-
-    /* Switch Text */
-    .switch-text {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      color: var(--text);
-      margin-top: 12px;
-    }
-    .switch-text span {
-      color: var(--primary);
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .switch-text span:hover {
-      color: var(--accent);
-    }
-
-    /* Error Message (Game Alert Style) */
-    .error-message {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.7rem;
-      color: #FF5555;
-      background: #333355;
-      border: var(--border);
-      border-radius: 0;
-      padding: 8px;
-      margin-top: 8px;
-      display: none;
-      text-align: center;
-      box-shadow: var(--shadow);
-      image-rendering: pixelated;
-    }
-    .error-message.active {
-      display: block;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .container {
-        margin: 10px;
-        padding: 16px;
-      }
-      .logo {
-        font-size: 1.5rem;
-      }
-      .submit-btn {
-        font-size: 0.7rem;
-      }
-      label, .switch-text, .error-message {
-        font-size: 0.6rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./stylesheets/login.css">
 </head>
 <body>
   <main class="container">
@@ -242,9 +23,8 @@
         <label for="login-password">PASSWORD</label>
         <input id="login-password" name="password" type="password" placeholder="••••••••" required autocomplete="current-password" minlength="6" aria-required="true">
       </div>
-      <button type="button" class="submit-btn" aria-label="Submit login">LOGIN</button>
+      <button type="button" id="login-submit" class="submit-btn" aria-label="Submit login">LOGIN</button>
       <p class="switch-text">New here? <span id="to-register">CREATE</span></p>
-      <p id="login-error" class="error-message" role="alert">ERROR: Invalid credentials!</p>
     </form>
 
     <!-- Register Form -->
@@ -265,14 +45,15 @@
         <label for="reg-password">PASSWORD</label>
         <input id="reg-password" name="password" type="password" placeholder="Min 6 chars" required autocomplete="new-password" minlength="6" aria-required="true">
       </div>
-      <button type="button" class="submit-btn" aria-label="Submit registration">REGISTER</button>
+      <button type="button" id="reg-submit" class="submit-btn" aria-label="Submit registration">REGISTER</button>
       <p class="switch-text">Got an account? <span id="to-login">LOGIN</span></p>
-      <p id="register-error" class="error-message" role="alert">ERROR: Registration failed!</p>
     </form>
   </main>
-
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+  <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/login.js"></script>
   <script>
-    // Basic JS for form toggle (replace with your login.js)
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     const toRegister = document.getElementById('to-register');

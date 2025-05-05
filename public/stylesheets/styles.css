@@ -614,3 +614,27 @@ main {
   .post { padding: 10px; }
   .post-composer img { display: none; }
 }
+
+.error-message, .success-message {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--primary);
+  border: var(--border);
+  border-radius: 0;
+  padding: 8px;
+  margin-top: 8px;
+  display: none;
+  text-align: center;
+  box-shadow: var(--shadow);
+  image-rendering: pixelated;
+  position: absolute;
+  top: 5vh;
+  z-index: 99999;
+}
+
+.success-message {
+  color: var(--primary);
+  background-color: var(--accent);
+}
+

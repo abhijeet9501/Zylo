@@ -26,34 +26,25 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         avatar: {
-            url: String,
+            url: {
+                type: String,
+                default: "",
+            },
             public_id: String,
         },
         bio: {
             type: String,
             default: "",
         },
-        follower: [
-            {
-                user_id: mongoose.Types.ObjectId,
-                ref: "User",
-            },
-        ],
-        following: [
-            {
-                user_id: mongoose.Types.ObjectId,
-                ref: "User",
-            },
-        ],
         posts: [
             {
-                post_id: mongoose.Types.ObjectId,
+                type: mongoose.Types.ObjectId,
                 ref: "Post",
             }
         ],
         chat_room: [
             {
-                room_id: mongoose.Types.ObjectId,
+                type: mongoose.Types.ObjectId,
                 ref: "Room",
             },
         ],

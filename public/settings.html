@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings - ZYLO (Pixelated Retro)</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="./stylesheets/styles.css">
+  <link rel="stylesheet" href="./stylesheets/settings.css">
 </head>
 <body>
   <!-- Audio Elements for Sound Effects -->
@@ -17,13 +17,13 @@
 
   <!-- Mobile Header -->
   <header class="mobile-header">
-    <a id="avatara" href="profile.html">
-      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce" alt="">
+    <a id="avatara" class="loggedin" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar" alt="">
     </a>
     <div class="header-content">
       <div class="logo">ZYLO</div>
     </div>
-    <a href="login.html" class="login-btn">LOGIN</a>
+    <a href="login.html" class="login-btn logout">LOGIN</a>
   </header>
 
 
@@ -38,11 +38,11 @@
         <a href="settings.html" class="active"><span>SETTINGS</span></a>
       </nav>
       <div class="user-info">
-        <a href="login.html" class="login-btn">LOGIN</a>
-        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin">
+        <a href="login.html" class="login-btn logout">LOGIN</a>
+        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin user-avatar">
         <div class="loggedin">
-          <div class="username">pixel_guru</div>
-          <div class="handle">@pixel_guru</div>
+          <div class="username user-name">pixel_guru</div>
+          <div class="handle user-username">@pixel_guru</div>
         </div>
       </div>
     </aside>
@@ -118,25 +118,29 @@
     <aside class="right-sidebar">
       <div class="settings-panel" id="account-info" style="display: block;">
         <h2>ACCOUNT INFO</h2>
+        <form class="form-group" enctype="multipart/form-data">
+          <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview user-avatar">
+          <label for="avatar-upload">Avatar:</label>
+          <input type="file" id="upload-avatar" accept="image/*" name="avatar" aria-label="Upload avatar">
+        </form>
         <form class="settings-form">
           <div class="form-group">
-            <label for="avatar-upload">Avatar:</label>
-            <input type="file" id="avatar-upload" accept="image/*" aria-label="Upload avatar">
-            <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview">
-          </div>
-          <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Pixel Guru" aria-label="Name">
+            <input type="text" id="name" aria-label="Name">
           </div>
           <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="@pixel_guru" aria-label="Username">
+            <input type="text" id="username" aria-label="Username">
+          </div>
+          <div class="form-group">
+            <label for="bio">Bio:</label>
+            <input type="text" id="bio" aria-label="bio">
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="pixel@example.com" aria-label="Email">
+            <input type="email" id="email" aria-label="Email">
           </div>
-          <button type="submit" class="update-btn" aria-label="Update account info">UPDATE</button>
+          <button type="submit" id="acc-btn" class="update-btn" aria-label="Update account info">UPDATE</button>
         </form>
       </div>
       <div class="settings-panel" id="change-password" style="display: none;">
@@ -181,6 +185,11 @@
     </a>
   </nav>
 
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+
+  <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/settings.js"></script>
   <script>
     // Play sound function
     const playSound = (soundId) => {

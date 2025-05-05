@@ -5,7 +5,7 @@ import "dotenv/config";
 const startServer = async () => {
     await connectToDB();
 
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT, "0.0.0.0",() => {
         console.log(`Server Running At http://localhost:${process.env.PORT}`);
     });
 };

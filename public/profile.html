@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - ZYLO (Pixelated Retro)</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="./stylesheets/styles.css">
+  <link rel="stylesheet" href="./stylesheets/profile.css">
 </head>
 <body>
   <!-- Audio Elements for Sound Effects -->
@@ -17,13 +17,13 @@
 
   <!-- Mobile Header -->
   <header class="mobile-header">
-    <a id="avatara" href="profile.html">
-      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce" alt="">
+    <a id="avatara" class="loggedin" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar" alt="">
     </a>
     <div class="header-content">
       <div class="logo">ZYLO</div>
     </div>
-    <a href="login.html" class="login-btn">LOGIN</a>
+    <a href="login.html" class="login-btn logout">LOGIN</a>
   </header>
 
 
@@ -38,11 +38,11 @@
         <a href="settings.html"><span>SETTINGS</span></a>
       </nav>
       <div class="user-info">
-        <a href="login.html" class="login-btn">LOGIN</a>
-        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin">
+        <a href="login.html" class="login-btn logout">LOGIN</a>
+        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin user-avatar">
         <div class="loggedin">
-          <div class="username">pixel_guru</div>
-          <div class="handle">@pixel_guru</div>
+          <div class="username user-name">pixel_guru</div>
+          <div class="user-username">@pixel_guru</div>
         </div>
       </div>
     </aside>
@@ -50,11 +50,11 @@
     <!-- Main Profile -->
     <main>
       <div class="profile-header">
-        <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar-bounce">
+        <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar-bounce user-avatar">
         <div class="profile-info">
-          <div class="username">pixel_guru</div>
-          <div class="handle">@pixel_guru</div>
-          <p class="bio">Retro gaming enthusiast. Lover of 8-bit adventures and pixel art. #PixelFest</p>
+          <div class="username user-name">pixel_guru</div>
+          <div class="handle user-username">@pixel_guru</div>
+          <p class="bio" id="user-bio" >Retro gaming enthusiast. Lover of 8-bit adventures and pixel art. #PixelFest</p>
           <div class="follow-stats">
             <button class="follow-btn" data-target="following">Following: <span>150</span></button>
             <button class="follow-btn" data-target="followers">Followers: <span>200</span></button>
@@ -172,6 +172,12 @@
       </div>
     </div>
   </div>
+
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+
+  <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/profile.js"></script>
 
   <script>
     // Play sound function

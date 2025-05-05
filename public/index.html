@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - ZYLO (Pixelated Retro)</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./stylesheets/styles.css">
 </head>
 <body>
   <!-- Audio Elements for Sound Effects -->
-  <audio id="like-sound" src="./wav/coin.wav" preload="auto"></audio>
-  <audio id="comment-sound" src="./wav/laser.wav" preload="auto"></audio>
-  <audio id="post-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
-  <audio id="follow-sound" src="./wav/kill.wav" preload="auto"></audio>
+  <audio id="like-sound" src="https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav" preload="auto"></audio>
+  <audio id="comment-sound" src="https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/laser_pf05vu.wav" preload="auto"></audio>
+  <audio id="post-sound" src="https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav" preload="auto"></audio>
+  <audio id="follow-sound" src="https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav" preload="auto"></audio>
 
   <!-- Mobile Header -->
   <header class="mobile-header">
     <a id="avatara" class="loggedin" href="profile.html">
-      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce" alt="">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar" alt="">
     </a>
     <div class="header-content">
       <div class="logo">ZYLO</div>
     </div>
-    <a href="login.html" class="login-btn">LOGIN</a>
+    <a href="login.html" class="login-btn logout">LOGIN</a>
   </header>
 
   <div class="app">
@@ -36,11 +36,11 @@
         <a href="./settings.html"><span>SETTINGS</span></a>
       </nav>
       <div class="user-info">
-        <a href="login.html" class="login-btn">LOGIN</a>
-        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin">
+        <a href="login.html" class="login-btn logout">LOGIN</a>
+        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin user-avatar">
         <div class="loggedin">
-          <div class="username">pixel_guru</div>
-          <div class="handle">@pixel_guru</div>
+          <div class="username user-name">pixel_guru</div>
+          <div class="handle user-username">@pixel_guru</div>
         </div>
       </div>
     </aside>
@@ -53,7 +53,7 @@
       </div>
       <div class="feed-content">
         <div class="post-composer">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce user-avatar">
           <div class="input-wrapper">
             <textarea placeholder="What's happening?" rows="2" aria-label="Compose post"></textarea>
             <div class="composer-actions">
@@ -146,6 +146,12 @@
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z"/></svg>
     </a>
   </nav>
+
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+
+  <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/home.js"></script>
 
   <script>
     // Post button interaction
