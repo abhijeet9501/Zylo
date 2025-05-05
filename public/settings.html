@@ -61,25 +61,29 @@
       <!-- Mobile Panels -->
       <div class="settings-panel mobile-panel" id="account-info-mobile" style="display: none;">
         <h2>ACCOUNT INFO</h2>
+        <form class="form-group" enctype="multipart/form-data">
+          <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview">
+          <label for="avatar-upload-mobile">Avatar:</label>
+          <input type="file" id="avatar-upload-mobile" accept="image/*" aria-label="Upload avatar">
+        </form>
         <form class="settings-form">
           <div class="form-group">
-            <label for="avatar-upload-mobile">Avatar:</label>
-            <input type="file" id="avatar-upload-mobile" accept="image/*" aria-label="Upload avatar">
-            <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview">
-          </div>
-          <div class="form-group">
             <label for="name-mobile">Name:</label>
-            <input type="text" id="name-mobile" placeholder="Pixel Guru" aria-label="Name">
+            <input type="text" id="name-mobile" aria-label="Name">
           </div>
           <div class="form-group">
             <label for="username-mobile">Username:</label>
-            <input type="text" id="username-mobile" placeholder="@pixel_guru" aria-label="Username">
+            <input type="text" id="username-mobile" aria-label="Username">
           </div>
           <div class="form-group">
             <label for="email-mobile">Email:</label>
-            <input type="email" id="email-mobile" placeholder="pixel@example.com" aria-label="Email">
+            <input type="email" id="email-mobile" aria-label="Email">
           </div>
-          <button type="submit" class="update-btn" aria-label="Update account info">UPDATE</button>
+          <div class="form-group">
+            <label for="bio-mobile">Bio:</label>
+            <input type="text" id="bio-mobile" aria-label="Email">
+          </div>
+          <button type="submit" class="update-btn" id="mobile-update-btn" aria-label="Update account info">UPDATE</button>
         </form>
         <button class="back-btn" aria-label="Back to settings menu">BACK</button>
       </div>
@@ -94,7 +98,7 @@
             <label for="new-password-mobile">New Password:</label>
             <input type="password" id="new-password-mobile" value="new123" aria-label="New password">
           </div>
-          <button type="submit" class="update-btn" aria-label="Update password">UPDATE</button>
+          <button type="submit" class="update-btn" id="update-pass-mobile" aria-label="Update password">UPDATE</button>
         </form>
         <button class="back-btn" aria-label="Back to settings menu">BACK</button>
       </div>
@@ -152,9 +156,9 @@
           </div>
           <div class="form-group">
             <label for="new-password">New Password:</label>
-            <input type="password" id="new-password" value="new123" aria-label="New password">
+            <input type="password" id="new-password" value="current123" aria-label="New password">
           </div>
-          <button type="submit" class="update-btn" aria-label="Update password">UPDATE</button>
+          <button type="submit" class="update-btn" id="update-pass-pc" aria-label="Update password">UPDATE</button>
         </form>
       </div>
       <div class="settings-panel" id="mute" style="display: none;">
