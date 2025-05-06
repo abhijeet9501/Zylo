@@ -9,11 +9,20 @@
   <link rel="stylesheet" href="./stylesheets/settings.css">
 </head>
 <body>
-  <!-- Audio Elements for Sound Effects -->
-  <audio id="coin-sound" src="./wav/coin.wav" preload="auto"></audio>
-  <audio id="select-sound" src="./wav/laser.wav" preload="auto"></audio>
-  <audio id="update-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
-  <audio id="logout-sound" src="./wav/kill.wav" preload="auto"></audio>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="digital-rain"></div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="loading-text">
+      <span>LOADING</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
 
   <!-- Mobile Header -->
   <header class="mobile-header">
@@ -200,10 +209,10 @@
     </aside>
   </div>
   </div>
-  
+
   <!-- Mobile Navigation -->
   <nav class="mobile-nav">
-    <a href="./index.html" class="active" aria-current="page" aria-label="Home">
+    <a href="./index.html" aria-label="Home">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
       </svg>
@@ -234,23 +243,13 @@
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/settings.js"></script>
   <script>
-    // Play sound function
-    const playSound = (soundId) => {
-      const sound = document.getElementById(soundId);
-      if (!document.getElementById('mute-toggle').checked && !document.getElementById('mute-toggle-mobile').checked) {
-        sound.currentTime = 0;
-        sound.volume = 0.5;
-        sound.play();
-      }
-    };
-
     // Menu item switching
     document.querySelectorAll('.menu-btn').forEach(button => {
       button.addEventListener('click', () => {
         // Remove active class from all buttons
         document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // select-sound
 
         // Desktop: Switch right sidebar panels
         document.querySelectorAll('.right-sidebar .settings-panel').forEach(panel => panel.style.display = 'none');
@@ -272,7 +271,7 @@
         document.querySelectorAll('.mobile-panel').forEach(panel => panel.style.display = 'none');
         document.querySelector('.settings-menu').style.display = 'block';
         document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-        playSound('coin-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
       });
     });
 
@@ -287,7 +286,9 @@
     document.querySelectorAll('.update-btn').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault(); // Prevent form submission for demo
-        playSound('update-sound');
+        showLoading(); // From util.js
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lvl_complete.wav'); // update-sound
+        setTimeout(() => hideLoading(), 1000); // Simulate API call
       });
     });
 
@@ -302,18 +303,24 @@
       labelTarget.textContent = source.checked ? 'OFF' : 'ON';
     };
     muteToggle.addEventListener('change', () => {
+      showLoading(); // From util.js
       syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
-      playSound('coin-sound');
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
+      setTimeout(() => hideLoading(), 1000); // Simulate API call
     });
     muteToggleMobile.addEventListener('change', () => {
+      showLoading(); // From util.js
       syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
-      playSound('coin-sound');
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
+      setTimeout(() => hideLoading(), 1000); // Simulate API call
     });
 
-    // Logout button sound (script to be handled by you)
+    // Logout button sound
     document.querySelectorAll('.logout-btn').forEach(button => {
       button.addEventListener('click', () => {
-        playSound('logout-sound');
+        showLoading(); // From util.js
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // logout-sound
+        setTimeout(() => hideLoading(), 1000); // Simulate API call
         // Add your logout script here
       });
     });

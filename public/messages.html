@@ -9,10 +9,20 @@
   <link rel="stylesheet" href="./stylesheets/messages.css">
 </head>
 <body>
-  <!-- Audio Elements for Sound Effects -->
-  <audio id="like-sound" src="./wav/coin.wav" preload="auto"></audio>
-  <audio id="comment-sound" src="./wav/laser.wav" preload="auto"></audio>
-  <audio id="blip-sound" src="./wav/blip.wav" preload="auto"></audio>
+  <!-- Cyberpunk Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="digital-rain"></div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="loading-text">
+      <span>LOADING</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
 
   <!-- Mobile Header -->
   <header class="mobile-header">
@@ -164,6 +174,7 @@
 
   <script src="./javascripts/util.js"></script>
   <script>
+    renderUser(false);
     // Mock chat data
     const chats = {
       'retro_ninja': [
@@ -184,14 +195,6 @@
       "Wow, really?",
       "Let me check that out."
     ];
-
-    // Play sound function
-    const playSound = (soundId) => {
-      const sound = document.getElementById(soundId);
-      sound.currentTime = 0;
-      sound.volume = 0.5;
-      sound.play();
-    };
 
     // Load chat for a user
     const loadChat = (username, handle, targetPanel) => {
@@ -225,10 +228,11 @@
     // User selection
     document.querySelectorAll('.user-item').forEach(item => {
       item.addEventListener('click', () => {
+        showLoading(); // From util.js
         const username = item.dataset.username;
         const handle = item.dataset.handle;
-        playSound('comment-sound');
-        playSound('blip-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav'); // From util.js (comment-sound)
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (blip-sound)
 
         // Load chat in desktop panel
         loadChat(username, handle, '#chat-desktop');
@@ -240,15 +244,18 @@
           mobileChat.style.display = 'flex'; // Ensure display is flex for proper layout
           loadChat(username, handle, '#chat-mobile');
         }
+        hideLoading(); // From util.js
       });
     });
 
     // Back button (mobile only)
     document.querySelector('.back-btn').addEventListener('click', () => {
+      showLoading(); // From util.js
       document.querySelector('#chat-mobile').style.display = 'none';
       document.querySelector('.chats-list').style.display = 'block';
-      playSound('like-sound');
-      playSound('blip-sound');
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (like-sound)
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (blip-sound)
+      hideLoading(); // From util.js
     });
 
     // Send message
@@ -257,6 +264,7 @@
         const input = button.previousElementSibling;
         const messageText = input.value.trim();
         if (messageText) {
+          showLoading(); // From util.js
           const chatPanel = button.closest('.chat-panel');
           const messagesContainer = chatPanel.querySelector('.chat-messages');
           const username = chatPanel.querySelector('.chat-header .username').textContent.toLowerCase().replace(' ', '_');
@@ -287,13 +295,14 @@
             // Scroll to bottom again
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            playSound('blip-sound');
+            playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (blip-sound)
+            hideLoading(); // From util.js
           }, 1000);
 
           // Clear input
           input.value = '';
-          playSound('like-sound');
-          playSound('blip-sound');
+          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (like-sound)
+          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (blip-sound)
         }
       });
     });

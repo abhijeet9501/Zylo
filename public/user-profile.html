@@ -9,10 +9,20 @@
   <link rel="stylesheet" href="./stylesheets/user-profile.css">
 </head>
 <body>
-  <!-- Audio Elements for Sound Effects -->
-  <audio id="select-sound" src="./wav/coin.wav" preload="auto"></audio>
-  <audio id="follow-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
-  <audio id="message-sound" src="./wav/laser.wav" preload="auto"></audio>
+  <!-- Cyberpunk Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="digital-rain"></div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="loading-text">
+      <span>LOADING</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
 
   <!-- Mobile Header -->
   <header class="mobile-header">
@@ -252,6 +262,7 @@
     </aside>
   </div>
   </div>
+
   <!-- Mobile Navigation -->
   <nav class="mobile-nav">
     <a href="./index.html" class="active" aria-current="page" aria-label="Home">
@@ -284,14 +295,6 @@
 
   <script src="./javascripts/util.js"></script>
   <script>
-    // Play sound function
-    const playSound = (soundId) => {
-      const sound = document.getElementById(soundId);
-      sound.currentTime = 0;
-      sound.volume = 0.5;
-      sound.play();
-    };
-
     // Load user data from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('username');
@@ -330,19 +333,23 @@
 
     // Follow/Unfollow button
     followBtn.addEventListener('click', () => {
+      showLoading(); // From util.js
       user.isFollowing = !user.isFollowing;
       followBtn.textContent = user.isFollowing ? 'UNFOLLOW' : 'FOLLOW';
       followBtn.classList.toggle('following', user.isFollowing);
       const followersCount = document.querySelector('.user-followers');
       let count = parseInt(followersCount.textContent);
       followersCount.textContent = user.isFollowing ? count + 1 : count - 1;
-      playSound('follow-sound');
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
+      hideLoading(); // From util.js
     });
 
     // Message button
     document.querySelector('.message-btn').addEventListener('click', () => {
-      playSound('message-sound');
+      showLoading(); // From util.js
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/laser_pf05vu.wav'); // From util.js (message-sound)
       // Redirect to messages page (already linked via href)
+      hideLoading(); // From util.js
     });
 
     // Tab switching
@@ -352,28 +359,32 @@
         document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
         button.classList.add('active');
         document.getElementById(button.dataset.tab).classList.add('active');
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
       });
     });
 
     // Like button interaction
     document.querySelectorAll('.like-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         button.classList.toggle('liked');
         const countSpan = button.querySelector('.action-count');
         let count = parseInt(countSpan.textContent);
         countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
+        hideLoading(); // From util.js
       });
     });
 
     // Comment button interaction
     document.querySelectorAll('.comment-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         const commentsSection = button.closest('.post').querySelector('.comments-section');
         commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
         button.classList.toggle('active');
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
+        hideLoading(); // From util.js
       });
     });
 
@@ -383,6 +394,7 @@
         const commentInput = button.previousElementSibling;
         const commentText = commentInput.value.trim();
         if (commentText) {
+          showLoading(); // From util.js
           const commentsList = button.closest('.comments-section').querySelector('.comments-list');
           const newComment = document.createElement('div');
           newComment.classList.add('comment');
@@ -399,7 +411,8 @@
           const countSpan = commentBtn.querySelector('.action-count');
           let count = parseInt(countSpan.textContent);
           countSpan.textContent = count + 1;
-          playSound('select-sound');
+          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
+          hideLoading(); // From util.js
         }
       });
     });

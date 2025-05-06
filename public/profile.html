@@ -9,20 +9,31 @@
   <link rel="stylesheet" href="./stylesheets/profile.css">
 </head>
 <body>
-  <!-- Audio Elements for Sound Effects -->
-  <audio id="like-sound" src="./wav/coin.wav" preload="auto"></audio>
-  <audio id="comment-sound" src="./wav/laser.wav" preload="auto"></audio>
-  <audio id="post-sound" src="./wav/lvl_complete.wav" preload="auto"></audio>
-  <audio id="follow-sound" src="./wav/kill.wav" preload="auto"></audio>
+  <!-- Cyberpunk Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="digital-rain"></div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="loading-text">
+      <span>LOADING</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
 
   <!-- Mobile Header -->
   <header class="mobile-header">
-    <a id="avatara" class="loggedin" href="profile.html">
-      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar loggedin-avatar" alt="User avatar">
-    </a>
     <div class="header-content">
       <div class="logo">ZYLO</div>
     </div>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mob-msg" viewBox="0 0 24 24">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
+    </a>
   </header>
 
   <div class="layout-container">
@@ -220,8 +231,10 @@
         <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
       </svg>
     </a>
-    <a href="./profile.html" aria-label="Profile">
-      <img src="https://via.placeholder.com/40x40.png?text=User" alt="User avatar" class="mobile-nav-avatar loggedin-avatar">
+    <a href="settings.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22l-1.92 3.32c-.12.22-.07.47.12.61l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36 2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+      </svg>
     </a>
   </nav>
 
@@ -298,32 +311,28 @@
   <script src="./javascripts/profile.js"></script>
 
   <script>
-    // Play sound function
-    const playSound = (soundId) => {
-      const sound = document.getElementById(soundId);
-      sound.currentTime = 0;
-      sound.volume = 0.5;
-      sound.play();
-    };
-
     // Like button interaction
     document.querySelectorAll('.like-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         button.classList.toggle('liked');
         const countSpan = button.querySelector('.action-count');
         let count = parseInt(countSpan.textContent);
         countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-        playSound('like-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (like-sound)
+        hideLoading(); // From util.js
       });
     });
 
     // Comment button interaction
     document.querySelectorAll('.comment-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         const commentsSection = button.closest('.post').querySelector('.comments-section');
         commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
         button.classList.toggle('active');
-        playSound('comment-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav'); // From util.js (comment-sound)
+        hideLoading(); // From util.js
       });
     });
 
@@ -333,6 +342,7 @@
         const commentInput = button.previousElementSibling;
         const commentText = commentInput.value.trim();
         if (commentText) {
+          showLoading(); // From util.js
           const commentsList = button.closest('.comments-section').querySelector('.comments-list');
           const newComment = document.createElement('div');
           newComment.classList.add('comment');
@@ -349,7 +359,8 @@
           const countSpan = commentBtn.querySelector('.action-count');
           let count = parseInt(countSpan.textContent);
           countSpan.textContent = count + 1;
-          playSound('comment-sound');
+          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav'); // From util.js (comment-sound)
+          hideLoading(); // From util.js
         }
       });
     });
@@ -357,16 +368,20 @@
     // Delete post interaction
     document.querySelectorAll('.delete-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         const post = button.closest('.post');
         post.remove();
-        playSound('follow-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
+        hideLoading(); // From util.js
       });
     });
 
     // Follow button interaction (Who to Follow)
     document.querySelectorAll('.follow-item .follow-btn').forEach(button => {
       button.addEventListener('click', () => {
-        playSound('follow-sound');
+        showLoading(); // From util.js
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
+        hideLoading(); // From util.js
       });
     });
 
@@ -387,8 +402,10 @@
 
     document.querySelectorAll('.unfollow-btn, .remove-follower-btn').forEach(button => {
       button.addEventListener('click', () => {
+        showLoading(); // From util.js
         button.closest('.modal-item').remove();
-        playSound('follow-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
+        hideLoading(); // From util.js
       });
     });
 

@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="./stylesheets/search.css">
 </head>
 <body>
-  <!-- Audio Elements for Sound Effects -->
-  <audio id="search-sound" src="./wav/laser.wav" preload="auto"></audio>
-  <audio id="select-sound" src="./wav/coin.wav" preload="auto"></audio>
-
   <!-- Mobile Header -->
   <header class="mobile-header">
     <a id="avatara" class="loggedin" href="profile.html">
@@ -127,6 +123,7 @@
     </main>
   </div>
   </div>
+
   <!-- Mobile Navigation -->
   <nav class="mobile-nav">
     <a href="./index.html" class="active" aria-current="page" aria-label="Home">
@@ -159,14 +156,6 @@
 
   <script src="./javascripts/util.js"></script>
   <script>
-    // Play sound function
-    const playSound = (soundId) => {
-      const sound = document.getElementById(soundId);
-      sound.currentTime = 0;
-      sound.volume = 0.5;
-      sound.play();
-    };
-
     // Mock user data for search (replace with actual backend data later)
     const users = [
       { username: 'retro_ninja', name: 'Retro Ninja', avatar: 'https://via.placeholder.com/40' },
@@ -183,7 +172,7 @@
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
-      playSound('search-sound');
+      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/laser_pf05vu.wav'); // From util.js (search-sound)
 
       if (query === '') {
         // Fade in latest posts, fade out search results
@@ -227,7 +216,7 @@
               </div>
             `;
             userItem.addEventListener('click', () => {
-              playSound('select-sound');
+              playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
               // Redirect to user profile page (to be created later)
               window.location.href = `user-profile.html?username=${user.username}`;
             });
@@ -244,7 +233,7 @@
         const countSpan = button.querySelector('.action-count');
         let count = parseInt(countSpan.textContent);
         countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
       });
     });
 
@@ -254,7 +243,7 @@
         const commentsSection = button.closest('.post').querySelector('.comments-section');
         commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
         button.classList.toggle('active');
-        playSound('select-sound');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
       });
     });
 
@@ -280,7 +269,7 @@
           const countSpan = commentBtn.querySelector('.action-count');
           let count = parseInt(countSpan.textContent);
           countSpan.textContent = count + 1;
-          playSound('select-sound');
+          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
         }
       });
     });

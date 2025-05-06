@@ -1,38 +1,38 @@
 const baseUrl = '/api/v1/auth';
 
-const showLoading = () => {
-  const loader = document.getElementById('loading-screen');
-  loader.classList.add('show');
-  playSound();
-  generateDigitalRain();
-};
+// const showLoading = () => {
+//   const loader = document.getElementById('loading-screen');
+//   loader.classList.add('show');
+//   playSound();
+//   generateDigitalRain();
+// };
 
-const hideLoading = () => {
-  const loader = document.getElementById('loading-screen');
-  loader.classList.remove('show');
-  const rain = document.querySelector('.digital-rain');
-  rain.innerHTML = ''; // Clear digital rain when hiding
-};
+// const hideLoading = () => {
+//   const loader = document.getElementById('loading-screen');
+//   loader.classList.remove('show');
+//   const rain = document.querySelector('.digital-rain');
+//   rain.innerHTML = ''; // Clear digital rain when hiding
+// };
 
-const playSound = () => {
-  const audio = new Audio('https://www.myinstants.com/media/sounds/sci-fi-blip.mp3');
-  audio.volume = 0.3;
-  audio.play().catch(e => console.log('Audio play failed:', e));
-};
+// const playSound = () => {
+//   const audio = new Audio('https://www.myinstants.com/media/sounds/sci-fi-blip.mp3');
+//   audio.volume = 0.3;
+//   audio.play().catch(e => console.log('Audio play failed:', e));
+// };
 
-const generateDigitalRain = () => {
-  const rain = document.querySelector('.digital-rain');
-  rain.innerHTML = ''; // Clear previous rain
-  const characters = '01ABCDEF';
-  for (let i = 0; i < 50; i++) {
-    const char = document.createElement('span');
-    char.className = 'rain-char';
-    char.textContent = characters[Math.floor(Math.random() * characters.length)];
-    char.style.left = `${Math.random() * 100}%`;
-    char.style.animationDelay = `${Math.random() * 5}s`;
-    rain.appendChild(char);
-  }
-};
+// const generateDigitalRain = () => {
+//   const rain = document.querySelector('.digital-rain');
+//   rain.innerHTML = ''; // Clear previous rain
+//   const characters = '01ABCDEF';
+//   for (let i = 0; i < 50; i++) {
+//     const char = document.createElement('span');
+//     char.className = 'rain-char';
+//     char.textContent = characters[Math.floor(Math.random() * characters.length)];
+//     char.style.left = `${Math.random() * 100}%`;
+//     char.style.animationDelay = `${Math.random() * 5}s`;
+//     rain.appendChild(char);
+//   }
+// };
 
 const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -95,8 +95,6 @@ const register = async () => {
   const name = document.getElementById("reg-name").value.trim();
   const email = document.getElementById("reg-email").value.trim();
   const password = document.getElementById("reg-password").value.trim();
-
-  console.log(username, name, email, password)
 
   if (!username || !password || !name || !email) {
     return showPopUp("All fields required!", true);
