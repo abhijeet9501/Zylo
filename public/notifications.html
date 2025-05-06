@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - ZYLO (Pixelated Retro)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheets/styles.css">
+  <link rel="stylesheet" href="./stylesheets/notifications.css">
+</head>
+
+<body>
+  <!-- Audio Elements for Sound Effects -->
+  <audio id="select-sound" src="./wav/coin.wav" preload="auto"></audio>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a id="avatara" class="loggedin" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar"
+        class="avatar-bounce user-avatar loggedin-avatar" alt="User avatar">
+    </a>
+    <div class="header-content">
+      <div class="logo">ZYLO</div>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <div class="app">
+      <!-- Left Sidebar (PC) -->
+      <aside class="sidebar">
+        <div class="logo">ZYLO</div>
+        <nav>
+          <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <span>HOME</span>
+          </a>
+          <a href="messages.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+            </svg>
+            <span>MESSAGES</span>
+          </a>
+          <a href="profile.html" aria-current="page">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+            <span>PROFILE</span>
+          </a>
+          <a href="notifications.html" class="notifications-btn active" aria-label="Notifications">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+            </svg>
+            <span>ALERTS</span>
+          </a>
+          <a href="settings.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22l-1.92 3.32c-.12.22-.07.47.12.61l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+            </svg>
+            <span>SETTINGS</span>
+          </a>
+        </nav>
+        <div class="user-info info-user">
+          <img src="https://via.placeholder.com/40" alt="User avatar"
+            class="avatar-bounce loggedin user-avatar loggedin-avatar">
+          <div class="loggedin">
+            <div class="username user-name">pixel_guru</div>
+            <div class="user-username">@pixel_guru</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Notifications Content -->
+      <main>
+        <h2>NOTIFICATIONS</h2>
+        <div class="notification-list">
+          <div class="notification-item">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="username">retro_ninja</span> started following you
+              </div>
+              <div class="timestamp">· 1h</div>
+            </div>
+          </div>
+          <div class="notification-item">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="username">cyber_pixel</span> liked your post
+              </div>
+              <div class="timestamp">· 2h</div>
+            </div>
+          </div>
+          <div class="notification-item">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="username">neon_gamer</span> sent you a message
+              </div>
+              <div class="timestamp">· 3h</div>
+            </div>
+          </div>
+          <div class="notification-item">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="username">pixel_lover</span> started following you
+              </div>
+              <div class="timestamp">· 4h</div>
+            </div>
+          </div>
+          <div class="notification-item">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="username">8bit_hero</span> liked your post
+              </div>
+              <div class="timestamp">· 5h</div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Right Sidebar (Desktop Only) -->
+      <aside class="right-sidebar">
+        <div class="search-bar">
+          <input type="text" placeholder="Search users..." aria-label="Search users">
+        </div>
+        <div class="who-to-follow">
+          <h2>WHO TO FOLLOW</h2>
+          <div class="follow-item">
+            <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar"
+              class="avatar-bounce user-avatar other-avatar">
+            <div>
+              <div class="username">cyber_pixel</div>
+              <div class="handle">@cyber_pixel</div>
+            </div>
+            <button class="follow-btn" aria-label="Follow">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="./index.html" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </svg>
+    </a>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+      </svg>
+    </a>
+    <a href="./search.html" class="search-btn" aria-label="Search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+    </a>
+    <a href="./notifications.html" class="notifications-btn active" aria-current="page" aria-label="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
+      </svg>
+    </a>
+    <a href="./profile.html" aria-label="Profile">
+      <img src="https://via.placeholder.com/40x40.png?text=User" alt="User avatar"
+        class="mobile-nav-avatar loggedin-avatar">
+    </a>
+  </nav>
+
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+
+  <script src="./javascripts/util.js"></script>
+  <script>
+    // Play sound function
+    const playSound = (soundId) => {
+      const sound = document.getElementById(soundId);
+      sound.currentTime = 0;
+      sound.volume = 0.5;
+      sound.play();
+    };
+
+    // Notification click interaction
+    document.querySelectorAll('.notification-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const username = item.querySelector('.username').textContent;
+        playSound('select-sound');
+        // Redirect based on notification type (simplified for now)
+        if (item.textContent.includes('following')) {
+          window.location.href = `user-profile.html?username=${username}`;
+        } else if (item.textContent.includes('message')) {
+          window.location.href = 'messages.html';
+        } else if (item.textContent.includes('liked')) {
+          // Redirect to the post (placeholder for now)
+          window.location.href = 'index.html';
+        }
+      });
+    });
+
+    // Notification load animation
+    const notifications = document.querySelectorAll('.notification-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('notification-appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    notifications.forEach(notification => observer.observe(notification));
+  </script>
+</body>
+
+</html>

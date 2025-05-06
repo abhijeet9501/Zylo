@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search - ZYLO (Pixelated Retro)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheets/styles.css">
+  <link rel="stylesheet" href="./stylesheets/search.css">
+</head>
+<body>
+  <!-- Audio Elements for Sound Effects -->
+  <audio id="search-sound" src="./wav/laser.wav" preload="auto"></audio>
+  <audio id="select-sound" src="./wav/coin.wav" preload="auto"></audio>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a id="avatara" class="loggedin" href="profile.html">
+      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar loggedin-avatar" alt="User avatar">
+    </a>
+    <div class="header-content">
+      <div class="logo">ZYLO</div>
+    </div>
+  </header>
+
+  <div class="layout-container"> 
+  <div class="app">
+    <!-- Main Search Content -->
+    <main>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search users..." aria-label="Search users">
+      </div>
+
+      <!-- Latest Posts (Default View) -->
+      <div class="latest-posts" id="latest-posts">
+        <h2>LATEST POSTS</h2>
+        <article class="post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="username">retro_ninja</div>
+            <div class="handle">@retro_ninja</div>
+            <div class="timestamp">· 2h</div>
+          </div>
+          <div class="post-content">
+            <p>Crushed it at #PixelFest! 🕹️ Who's up for a rematch? #RetroGaming</p>
+            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
+          </div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" aria-label="Like">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span class="action-count">5</span>
+            </button>
+            <button class="action-btn comment-btn" aria-label="Comment">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+              </svg>
+              <span class="action-count">1</span>
+            </button>
+          </div>
+          <div class="comments-section" style="display: none;">
+            <div class="comments-list">
+              <div class="comment">
+                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                <div class="comment-content">
+                  <div class="comment-username">pixel_guru</div>
+                  <p>Count me in for the rematch!</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-composer">
+              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
+              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
+            </div>
+          </div>
+        </article>
+        <!-- Additional Post -->
+        <article class="post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="username">cyber_pixel</div>
+            <div class="handle">@cyber_pixel</div>
+            <div class="timestamp">· 3h</div>
+          </div>
+          <div class="post-content">
+            <p>Just found an epic 8-bit gem! 🎮 #RetroGaming</p>
+            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
+          </div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" aria-label="Like">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span class="action-count">3</span>
+            </button>
+            <button class="action-btn comment-btn" aria-label="Comment">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+              </svg>
+              <span class="action-count">2</span>
+            </button>
+          </div>
+          <div class="comments-section" style="display: none;">
+            <div class="comments-list">
+              <div class="comment">
+                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                <div class="comment-content">
+                  <div class="comment-username">pixel_guru</div>
+                  <p>Love that game!</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-composer">
+              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
+              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Search Results (Hidden by Default) -->
+      <div class="search-results" id="search-results" style="display: none;">
+        <h2>SEARCH RESULTS</h2>
+        <!-- Dynamic content will be added here -->
+      </div>
+    </main>
+  </div>
+  </div>
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="./index.html" class="active" aria-current="page" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </a>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
+    </a>
+    <a href="./search.html" class="search-btn" aria-label="Search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+    </a>
+    <a href="./notifications.html" class="notifications-btn" aria-label="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+      </svg>
+    </a>
+    <a href="./profile.html" aria-label="Profile">
+      <img src="https://via.placeholder.com/40x40.png?text=User" alt="User avatar" class="mobile-nav-avatar loggedin-avatar">
+    </a>
+  </nav>
+
+  <p id="success-msg" class="success-message" role="alert">Success:</p>
+  <p id="error-msg" class="error-message" role="alert">Error:</p>
+
+  <script src="./javascripts/util.js"></script>
+  <script>
+    // Play sound function
+    const playSound = (soundId) => {
+      const sound = document.getElementById(soundId);
+      sound.currentTime = 0;
+      sound.volume = 0.5;
+      sound.play();
+    };
+
+    // Mock user data for search (replace with actual backend data later)
+    const users = [
+      { username: 'retro_ninja', name: 'Retro Ninja', avatar: 'https://via.placeholder.com/40' },
+      { username: 'cyber_pixel', name: 'Cyber Pixel', avatar: 'https://via.placeholder.com/40' },
+      { username: 'neon_gamer', name: 'Neon Gamer', avatar: 'https://via.placeholder.com/40' },
+      { username: 'pixel_lover', name: 'Pixel Lover', avatar: 'https://via.placeholder.com/40' },
+      { username: '8bit_hero', name: '8-Bit Hero', avatar: 'https://via.placeholder.com/40' }
+    ];
+
+    // Search functionality
+    const searchInput = document.getElementById('search-input');
+    const latestPosts = document.getElementById('latest-posts');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      playSound('search-sound');
+
+      if (query === '') {
+        // Fade in latest posts, fade out search results
+        latestPosts.classList.remove('fade-out');
+        latestPosts.classList.add('fade-in');
+        latestPosts.style.display = 'block';
+        searchResults.classList.remove('fade-in');
+        searchResults.classList.add('fade-out');
+        setTimeout(() => {
+          searchResults.style.display = 'none';
+        }, 300); // Match the fade-out duration
+      } else {
+        // Fade out latest posts, fade in search results
+        latestPosts.classList.remove('fade-in');
+        latestPosts.classList.add('fade-out');
+        setTimeout(() => {
+          latestPosts.style.display = 'none';
+        }, 300); // Match the fade-out duration
+        searchResults.classList.remove('fade-out');
+        searchResults.classList.add('fade-in');
+        searchResults.style.display = 'block';
+
+        // Filter users based on query
+        const filteredUsers = users.filter(user =>
+          user.username.toLowerCase().includes(query) || user.name.toLowerCase().includes(query)
+        );
+
+        // Display filtered users
+        searchResults.innerHTML = '<h2>SEARCH RESULTS</h2>';
+        if (filteredUsers.length === 0) {
+          searchResults.innerHTML += '<p>No users found.</p>';
+        } else {
+          filteredUsers.forEach(user => {
+            const userItem = document.createElement('div');
+            userItem.classList.add('user-item');
+            userItem.innerHTML = `
+              <img src="${user.avatar}" alt="User avatar" class="avatar-bounce other-avatar">
+              <div>
+                <div class="username">${user.name}</div>
+                <div class="handle">@${user.username}</div>
+              </div>
+            `;
+            userItem.addEventListener('click', () => {
+              playSound('select-sound');
+              // Redirect to user profile page (to be created later)
+              window.location.href = `user-profile.html?username=${user.username}`;
+            });
+            searchResults.appendChild(userItem);
+          });
+        }
+      }
+    });
+
+    // Like button interaction
+    document.querySelectorAll('.like-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('liked');
+        const countSpan = button.querySelector('.action-count');
+        let count = parseInt(countSpan.textContent);
+        countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
+        playSound('select-sound');
+      });
+    });
+
+    // Comment button interaction
+    document.querySelectorAll('.comment-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const commentsSection = button.closest('.post').querySelector('.comments-section');
+        commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+        button.classList.toggle('active');
+        playSound('select-sound');
+      });
+    });
+
+    // Send comment interaction
+    document.querySelectorAll('.send-comment-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const commentInput = button.previousElementSibling;
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+          const commentsList = button.closest('.comments-section').querySelector('.comments-list');
+          const newComment = document.createElement('div');
+          newComment.classList.add('comment');
+          newComment.innerHTML = `
+            <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+            <div class="comment-content">
+              <div class="comment-username">pixel_guru</div>
+              <p>${commentText}</p>
+            </div>
+          `;
+          commentsList.appendChild(newComment);
+          commentInput.value = '';
+          const commentBtn = button.closest('.post').querySelector('.comment-btn');
+          const countSpan = commentBtn.querySelector('.action-count');
+          let count = parseInt(countSpan.textContent);
+          countSpan.textContent = count + 1;
+          playSound('select-sound');
+        }
+      });
+    });
+
+    // Post load animation
+    const posts = document.querySelectorAll('.post');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('post-appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    posts.forEach(post => observer.observe(post));
+  </script>
+</body>
+</html>

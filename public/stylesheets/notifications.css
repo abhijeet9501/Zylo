@@ -1,0 +1,152 @@
+/* Notifications Page Specific Styles */
+
+/* Main Content */
+main {
+    padding: 24px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 0, 255, 0.2) transparent;
+  }
+  
+  main::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  main::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  main::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  main::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 255, 0.4);
+  }
+  
+  main h2 {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    margin-bottom: 16px;
+  }
+  
+  /* Notification List */
+  .notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .notification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow var(--transition);
+  }
+  
+  .notification-item:hover {
+    box-shadow: 0 0 15px var(--accent);
+    animation: glitch 0.3s;
+  }
+  
+  .notification-item.notification-appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .notification-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    image-rendering: pixelated;
+  }
+  
+  .notification-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .notification-text {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  
+  .notification-text .username {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+  }
+  
+  .notification-content .timestamp {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+  
+  /* Mobile-Specific Styles */
+  @media (max-width: 768px) {
+    main {
+      padding: 16px;
+      height: calc(100vh - 60px - 60px); /* Account for mobile header and nav */
+      overflow-y: auto;
+    }
+  
+    main h2 {
+      font-size: 1rem;
+    }
+  
+    .notification-item {
+      padding: 10px;
+    }
+  
+    .notification-item img {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .notification-text {
+      font-size: 0.8rem;
+    }
+  
+    .notification-text .username {
+      font-size: 0.6rem;
+    }
+  
+    .notification-content .timestamp {
+      font-size: 0.6rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    main {
+      padding: 12px;
+    }
+  
+    .notification-item {
+      padding: 8px;
+    }
+  
+    .notification-item img {
+      width: 32px;
+      height: 32px;
+    }
+  
+    .notification-text {
+      font-size: 0.7rem;
+    }
+  
+    .notification-text .username {
+      font-size: 0.5rem;
+    }
+  }

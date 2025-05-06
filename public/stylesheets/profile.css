@@ -1,0 +1,647 @@
+/* Profile Page Specific Styles */
+
+main {
+  overflow-y: hidden;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    border-bottom: var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .profile-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    image-rendering: pixelated;
+  }
+  
+  .profile-info {
+    flex-grow: 1;
+  }
+  
+  .profile-info .username {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+  }
+  
+  .profile-info .handle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  
+  .profile-info .bio {
+    margin: 8px 0;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  
+  .follow-stats {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .follow-btn {
+    background: var(--card-bg);
+    border: var(--border);
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform 0.1s ease;
+    text-shadow: var(--glow);
+  }
+  
+  .follow-btn:hover {
+    box-shadow: 0 0 15px var(--accent);
+    transform: translateY(-2px);
+    animation: glitch 0.3s;
+  }
+  
+  .follow-btn:active {
+    transform: scale(0.95);
+    animation: glitch 0.3s;
+  }
+  
+  /* Profile Posts */
+  .profile-posts {
+    padding: 16px;
+    overflow-y: auto;
+    height: calc(100vh - 150px);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 0, 255, 0.2) transparent;
+  }
+  
+  .profile-posts::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .profile-posts::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .profile-posts::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  .profile-posts::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 255, 0.4);
+  }
+  
+  .post {
+    background: var(--card-bg);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .post.post-appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .post-content p {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  
+  .post-image {
+    width: 100%;
+    max-width: 300px;
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: 0 0 5px var(--accent);
+    image-rendering: pixelated;
+    margin-top: 8px;
+  }
+  
+  .post-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    transition: color var(--transition), transform 0.1s ease;
+  }
+  
+  .action-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-muted);
+    transition: fill var(--transition), filter var(--transition);
+  }
+  
+  .action-btn:hover {
+    color: var(--primary);
+  }
+  
+  .action-btn:hover svg {
+    fill: var(--primary);
+    filter: drop-shadow(0 0 5px var(--accent));
+    animation: glitch 0.3s;
+  }
+  
+  .action-btn.liked {
+    color: var(--primary);
+  }
+  
+  .action-btn.liked svg {
+    fill: var(--primary);
+    filter: drop-shadow(0 0 5px var(--accent));
+  }
+  
+  .action-btn.active {
+    color: var(--primary);
+  }
+  
+  .action-btn.active svg {
+    fill: var(--primary);
+    filter: drop-shadow(0 0 5px var(--accent));
+  }
+  
+  .action-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  .action-btn.liked .action-count,
+  .action-btn.active .action-count {
+    color: var(--primary);
+  }
+  
+  .delete-btn {
+    background: var(--primary);
+    border: var(--border);
+    padding: 4px 8px;
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--text);
+    text-shadow: var(--glow);
+  }
+  
+  .delete-btn:hover {
+    box-shadow: 0 0 15px var(--accent);
+    transform: translateY(-2px);
+    animation: glitch 0.3s;
+  }
+  
+  .comments-section {
+    margin-top: 12px;
+    padding: 12px;
+    background: #2A2A4A;
+    box-shadow: 0 0 5px var(--primary);
+  }
+  
+  .comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .comment img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    image-rendering: pixelated;
+  }
+  
+  .comment-content {
+    flex-grow: 1;
+  }
+  
+  .comment-username {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+  }
+  
+  .comment-content p {
+    font-size: 0.8rem;
+    color: var(--text);
+    margin: 4px 0 0 0;
+  }
+  
+  .comment-composer {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  
+  .comment-composer input {
+    flex-grow: 1;
+    padding: 8px;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    background: #1A1A3A;
+    border: var(--border);
+    color: var(--text);
+    image-rendering: pixelated;
+    transition: box-shadow var(--transition), transform 0.1s ease;
+  }
+  
+  .comment-composer input::placeholder {
+    color: var(--text-muted);
+    text-shadow: var(--glow);
+  }
+  
+  .comment-composer input:focus {
+    box-shadow: 0 0 8px var(--primary);
+    transform: translateX(2px);
+    animation: glitch 0.3s;
+  }
+  
+  .comment-composer .send-comment-btn {
+    background: var(--primary);
+    border: var(--border);
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    /* color: var(--text); */
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform 0.1s ease;
+    text-shadow: var(--glow);
+  }
+  
+  .comment-composer .send-comment-btn:hover {
+    box-shadow: 0 0 15px var(--accent);
+    transform: translateY(-2px);
+    animation: glitch 0.3s;
+  }
+  
+  .who-to-follow h2 {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    margin-bottom: 16px;
+  }
+  
+  .follow-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: var(--card-bg);
+    border: var(--border);
+    box-shadow: var(--shadow);
+  }
+  
+  .follow-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    image-rendering: pixelated;
+  }
+  
+  .follow-item .username {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+  }
+  
+  .follow-item .handle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  .follow-item .follow-btn {
+    /* background: none; */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .follow-item .follow-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--accent);
+    transition: fill var(--transition), filter var(--transition);
+  }
+  
+  .follow-item .follow-btn:hover svg {
+    fill: var(--primary);
+    filter: drop-shadow(0 0 5px var(--accent));
+    animation: glitch 0.3s;
+  }
+  
+  /* Modals */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: var(--card-bg);
+    border: var(--border);
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  
+  .modal-content h2 {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    margin-bottom: 16px;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    border: var(--border);
+    padding: 4px 8px;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform 0.1s ease;
+  }
+  
+  .modal-close:hover {
+    box-shadow: 0 0 15px var(--accent);
+    transform: translateY(-2px);
+    animation: glitch 0.3s;
+  }
+  
+  .modal-list {
+    max-height: 50vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 0, 255, 0.2) transparent;
+  }
+  
+  .modal-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .modal-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  .modal-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 255, 0.4);
+  }
+  
+  .modal-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    margin-bottom: 12px;
+    background: #2A2A4A;
+    border: var(--border);
+    box-shadow: 0 0 5px var(--primary);
+  }
+  
+  .modal-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    image-rendering: pixelated;
+  }
+  
+  .modal-item .username {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-shadow: var(--glow);
+  }
+  
+  .modal-item .name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  .modal-item button {
+    background: var(--primary);
+    border: var(--border);
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--bg);
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform 0.1s ease;
+    text-shadow: var(--glow);
+    position: absolute;
+    right: 45px;
+  }
+  
+  .modal-item button:hover {
+    box-shadow: 0 0 15px var(--primary);
+    transform: translateY(-2px);
+    animation: glitch 0.3s;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-header {
+      padding: 16px;
+    }
+  
+    .profile-header img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .profile-info .username {
+      font-size: 0.9rem;
+    }
+  
+    .profile-info .handle {
+      font-size: 0.8rem;
+    }
+  
+    .profile-info .bio {
+      font-size: 0.8rem;
+    }
+  
+    .follow-btn {
+      padding: 6px 12px;
+      font-size: 0.6rem;
+    }
+  
+    .profile-posts {
+      padding: 12px;
+      height: calc(100vh - 60px - 60px - 120px);
+    }
+  
+    .post {
+      padding: 12px;
+    }
+  
+    .post-header img {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .post-header .username {
+      font-size: 0.6rem;
+    }
+  
+    .post-header .handle,
+    .post-header .timestamp {
+      font-size: 0.7rem;
+    }
+  
+    .post-content p {
+      font-size: 0.8rem;
+    }
+  
+    .post-image {
+      max-width: 250px;
+    }
+  
+    .action-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .action-count {
+      font-size: 0.7rem;
+    }
+  
+    .delete-btn {
+      padding: 3px 6px;
+      font-size: 0.5rem;
+    }
+  
+    .comments-section {
+      padding: 8px;
+    }
+  
+    .comment img {
+      width: 24px;
+      height: 24px;
+    }
+  
+    .comment-username {
+      font-size: 0.5rem;
+    }
+  
+    .comment-content p {
+      font-size: 0.7rem;
+    }
+  
+    .comment-composer input {
+      font-size: 0.8rem;
+      padding: 6px;
+    }
+  
+    .comment-composer .send-comment-btn {
+      padding: 6px 12px;
+      font-size: 0.6rem;
+    }
+  
+    .follow-item .follow-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .modal-content {
+      padding: 16px;
+      max-width: 90%;
+    }
+  
+    .modal-content h2 {
+      font-size: 0.9rem;
+    }
+  
+    .modal-close {
+      padding: 3px 6px;
+      font-size: 0.6rem;
+    }
+  
+    .modal-item {
+      padding: 6px;
+    }
+  
+    .modal-item img {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .modal-item .username {
+      font-size: 0.6rem;
+    }
+  
+    .modal-item .name {
+      font-size: 0.7rem;
+    }
+  
+    .modal-item button {
+      padding: 6px 12px;
+      font-size: 0.6rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .profile-header img {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .profile-posts {
+      padding: 8px;
+    }
+  
+    .post-header img {
+      width: 32px;
+      height: 32px;
+    }
+  
+    .post-image {
+      max-width: 200px;
+    }
+  
+    .modal-item img {
+      width: 32px;
+      height: 32px;
+    }
+  }

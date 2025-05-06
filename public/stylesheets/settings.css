@@ -1,0 +1,320 @@
+/* Settings Page Specific Styles */
+
+/* Settings Menu (Main on Mobile, Sidebar on Desktop) */
+.settings-menu {
+  padding: 24px;
+  border-bottom: var(--border);
+  background: var(--bg);
+}
+
+.settings-menu h2 {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--primary);
+  text-shadow: var(--glow);
+  margin-bottom: 16px;
+}
+
+.settings-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.settings-menu li {
+  margin-bottom: 12px;
+}
+
+.menu-btn {
+  width: 100%;
+  background: var(--card-bg);
+  border: var(--border);
+  padding: 12px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform 0.1s ease, background var(--transition);
+  text-shadow: var(--glow);
+}
+
+.menu-btn:hover {
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
+  animation: glitch 0.3s;
+}
+
+.menu-btn.active {
+  background: var(--primary);
+  color: var(--bg);
+  box-shadow: 0 0 15px var(--primary);
+}
+
+/* Settings Panels (Right Sidebar on Desktop, Main on Mobile) */
+.settings-panel {
+  padding: 24px;
+  height: 80%;
+  background: var(--card-bg);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.settings-panel h2 {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--primary);
+  text-shadow: var(--glow);
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group img.avatar-preview {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  image-rendering: pixelated;
+  margin-bottom: 8px;
+  align-self: center;
+}
+
+.form-group label {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text);
+  text-shadow: var(--glow);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  padding: 8px;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  background: #1A1A3A;
+  border: var(--border);
+  color: var(--text);
+  transition: box-shadow var(--transition), transform 0.1s ease;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group input[type="password"]::placeholder {
+  color: var(--text-muted);
+  text-shadow: var(--glow);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  box-shadow: 0 0 8px var(--primary);
+  transform: translateX(2px);
+  animation: glitch 0.3s;
+}
+
+.form-group input[type="file"] {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.update-btn {
+  background: var(--primary);
+  border: var(--border);
+  padding: 8px 16px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  /* color: var(--text); */
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform 0.1s ease;
+  text-shadow: var(--glow);
+}
+
+.update-btn:hover {
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
+  animation: glitch 0.3s;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.toggle-wrapper label {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text);
+  text-shadow: var(--glow);
+}
+
+.toggle-wrapper input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #1A1A3A;
+  border: var(--border);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.toggle-wrapper input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition);
+}
+
+.toggle-wrapper input[type="checkbox"]:checked {
+  background: var(--accent);
+}
+
+.toggle-wrapper input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+  background: var(--primary);
+}
+
+.toggle-label {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text);
+  text-shadow: var(--glow);
+}
+
+.logout-btn {
+  background: var(--primary);
+  border: var(--border);
+  padding: 8px 16px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color:  #FF0000;
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform 0.1s ease;
+  text-shadow: var(--glow);
+}
+
+.logout-btn:hover {
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
+  animation: glitch 0.3s;
+}
+
+.back-btn {
+  background: var(--accent);
+  border: var(--border);
+  padding: 8px 16px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--bg);
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform 0.1s ease;
+  text-shadow: var(--glow);
+  margin-top: 16px;
+}
+
+.back-btn:hover {
+  box-shadow: 0 0 15px var(--primary);
+  transform: translateY(-2px);
+  animation: glitch 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-menu {
+    padding: 16px;
+  }
+
+  .settings-menu h2 {
+    font-size: 0.9rem;
+  }
+
+  .menu-btn {
+    padding: 10px;
+    font-size: 0.6rem;
+  }
+
+  .settings-panel {
+    padding: 16px;
+  }
+
+  .settings-panel h2 {
+    font-size: 0.9rem;
+  }
+
+  .form-group img.avatar-preview {
+    width: 36px;
+    height: 36px;
+  }
+
+  .form-group label {
+    font-size: 0.6rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .form-group input[type="file"] {
+    font-size: 0.8rem;
+  }
+
+  .update-btn,
+  .logout-btn,
+  .back-btn {
+    padding: 6px 12px;
+    font-size: 0.6rem;
+  }
+
+  .toggle-wrapper label,
+  .toggle-label {
+    font-size: 0.6rem;
+  }
+
+  .toggle-wrapper input[type="checkbox"] {
+    width: 36px;
+    height: 18px;
+  }
+
+  .toggle-wrapper input[type="checkbox"]::before {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .toggle-wrapper input[type="checkbox"]:checked::before {
+    transform: translateX(18px);
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-menu {
+    padding: 12px;
+  }
+
+  .settings-panel {
+    padding: 12px;
+  }
+
+  .form-group img.avatar-preview {
+    width: 32px;
+    height: 32px;
+  }
+}
