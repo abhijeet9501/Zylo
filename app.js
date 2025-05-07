@@ -4,6 +4,7 @@ import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import authRouter from "./routes/auth.route.js";
 import profilerouter from "./routes/profile.route.js";
+import followRouter from "./routes/follow.route.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join((path.dirname(fileURLToPath(import.meta.url)), "public"))));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/profile", profilerouter);
+app.use("/api/v1/follow", followRouter);
 app.use(errorMiddleware);
 
 export {
