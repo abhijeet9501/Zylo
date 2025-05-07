@@ -6,10 +6,10 @@ import ApiError from "../utils/apiError.util.js";
 const follow = asyncHandler (async (req, res) => {
     const userID = req.userID;
     const usernameToFollow = req.body?.username;
-    if (!usernameToFollow) return ApiError(400, "Provide user to follow");
+    if (!usernameToFollow)  throw new ApiError(400, "Provide user to follow");
 
     const userToFollow = await User.findOne({username: usernameToFollow});
-    if (!userToFollow) return ApiError(400, "User not found to follow");
+    if (!userToFollow)  throw new ApiError(400, "User not found to follow");
 
     const isToFollow = await Follow.findOne({user_id: userToFollow._id});
 
@@ -54,7 +54,7 @@ const follow = asyncHandler (async (req, res) => {
 const unFollow = asyncHandler (async (req, res) => {
     const userID = req.userID;
     const userToUnfollow = req.body.username;
-    if (!userToUnfollow) return ApiError(400, "Provide user to unfollow");
+    if (!userToUnfollow) throw new ApiError(400, "Provide user to unfollow");
 
     const userToUnfollowID = await User.findOne({username: userToUnfollow});
 

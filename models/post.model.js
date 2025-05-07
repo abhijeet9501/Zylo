@@ -7,7 +7,11 @@ const postSchema = new mongoose.Schema(
             ref: "User",
         },
         post_img: {
-            type: String,
+            url: {
+                type: String,
+                default: ""
+            },
+            public_id: String,
         },
         tweet: {
             type: String,
@@ -19,14 +23,19 @@ const postSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
-        comment: [
+        comments: [
             {
-                type: mongoose.Types.ObjectId,
-                ref: "User",
+                user_id: {
+                    type: mongoose.Types.ObjectId,
+                    ref: "User",
+                },
+                comment: {
+                    type: String,
+                }
             },
         ],
-    }, 
-    {timestamps: true}
+    },
+    { timestamps: true }
 );
 
 const Post = mongoose.model("Post", postSchema);

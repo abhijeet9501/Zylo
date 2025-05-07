@@ -24,7 +24,7 @@ const getMyProfile = asyncHandler (async (req, res) =>
 const getUserProfile = asyncHandler (async (req, res) => {
     const username = (req.params?.username).split(" ").join("").toLowerCase();
     if (username) {
-        const user = await User.findOne({username}).select("name username bio avatar").populate("following", "name username avatar");
+        const user = await User.findOne({username}).select("name username bio avatar");
         if (!user) throw new ApiError(400, "User not found!");
         return res.status(200)
         .json(

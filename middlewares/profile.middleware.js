@@ -7,7 +7,14 @@ const isAuthenticated = asyncHandler (async (req, res, next) =>
         const token = req.cookies?.uid;
         if (!token) throw new ApiError(401, "Unauthorized");
         const decoded = verifyToken(token);
-        if (!decoded) throw new ApiError(401, "Invalid token");
+        if (!decoded) { 
+            res.clearCookie('uid', {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",    
+                sameSite: 'Strict',
+            });
+            throw new ApiError(401, "Invalid token");
+        }
         const userID = decoded.id;
         req.userID = userID;
         next();
