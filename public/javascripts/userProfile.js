@@ -25,7 +25,6 @@ const getUserProfile = async (username) => {
     
     if (data.success)
         {
-            console.log(data.user);
             renderProfileUser(data.user);
         }
     };

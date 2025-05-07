@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile - ZYLO (Pixelated Retro)</title>
+  <title>User Profile - ZYLO (Pixelated Retro)</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/profile.css">
@@ -36,7 +36,7 @@
     </a>
   </header>
 
-  <div class="layout-container">
+  <div class="layout-container"> 
   <div class="app">
     <!-- Left Sidebar (PC) -->
     <aside class="sidebar">
@@ -54,7 +54,7 @@
           </svg>
           <span>MESSAGES</span>
         </a>
-        <a href="profile.html" class="active" aria-current="page">
+        <a href="profile.html">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
           </svg>
@@ -82,7 +82,7 @@
       </div>
     </aside>
 
-    <!-- Main Profile -->
+    <!-- Main Profile Content -->
     <main>
       <div class="profile-header">
         <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
@@ -91,21 +91,29 @@
           <div class="handle user-username">@pixel_guru</div>
           <p class="bio" id="user-bio">Retro gaming enthusiast. Lover of 8-bit adventures and pixel art. #PixelFest</p>
           <div class="follow-stats">
-            <button class="follow-btn" data-target="following">Following: <span>150</span></button>
-            <button class="follow-btn" data-target="followers">Followers: <span>200</span></button>
+            <span class="stat"><span class="count user-following">150</span> Following</span>
+            <span class="stat"><span class="count user-followers">320</span> Followers</span>
           </div>
         </div>
       </div>
-      <div class="profile-posts">
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="posts">POSTS</button>
+        <button class="tab-btn" data-tab="following">FOLLOWING</button>
+        <button class="tab-btn" data-tab="followers">FOLLOWERS</button>
+      </div>
+
+      <!-- Posts Tab -->
+      <div class="tab-content active" id="posts">
         <article class="post">
           <div class="post-header">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin-avatar">
-            <div class="username user-name">pixel_guru</div>
-            <div class="handle user-username">@pixel_guru</div>
-            <div class="timestamp">· 1h</div>
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="username">Retro Ninja</div>
+            <div class="handle">@retro_ninja</div>
+            <div class="timestamp">· 2h</div>
           </div>
           <div class="post-content">
-            <p>Just beat my high score in #PixelFest! 🕹️ Who's joining me next weekend? #RetroGaming</p>
+            <p>Crushed it at #PixelFest! 🕹️ Who's up for a rematch? #RetroGaming</p>
             <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
           </div>
           <div class="post-actions">
@@ -121,52 +129,8 @@
               </svg>
               <span class="action-count">1</span>
             </button>
-            <button class="action-btn delete-btn" aria-label="Delete Post">DELETE</button>
           </div>
           <div class="comments-section" style="display: none;">
-            <div class="comments-list">
-              <div class="comment">
-                <img src="https://via.placeholder.com/30" alt="Commenter avatar" class="avatar-bounce other-avatar">
-                <div class="comment-content">
-                  <div class="comment-username">retro_fan</div>
-                  <p>Amazing score! Count me in!</p>
-                </div>
-              </div>
-            </div>
-            <div class="comment-composer">
-              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
-              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
-            </div>
-          </div>
-        </article>
-        <!-- Additional Post -->
-        <article class="post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin-avatar">
-            <div class="username user-name">pixel_guru</div>
-            <div class="handle user-username">@pixel_guru</div>
-            <div class="timestamp">· 2h</div>
-          </div>
-          <div class="post-content">
-            <p>Crushed it at #PixelFest! 🕹️ Who's up for a rematch? #RetroGaming</p>
-            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
-          </div>
-          <div class="post-actions">
-            <button class="action-btn like-btn" aria-label="Like">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span class="action-count">5</span>
-            </button>
-            <button class="action-btn comment-btn active" aria-label="Comment">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              <span class="action-count">1</span>
-            </button>
-            <button class="action-btn delete-btn" aria-label="Delete Post">DELETE</button>
-          </div>
-          <div class="comments-section" style="display: block;">
             <div class="comments-list">
               <div class="comment">
                 <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
@@ -182,16 +146,115 @@
             </div>
           </div>
         </article>
+        <!-- Additional Post -->
+        <article class="post">
+          <div class="post-header">
+            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+            <div class="username">Retro Ninja</div>
+            <div class="handle">@retro_ninja</div>
+            <div class="timestamp">· 3h</div>
+          </div>
+          <div class="post-content">
+            <p>Just found an epic 8-bit gem! 🎮 #RetroGaming</p>
+            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
+          </div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" aria-label="Like">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span class="action-count">3</span>
+            </button>
+            <button class="action-btn comment-btn" aria-label="Comment">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+              </svg>
+              <span class="action-count">2</span>
+            </button>
+          </div>
+          <div class="comments-section" style="display: none;">
+            <div class="comments-list">
+              <div class="comment">
+                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                <div class="comment-content">
+                  <div class="comment-username">pixel_guru</div>
+                  <p>Love that game!</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-composer">
+              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
+              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Following Tab -->
+      <div class="tab-content" id="following">
+        <div class="follow-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+          <div>
+            <div class="username">Neon Gamer</div>
+            <div class="handle">@neon_gamer</div>
+          </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Followers Tab -->
+      <div class="tab-content" id="followers">
+        <div class="follow-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+          <div>
+            <div class="username">Pixel Lover</div>
+            <div class="handle">@pixel_lover</div>
+          </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="follow-item">
+          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
+          <div>
+            <div class="username">8-Bit Hero</div>
+            <div class="handle">@8bit_hero</div>
+          </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </main>
 
-    <!-- Right Sidebar (PC) -->
+    <!-- Right Sidebar (Desktop Only) -->
     <aside class="right-sidebar">
       <div class="search-bar">
-        <input type="text" placeholder="Search ZYLO..." aria-label="Search">
+        <input type="text" id="search-username" placeholder="Search username..." aria-label="Search users">
       </div>
       <div class="who-to-follow">
         <h2>WHO TO FOLLOW</h2>
+        <div class="follow-item">
+          <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
+          <div>
+            <div class="username">cyber_pixel</div>
+            <div class="handle">@cyber_pixel</div>
+          </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
+        
         <div class="follow-item">
           <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
           <div>
@@ -232,194 +295,27 @@
       </svg>
     </a>
     <a href="settings.html">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22l-1.92 3.32c-.12.22-.07.47.12.61l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36 2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-      </svg>
-    </a>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.488.488 0 0 0-.59.22l-1.92 3.32c-.12.22-.07.47.12.61l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36 2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </a>
   </nav>
-
-  <!-- Followers/Following Modals -->
-  <div class="modal" id="following-modal" style="display: none;">
-    <div class="modal-content">
-      <h2>FOLLOWING</h2>
-      <button class="modal-close" aria-label="Close modal">X</button>
-      <div class="modal-list">
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">retro_fan</div>
-            <div class="name">@retro_fan</div>
-          </div>
-          <button class="unfollow-btn" aria-label="Unfollow">UNFOLLOW</button>
-        </div>
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">cyber_pixel</div>
-            <div class="name">@cyber_pixel</div>
-          </div>
-          <button class="unfollow-btn" aria-label="Unfollow">UNFOLLOW</button>
-        </div>
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">neon_gamer</div>
-            <div class="name">@neon_gamer</div>
-          </div>
-          <button class="unfollow-btn" aria-label="Unfollow">UNFOLLOW</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal" id="followers-modal" style="display: none;">
-    <div class="modal-content">
-      <h2>FOLLOWERS</h2>
-      <button class="modal-close" aria-label="Close modal">X</button>
-      <div class="modal-list">
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">pixel_lover</div>
-            <div class="name">@pixel_lover</div>
-          </div>
-          <button class="remove-follower-btn" aria-label="Remove Follower">REMOVE</button>
-        </div>
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">retro_ninja</div>
-            <div class="name">@retro_ninja</div>
-          </div>
-          <button class="remove-follower-btn" aria-label="Remove Follower">REMOVE</button>
-        </div>
-        <div class="modal-item">
-          <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-          <div>
-            <div class="username">8bit_hero</div>
-            <div class="name">@8bit_hero</div>
-          </div>
-          <button class="remove-follower-btn" aria-label="Remove Follower">REMOVE</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/profile.js"></script>
-
   <script>
-    // Like button interaction
-    document.querySelectorAll('.like-btn').forEach(button => {
+     document.querySelectorAll('.tab-btn').forEach(button => {
       button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        button.classList.toggle('liked');
-        const countSpan = button.querySelector('.action-count');
-        let count = parseInt(countSpan.textContent);
-        countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (like-sound)
-        hideLoading(); // From util.js
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
       });
     });
-
-    // Comment button interaction
-    document.querySelectorAll('.comment-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        const commentsSection = button.closest('.post').querySelector('.comments-section');
-        commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-        button.classList.toggle('active');
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav'); // From util.js (comment-sound)
-        hideLoading(); // From util.js
-      });
-    });
-
-    // Send comment interaction
-    document.querySelectorAll('.send-comment-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const commentInput = button.previousElementSibling;
-        const commentText = commentInput.value.trim();
-        if (commentText) {
-          showLoading(); // From util.js
-          const commentsList = button.closest('.comments-section').querySelector('.comments-list');
-          const newComment = document.createElement('div');
-          newComment.classList.add('comment');
-          newComment.innerHTML = `
-            <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-            <div class="comment-content">
-              <div class="comment-username">pixel_guru</div>
-              <p>${commentText}</p>
-            </div>
-          `;
-          commentsList.appendChild(newComment);
-          commentInput.value = '';
-          const commentBtn = button.closest('.post').querySelector('.comment-btn');
-          const countSpan = commentBtn.querySelector('.action-count');
-          let count = parseInt(countSpan.textContent);
-          countSpan.textContent = count + 1;
-          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lv_c1i869.wav'); // From util.js (comment-sound)
-          hideLoading(); // From util.js
-        }
-      });
-    });
-
-    // Delete post interaction
-    document.querySelectorAll('.delete-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        const post = button.closest('.post');
-        post.remove();
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
-        hideLoading(); // From util.js
-      });
-    });
-
-    // Follow button interaction (Who to Follow)
-    document.querySelectorAll('.follow-item .follow-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
-        hideLoading(); // From util.js
-      });
-    });
-
-    // Modal interactions
-    document.querySelectorAll('.follow-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const modalId = button.dataset.target + '-modal';
-        const modal = document.getElementById(modalId);
-        modal.style.display = 'flex';
-      });
-    });
-
-    document.querySelectorAll('.modal-close').forEach(button => {
-      button.addEventListener('click', () => {
-        button.closest('.modal').style.display = 'none';
-      });
-    });
-
-    document.querySelectorAll('.unfollow-btn, .remove-follower-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        button.closest('.modal-item').remove();
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
-        hideLoading(); // From util.js
-      });
-    });
-
-    // Post load animation
-    const posts = document.querySelectorAll('.post');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('post-appear');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    posts.forEach(post => observer.observe(post));
   </script>
 </body>
 </html>

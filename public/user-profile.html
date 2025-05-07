@@ -204,6 +204,11 @@
             <div class="username">Neon Gamer</div>
             <div class="handle">@neon_gamer</div>
           </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -215,6 +220,11 @@
             <div class="username">Pixel Lover</div>
             <div class="handle">@pixel_lover</div>
           </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
         </div>
         <div class="follow-item">
           <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
@@ -222,6 +232,11 @@
             <div class="username">8-Bit Hero</div>
             <div class="handle">@8bit_hero</div>
           </div>
+          <button class="follow-btn" aria-label="Follow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
         </div>
       </div>
     </main>
@@ -229,7 +244,7 @@
     <!-- Right Sidebar (Desktop Only) -->
     <aside class="right-sidebar">
       <div class="search-bar">
-        <input type="text" placeholder="Search users..." aria-label="Search users">
+        <input type="text" id="search-username" placeholder="Search username..." aria-label="Search users">
       </div>
       <div class="who-to-follow">
         <h2>WHO TO FOLLOW</h2>
@@ -324,15 +339,15 @@
     // });
 
     // // Tab switching
-    // document.querySelectorAll('.tab-btn').forEach(button => {
-    //   button.addEventListener('click', () => {
-    //     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    //     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    //     button.classList.add('active');
-    //     document.getElementById(button.dataset.tab).classList.add('active');
-    //     playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-    //   });
-    // });
+    document.querySelectorAll('.tab-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
+      });
+    });
 
     // // Like button interaction
     // document.querySelectorAll('.like-btn').forEach(button => {

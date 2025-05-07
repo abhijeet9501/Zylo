@@ -1024,6 +1024,11 @@ main::-webkit-scrollbar-thumb:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+  .logo::before {
+    left: 50%;
+  }
+
   .app {
     display: flex;
     flex-direction: column;

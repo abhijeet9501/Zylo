@@ -121,7 +121,6 @@ const renderUser = async (isBio = false) => {
   renderData(localUser, isBio);
 };
 
-// Render user data to the DOM
 function renderData(user, isBio) {
   const name = user.name;
   const username = user.username;
@@ -149,4 +148,24 @@ function renderData(user, isBio) {
       img.setAttribute("src", avatar);
     }
   }
-}
+};
+
+
+const searchUsername = document?.getElementById("search-username");
+
+if (searchUsername) {
+  searchUsername.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        const value = searchUsername.value.trim();
+        
+        if (value == "") {return};
+        redirect(value); 
+      }
+  });
+  
+  const redirect = (username) => {
+      const URL = `/user-profile.html?username=${username}`;
+  
+      window.location.href = URL;
+  };
+};
