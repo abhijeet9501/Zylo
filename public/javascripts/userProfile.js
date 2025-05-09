@@ -1,42 +1,319 @@
-renderUser(false);
+// renderUser(false);
 
-const urlParams = new URLSearchParams(window.location.search);
-const username = urlParams.get('username');
+// const urlParams = new URLSearchParams(window.location.search);
+// const username = urlParams.get('username');
 
-const PROFILE_URL = "/api/v1/profile";
+// const PROFILE_URL = "/api/v1/profile";
 
 
-const getUserProfile = async (username) => {
-    const response = await fetch (`${PROFILE_URL}/${username}`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    });
+// const getUserProfile = async (username) => {
+//     const response = await fetch (`${PROFILE_URL}/${username}`, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//     });
     
-    if (!response.ok) {
-        showPopUp("User not found!", true);
-        setTimeout(() => {
-            window.location.href = "/index.html";
-        }, 900);
-    };
+//     if (!response.ok) {
+//         showPopUp("User not found!", true);
+//         setTimeout(() => {
+//             window.location.href = "/index.html";
+//         }, 900);
+//     };
     
-    const data = await response.json();
+//     const data = await response.json();
     
-    if (data.success)
-        {
-            renderProfileUser(data.user);
+//     if (data.success)
+//         {
+//             renderProfileUser(data.user);
+//         }
+//     };
+    
+
+// getUserProfile(username);
+
+// const renderProfileUser = (user) => {
+//     document.querySelector('.profile-avatar').src = user.avatar.url;
+//     document.querySelector('.profile-name').textContent = user.name;
+//     document.querySelector('.profile-username').textContent = `@${user.username}`;
+//     document.querySelector('.profile-bio').textContent = user?.bio || "";
+//     document.querySelector('.user-following').textContent = user?.following || 0;
+//     document.querySelector('.user-followers').textContent = user?.followers || 0;
+// };
+
+
+async function loadUserProfile(username) {
+    try {
+        const endpoint = `/profile/${username}`;
+        const data = await fetchAPI(endpoint);
+        if (!data.success) {
+            throw new Error(data.message || "Failed to load profile");
         }
-    };
-    
 
-getUserProfile(username);
+        const user = data.user;
+        const isFollow = user?.followStatus || null;
 
-const renderProfileUser = (user) => {
-    document.querySelector('.profile-avatar').src = user.avatar.url;
-    document.querySelector('.profile-name').textContent = user.name;
-    document.querySelector('.profile-username').textContent = `@${user.username}`;
-    document.querySelector('.profile-bio').textContent = user?.bio || "";
-    document.querySelector('.user-following').textContent = user?.following || 0;
-    document.querySelector('.user-followers').textContent = user?.followers || 0;
-};
+        const profileHeader = document.querySelector(".profile-header");
+        
+      
+         profileHeader.innerHTML = `
+            <img src="${user.avatar || 'https://via.placeholder.com/80'}" alt="User avatar" class="avatar-bounce profile-avatar other-avatar">
+            <div class="profile-info">
+                <div class="username user-name profile-name">${user.name}</div>
+                <div class="handle user-username profile-username">@${user.username}</div>
+                <p class="bio user-bio profile-bio" id="user-bio">${user.bio || "No bio available"}</p>
+                <div class="follow-stats">
+                    <span class="stat"><span class="count user-following">${user.followingCount}</span> Following</span>
+                    <span class="stat"><span class="count user-followers">${user.followCount}</span> Followers</span>
+                </div>
+                <div class="profile-actions">
+                    <button class="follow-btn profile-follow" data-username=${user.username} aria-label="Follow">${isFollow? 'UnFollow' : 'Follow'}</button>
+                    <a href="messages.html" class="message-btn" id="profile-msg" data=${user.username} aria-label="Message">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        const postsTab = document.querySelector("#posts");
+        postsTab.innerHTML = "";
+
+        user.formattedPost.forEach(post => {
+            const postArticle = document.createElement("article");
+            postArticle.className = "post";
+            postArticle.innerHTML = `
+                <div class="post-header" _id="${post.post_id}">
+                    <img src="${post.user.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                    <div class="username">${post.user.name}</div>
+                    <div class="handle">@${post.user.username}</div>
+                    <div class="timestamp">· ${post.timeAgo}</div>
+                </div>
+                <div class="post-content">
+                    <p>${post.tweet}</p>
+                    ${post.post_img ? `<img src="${post.post_img}" alt="Post image" class="post-image">` : ""}
+                </div>
+                <div class="post-actions">
+                    <button class="action-btn like-btn" aria-label="Like">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="action-count">${post.likeCount}</span>
+                    </button>
+                    <button class="action-btn comment-btn" aria-label="Comment">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                        </svg>
+                        <span class="action-count">${post.commentCount}</span>
+                    </button>
+                </div>
+                <div class="comments-section" style="display: none;">
+                    <div class="comments-list"></div>
+                    <div class="comment-composer">
+                        <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
+                        <button class="send-comment-btn" aria-label="Send comment">SEND</button>
+                    </div>
+                </div>
+            `;
+            postsTab.appendChild(postArticle);
+
+            const likeButton = postArticle.querySelector(".like-btn");
+            likeButton.addEventListener("click", async () => {
+                const postHeader = postArticle.querySelector(".post-header");
+                const post_id = postHeader.getAttribute("_id");
+
+                try {
+                    const data = await fetchAPI("/post/like", "PUT", { post_id });
+                    if (data.success) {
+                        const likeCount = postArticle.querySelector(".action-count");
+                        likeCount.textContent = data.likeLength;
+                        if (data.like) {
+                            likeButton.classList.toggle('liked');
+                        } else {
+                            likeButton.classList.remove('liked');
+                        }
+                    }
+                } catch {
+
+                }
+            });
+
+            const commentButton = postArticle.querySelector(".comment-btn");
+            commentButton.addEventListener("click", async () => {
+                const postHeader = postArticle.querySelector(".post-header");
+                const post_id = postHeader.getAttribute("_id");
+                const commentsSection = postArticle.querySelector(".comments-section");
+                const commentsList = commentsSection.querySelector(".comments-list");
+
+                commentsSection.style.display = commentsSection.style.display === "none" ? "block" : "none";
+
+                if (commentsSection.style.display === "block") {
+                    try {
+                        const data = await fetchAPI("/post/getcomment", "POST", { post_id });
+                        commentsList.innerHTML = "";
+                        data.comments.forEach(comment => {
+                            const commentDiv = document.createElement("div");
+                            commentDiv.className = "comment";
+                            commentDiv.innerHTML = `
+                                <img src="${comment.user_id.avatar.url || 'https://via.placeholder.com/40'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <div class="comment-content">
+                                    <div class="comment-username">${comment.user_id.name}</div>
+                                    <div class="handle">@${comment.user_id.username}</div>
+                                    <p>${comment.comment}</p>
+                                </div>
+                            `;
+                            commentsList.appendChild(commentDiv);
+                        });
+                    } catch (error) {
+                        console.error("Error fetching comments:", error.message);
+                        alert("Failed to load comments.");
+                    }
+                }
+            });
+
+            // Send comment handler
+            const sendButton = postArticle.querySelector(".send-comment-btn");
+            sendButton.addEventListener("click", async () => {
+                const postHeader = postArticle.querySelector(".post-header");
+                const post_id = postHeader.getAttribute("_id");
+                const input = sendButton.previousElementSibling;
+                const comment = input.value.trim();
+
+                if (!comment) {
+                    alert("Comment cannot be empty!");
+                    return;
+                }
+
+                try {
+                    const data = await fetchAPI("/post/comment", "POST", { comment, post_id });
+                    const comments = data.commentData.comments;
+                    const newComment = comments[comments.length - 1];
+
+                    const commentsList = sendButton.closest(".comments-section").querySelector(".comments-list");
+                    const commentDiv = document.createElement("div");
+                    commentDiv.className = "comment";
+                    commentDiv.innerHTML = `
+                        <img src="${newComment.user_id.avatar.url || 'https://via.placeholder.com/40'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                        <div class="comment-content">
+                            <div class="comment-username">${newComment.user_id.name}</div>
+                            <div class="handle">@${newComment.user_id.username}</div>
+                            <p>${newComment.comment}</p>
+                        </div>
+                    `;
+                    commentsList.prepend(commentDiv);
+
+                    const commentCountSpan = postArticle.querySelector(".comment-btn .action-count");
+                    commentCountSpan.textContent = parseInt(commentCountSpan.textContent) + 1;
+                    input.value = "";
+                } catch (error) {
+                    console.error("Error sending comment:", error.message);
+                    alert("Failed to send comment.");
+                }
+            });
+        });
+
+        loadWhoToFollow();
+
+
+        const followingTab = document.querySelector("#following");
+        followingTab.innerHTML = "";
+        user.followingList.forEach(follow => {
+            const followItem = document.createElement("div");
+            followItem.className = "follow-item";
+            followItem.innerHTML = `
+                <img src="${follow.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <div>
+                    <div class="username">${follow.name}</div>
+                    <div class="handle">@${follow.username}</div>
+                </div>
+                <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M19 12H5v2h14v-2z" fill="#000000"/>
+                    </svg>
+                </button>
+            `;
+            followingTab.appendChild(followItem);
+
+        });
+
+        // Render followers tab
+        const followersTab = document.querySelector("#followers");
+        followersTab.innerHTML = "";
+        user.followList.forEach(follow => {
+            const followItem = document.createElement("div");
+            followItem.className = "follow-item";
+            followItem.innerHTML = `
+                <img src="${follow.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <div>
+                    <div class="username">${follow.name}</div>
+                    <div class="handle">@${follow.username}</div>
+                </div>
+                <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}"></button>
+            `;
+            followersTab.appendChild(followItem);
+
+ 
+            const followButton = followItem.querySelector(".unfollow-btn");
+            followButton.addEventListener("click", async () => {
+                const username = followButton.getAttribute("data-username");
+                const isFollowing = followButton.classList.contains("unfollow-btn");
+                try {
+                    const endpoint = isFollowing ? "/follow/unfollow" : "/follow/follow";
+                    const data = await fetchAPI(endpoint, "POST", { username });
+                    if (data.success) {
+                        followButton.className = isFollowing ? "follow-btn" : "unfollow-btn";
+                        followButton.setAttribute("aria-label", isFollowing ? "Follow" : "Unfollow");
+                        followButton.textContent = isFollowing ? "Follow" : "Unfollow";
+                    } else {
+                        alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + data.message);
+                    }
+                } catch (error) {
+                    console.error(`Error ${isFollowing ? 'unfollowing' : 'following'} user:`, error.message);
+                    alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + error.message);
+                }
+            });
+        });
+
+            const followButton = profileHeader.querySelector(".profile-follow");
+            if (followButton) {
+                followButton.addEventListener("click", async () => {
+                    const username = followButton.getAttribute("data-username");
+                    const isFollowing = isFollow;
+                    try {
+                        const endpoint = isFollowing ? "/follow/unfollow" : "/follow/follow";
+                        const data = await fetchAPI(endpoint, "POST", { username });
+                        if (data.success) {
+                            followButton.textContent = isFollowing ? "Follow" : "UnFollow";
+                        } else {
+                            alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + data.message);
+                        }
+                    } catch (error) {
+                        console.error(`Error ${isFollowing ? 'unfollowing' : 'following'} user:`, error.message);
+                    }
+                });
+            }
+
+        // Tab switching
+        const tabButtons = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                tabButtons.forEach(btn => btn.classList.remove("active"));
+                tabContents.forEach(content => content.classList.remove("active"));
+                button.classList.add("active");
+                document.querySelector(`#${button.dataset.tab}`).classList.add("active");
+            });
+        });
+
+    } catch (error) {
+        console.error("Error loading profile:", error.message);
+        alert("Failed to load profile: " + error.message);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    loadUserProfile(username);
+});

@@ -1,40 +1,93 @@
 import asyncHandler from "../utils/asyncHandler.util.js";
 import User from "../models/user.model.js";
+import Follow from "../models/follow.model.js";
 import ApiError from "../utils/apiError.util.js";
 import { uploadOnCloudinary, deleteUpload } from "../utils/cloudinary.util.js";
+import dayjs from "dayjs";
 
-const getMyProfile = asyncHandler (async (req, res) => 
-    {
-        const userID = req?.userID;
-        if (!userID) throw new ApiError(401, "Unauthorized");
 
-        const user = await User.findById(userID).select("name username avatar bio");
-        if (!user) throw new ApiError(404, "User not found");
+const getProfileData = async (query, userID=null) => {
+    try {
+        let isFollow = false;
+        const user = await User.findOne(query)
+        .select("name username avatar.url bio posts")
+        .populate({
+            path: "posts",
+            select: "tweet post_img.url like comments createdAt",
+            populate: {
+                path: "user_id",
+                select: "name username avatar.url",
+            },
+            options: {sort: {createdAt: -1}, limit: 10}
+        });
+        if (!user) throw new ApiError(400, "user not found");
 
-        return res.status(200)
-        .json(
-            {
-                success: true,
-                data: user,
-            }
-        );
+        const followData = await Follow.findOne({user_id: user._id})
+        .select("following follower");
+
+        const followCount = followData ? followData.follower : [];
+        const followingCount = followData ? followData.following : [];
+
+        if (userID) {
+            if (followCount.includes(userID)) {
+                isFollow = true;
+            };
+        };
+
+        const followList = await User.find({_id: {$in: followCount}})
+        .select("username name avatar.url")
+        .limit(10);
+
+        const followingList = await User.find({_id: {$in: followingCount}})
+        .select("username name avatar.url")
+        .limit(10);
+
+        const formattedPost = user.posts.map(post => ({
+            post_id: post._id,
+            user: post.user_id,
+            tweet: post.tweet,
+            post_img: post.post_img.url || "",
+            likeCount: post.like.length,
+            commentCount: post.comments.length,
+            timeAgo: dayjs(post.createdAt).fromNow(),
+        }));
+
+        const data = {
+            name: user.name,
+            username: user.username,
+            avatar: user.avatar.url,
+            bio: user.bio,
+            followCount: followCount.length || 0,
+            followingCount: followingCount.length || 0,
+            followList,
+            followingList,
+            formattedPost,
+        };
+        
+        if (isFollow) data.followStatus = true;
+
+        return data;
+    } catch (e){
+        throw new ApiError (500, "Server error!");
     }
-);
+};
 
-const getUserProfile = asyncHandler (async (req, res) => {
+const getMyProfile = asyncHandler(async (req, res) => {
+    const userID = req?.userID;
+    if (!userID) throw new ApiError(401, "Unauthorized");
+
+    const data = await getProfileData({ _id: userID });
+
+    res.status(200).json({ success: true, user: data });
+});
+
+const getUserProfile = asyncHandler(async (req, res) => {
     const username = (req.params?.username).split(" ").join("").toLowerCase();
-    if (username) {
-        const user = await User.findOne({username}).select("name username bio avatar");
-        if (!user) throw new ApiError(400, "User not found!");
-        return res.status(200)
-        .json(
-            {
-                success: true,
-                user,
-            }
-        );
-    }
-    throw new ApiError(500);
+    if (!username) throw new ApiError(400, "Username required");
+
+    const data = await getProfileData({ username }, req.userID, true);
+
+    res.status(200).json({ success: true, user: data });
 });
 
 const updateMyProfile = asyncHandler (async (req, res) => {

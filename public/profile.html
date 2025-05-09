@@ -85,14 +85,14 @@
     <!-- Main Profile Content -->
     <main>
       <div class="profile-header">
-        <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
+        <img src="" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
         <div class="profile-info">
-          <div class="username user-name">pixel_guru</div>
-          <div class="handle user-username">@pixel_guru</div>
-          <p class="bio" id="user-bio">Retro gaming enthusiast. Lover of 8-bit adventures and pixel art. #PixelFest</p>
+          <div class="username user-name"></div>
+          <div class="handle user-username"></div>
+          <p class="bio" id="user-bio"></p>
           <div class="follow-stats">
-            <span class="stat"><span class="count user-following">150</span> Following</span>
-            <span class="stat"><span class="count user-followers">320</span> Followers</span>
+            <span class="stat"><span class="count user-following" id="user-following"></span> Following</span>
+            <span class="stat"><span class="count user-followers" id="user-followers"></span> Followers</span>
           </div>
         </div>
       </div>
@@ -147,47 +147,7 @@
           </div>
         </article>
         <!-- Additional Post -->
-        <article class="post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="username">Retro Ninja</div>
-            <div class="handle">@retro_ninja</div>
-            <div class="timestamp">· 3h</div>
-          </div>
-          <div class="post-content">
-            <p>Just found an epic 8-bit gem! 🎮 #RetroGaming</p>
-            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
-          </div>
-          <div class="post-actions">
-            <button class="action-btn like-btn" aria-label="Like">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span class="action-count">3</span>
-            </button>
-            <button class="action-btn comment-btn" aria-label="Comment">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              <span class="action-count">2</span>
-            </button>
-          </div>
-          <div class="comments-section" style="display: none;">
-            <div class="comments-list">
-              <div class="comment">
-                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-                <div class="comment-content">
-                  <div class="comment-username">pixel_guru</div>
-                  <p>Love that game!</p>
-                </div>
-              </div>
-            </div>
-            <div class="comment-composer">
-              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
-              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
-            </div>
-          </div>
-        </article>
+      
       </div>
 
       <!-- Following Tab -->
@@ -214,7 +174,7 @@
             <div class="username">Pixel Lover</div>
             <div class="handle">@pixel_lover</div>
           </div>
-          <button class="follow-btn" aria-label="Follow">
+          <button class="follow-btn unfollow-btn" aria-label="Follow">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
             </svg>
@@ -243,29 +203,7 @@
       <div class="who-to-follow">
         <h2>WHO TO FOLLOW</h2>
         <div class="follow-item">
-          <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
-          <div>
-            <div class="username">cyber_pixel</div>
-            <div class="handle">@cyber_pixel</div>
-          </div>
-          <button class="follow-btn" aria-label="Follow">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-          </button>
-        </div>
-        
-        <div class="follow-item">
-          <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
-          <div>
-            <div class="username">cyber_pixel</div>
-            <div class="handle">@cyber_pixel</div>
-          </div>
-          <button class="follow-btn" aria-label="Follow">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-          </button>
+          <p>No user found</p>
         </div>
       </div>
     </aside>
@@ -304,6 +242,8 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
+  <script src="./javascripts/loadFeed.js"></script>
+  <script src="./javascripts/fetch.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/profile.js"></script>
   <script>

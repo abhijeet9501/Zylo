@@ -8,10 +8,10 @@ const router = express.Router();
 
 
 router.get("/me", isAuthenticated, getMyProfile);
-router.put("/update", isAuthenticated, updateMyProfile);
-router.put("/password", isAuthenticated, updatePassword);
 router.get("/:username", isAuthenticated, getUserProfile);
+router.put("/update", isAuthenticated, updateMyProfile);
 router.post("/avatar", isAuthenticated, upload.single("avatar"), uploadAvatar);
+router.put("/password", isAuthenticated, updatePassword);
 router.post("/logout", logOut);
 
 export default router;

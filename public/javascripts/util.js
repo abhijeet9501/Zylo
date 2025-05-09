@@ -134,6 +134,11 @@ function renderData(user, isBio) {
   const userUsername = document.getElementsByClassName("user-username");
   const userName = document.getElementsByClassName("user-name");
   const userAvatar = document.getElementsByClassName("loggedin-avatar");
+  const follow = document.getElementById("user-following");
+  const follower = document.getElementById("user-followers");
+
+  follow.textContent = user.followCount;
+  follower.textContent = user.followingCount;
 
   for (let el of userUsername) {
     el.textContent = `@${username}`;

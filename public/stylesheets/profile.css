@@ -98,8 +98,8 @@
     display: block;
   }
   
-  /* Profile Posts */
   .profile-posts {
+    display: block;
     padding: 16px;
     overflow-y: auto;
     height: calc(100vh - 150px);
@@ -124,7 +124,7 @@
     background: rgba(255, 0, 255, 0.4);
   }
   
-  .post {
+  /* .post {
     background: var(--card-bg);
     padding: 16px;
     margin-bottom: 16px;
@@ -133,7 +133,7 @@
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  
+   */
   .post.post-appear {
     opacity: 1;
     transform: translateY(0);

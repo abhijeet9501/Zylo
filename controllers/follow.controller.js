@@ -75,7 +75,24 @@ const unFollow = asyncHandler (async (req, res) => {
     });
 });
 
+const whoToFollow = asyncHandler (async (req, res) => {
+    const follow = await Follow.findOne({ user_id: req.userID }).select("following");
+    const following = follow ? follow.following : [];
+
+    const users = await User.find({
+        _id: { $nin: [...following, req.userID] },
+    })
+    .select("name username avatar.url")
+    .limit(5);
+
+    res.status(200).json({
+        success: true,
+        users,
+    });
+});
+
 export {
     follow,
     unFollow,
+    whoToFollow,
 };
