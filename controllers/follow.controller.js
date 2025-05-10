@@ -4,6 +4,7 @@ import User from "../models/user.model.js";
 import ApiError from "../utils/apiError.util.js";
 
 const follow = asyncHandler (async (req, res) => {
+    let isFollow = false;
     const userID = req.userID;
     const usernameToFollow = req.body?.username;
     if (!usernameToFollow)  throw new ApiError(400, "Provide user to follow");
@@ -21,9 +22,16 @@ const follow = asyncHandler (async (req, res) => {
             },
         );
         await follow.save();
+        isFollow = true;
     } else if (!isToFollow.follower.includes(userID)) {
         isToFollow.follower.push(userID);
         await isToFollow.save();
+        isFollow = true;
+    } else {
+        await Follow.updateOne(
+            {user_id: userToFollow._id},
+            {$pull: {follower: userID}},
+        );
     }
 
     const isToFollowing = await Follow.findOne({user_id: userID});
@@ -39,39 +47,46 @@ const follow = asyncHandler (async (req, res) => {
     } else if (!isToFollowing.following.includes(userToFollow._id)) {
         isToFollowing.following.push(userToFollow._id);
         await isToFollowing.save();
+    } else {
+        await Follow.updateOne(
+            {user_id: userID},
+            {$pull: {following: userToFollow._id}},
+        );
     }
 
     return res.status(200)
     .json(
         {
             success: true,
+            isFollow,
             message: `You started following ${userToFollow.username}`,
         }
     );
 });
 
 
-const unFollow = asyncHandler (async (req, res) => {
+const removeFollow = asyncHandler (async (req, res) => {
     const userID = req.userID;
     const userToUnfollow = req.body.username;
     if (!userToUnfollow) throw new ApiError(400, "Provide user to unfollow");
 
     const userToUnfollowID = await User.findOne({username: userToUnfollow});
+    if (!userToUnfollowID) throw new ApiError(400, "user to remove not found");
 
     const unFollowUser = await Follow.updateOne(
         {user_id: userID},
-        {$pull: {following: userToUnfollowID._id}},
+        {$pull: {follower: userToUnfollowID._id}},
     );
 
     const removeFollowingUser = await Follow.updateOne(
         {user_id: userToUnfollowID._id},
-        {$pull: {follower: userID}},
+        {$pull: {following: userID}},
     );
 
     return res.status(200)
     .json({
         success: true,
-        message: `You unfollowed ${userToUnfollowID.username}`,
+        message: `You removed ${userToUnfollowID.username}`,
     });
 });
 
@@ -93,6 +108,6 @@ const whoToFollow = asyncHandler (async (req, res) => {
 
 export {
     follow,
-    unFollow,
+    removeFollow,
     whoToFollow,
 };

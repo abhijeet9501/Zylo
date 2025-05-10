@@ -1,47 +1,3 @@
-// renderUser(false);
-
-// const urlParams = new URLSearchParams(window.location.search);
-// const username = urlParams.get('username');
-
-// const PROFILE_URL = "/api/v1/profile";
-
-
-// const getUserProfile = async (username) => {
-//     const response = await fetch (`${PROFILE_URL}/${username}`, {
-//         method: "GET",
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//     });
-    
-//     if (!response.ok) {
-//         showPopUp("User not found!", true);
-//         setTimeout(() => {
-//             window.location.href = "/index.html";
-//         }, 900);
-//     };
-    
-//     const data = await response.json();
-    
-//     if (data.success)
-//         {
-//             renderProfileUser(data.user);
-//         }
-//     };
-    
-
-// getUserProfile(username);
-
-// const renderProfileUser = (user) => {
-//     document.querySelector('.profile-avatar').src = user.avatar.url;
-//     document.querySelector('.profile-name').textContent = user.name;
-//     document.querySelector('.profile-username').textContent = `@${user.username}`;
-//     document.querySelector('.profile-bio').textContent = user?.bio || "";
-//     document.querySelector('.user-following').textContent = user?.following || 0;
-//     document.querySelector('.user-followers').textContent = user?.followers || 0;
-// };
-
-
 async function loadUserProfile(username) {
     try {
         const endpoint = `/profile/${username}`;
@@ -50,24 +6,30 @@ async function loadUserProfile(username) {
             throw new Error(data.message || "Failed to load profile");
         }
 
+        if (data?.selfProfile) {
+            window.location.href = "/profile.html";
+            return;
+        }
+
         const user = data.user;
         const isFollow = user?.followStatus || null;
+        console.log(isFollow);
 
         const profileHeader = document.querySelector(".profile-header");
-        
-      
-         profileHeader.innerHTML = `
+
+
+        profileHeader.innerHTML = `
             <img src="${user.avatar || 'https://via.placeholder.com/80'}" alt="User avatar" class="avatar-bounce profile-avatar other-avatar">
             <div class="profile-info">
                 <div class="username user-name profile-name">${user.name}</div>
                 <div class="handle user-username profile-username">@${user.username}</div>
-                <p class="bio user-bio profile-bio" id="user-bio">${user.bio || "No bio available"}</p>
+                <p class="bio user-bio profile-bio" id="user-bio">${user.bio || ""}</p>
                 <div class="follow-stats">
                     <span class="stat"><span class="count user-following">${user.followingCount}</span> Following</span>
                     <span class="stat"><span class="count user-followers">${user.followCount}</span> Followers</span>
                 </div>
                 <div class="profile-actions">
-                    <button class="follow-btn profile-follow" data-username=${user.username} aria-label="Follow">${isFollow? 'UnFollow' : 'Follow'}</button>
+                    <button class="follow-btn profile-follow" data-username=${user.username} aria-label="Follow">${isFollow ? 'UnFollow' : 'Follow'}</button>
                     <a href="messages.html" class="message-btn" id="profile-msg" data=${user.username} aria-label="Message">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
@@ -215,10 +177,10 @@ async function loadUserProfile(username) {
 
         loadWhoToFollow();
 
-
         const followingTab = document.querySelector("#following");
         followingTab.innerHTML = "";
         user.followingList.forEach(follow => {
+            const self = follow?.self || false;
             const followItem = document.createElement("div");
             followItem.className = "follow-item";
             followItem.innerHTML = `
@@ -227,13 +189,40 @@ async function loadUserProfile(username) {
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>
                 </div>
-                <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M19 12H5v2h14v-2z" fill="#000000"/>
-                    </svg>
-                </button>
-            `;
+                ${self ? `` : ` <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
+                ${follow.isFollow ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5v2h14v-2z" fill="#000000"/>
+                </svg>` : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>`} 
+                </button>`}
+               `;
+
             followingTab.appendChild(followItem);
+
+            if (!self) {
+                const followButton = followItem.querySelector(".unfollow-btn");
+                followButton.addEventListener("click", async () => {
+                    const username = followButton.getAttribute("data-username");
+                    try {
+                        const endpoint = "/follow/follow";
+                        const data = await fetchAPI(endpoint, "POST", { username });
+                        if (data.success) {
+                            if (data.isFollow) {
+                                followButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5v2h14v-2z" fill="#000000"/>
+                </svg>`
+                            } else {
+                                followButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>`
+                            }
+                        }
+                    } catch (error) {
+                    }
+                });
+            };
+
 
         });
 
@@ -241,6 +230,7 @@ async function loadUserProfile(username) {
         const followersTab = document.querySelector("#followers");
         followersTab.innerHTML = "";
         user.followList.forEach(follow => {
+            const self = follow?.self || false;
             const followItem = document.createElement("div");
             followItem.className = "follow-item";
             followItem.innerHTML = `
@@ -249,50 +239,57 @@ async function loadUserProfile(username) {
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>
                 </div>
-                <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}"></button>
-            `;
+                ${self ? `` : ` <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
+                ${follow.isFollow ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5v2h14v-2z" fill="#000000"/>
+                </svg>` : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>`} 
+                </button>`}
+               `;
             followersTab.appendChild(followItem);
 
- 
-            const followButton = followItem.querySelector(".unfollow-btn");
-            followButton.addEventListener("click", async () => {
-                const username = followButton.getAttribute("data-username");
-                const isFollowing = followButton.classList.contains("unfollow-btn");
-                try {
-                    const endpoint = isFollowing ? "/follow/unfollow" : "/follow/follow";
-                    const data = await fetchAPI(endpoint, "POST", { username });
-                    if (data.success) {
-                        followButton.className = isFollowing ? "follow-btn" : "unfollow-btn";
-                        followButton.setAttribute("aria-label", isFollowing ? "Follow" : "Unfollow");
-                        followButton.textContent = isFollowing ? "Follow" : "Unfollow";
-                    } else {
-                        alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + data.message);
-                    }
-                } catch (error) {
-                    console.error(`Error ${isFollowing ? 'unfollowing' : 'following'} user:`, error.message);
-                    alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + error.message);
-                }
-            });
-        });
 
-            const followButton = profileHeader.querySelector(".profile-follow");
-            if (followButton) {
+            if (!self) {
+                const followButton = followItem.querySelector(".follow-btn");
                 followButton.addEventListener("click", async () => {
                     const username = followButton.getAttribute("data-username");
-                    const isFollowing = isFollow;
                     try {
-                        const endpoint = isFollowing ? "/follow/unfollow" : "/follow/follow";
+                        const endpoint = "/follow/follow";
                         const data = await fetchAPI(endpoint, "POST", { username });
                         if (data.success) {
-                            followButton.textContent = isFollowing ? "Follow" : "UnFollow";
-                        } else {
-                            alert(`Failed to ${isFollowing ? 'unfollow' : 'follow'}: ` + data.message);
+                            if (data.isFollow) {
+                                followButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5v2h14v-2z" fill="#000000"/>
+                </svg>`
+                            } else {
+                                followButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>`
+                            }
                         }
                     } catch (error) {
-                        console.error(`Error ${isFollowing ? 'unfollowing' : 'following'} user:`, error.message);
                     }
                 });
-            }
+            };
+
+        });
+
+        const followButton = profileHeader.querySelector(".profile-follow");
+        if (followButton) {
+            followButton.addEventListener("click", async () => {
+                const username = followButton.getAttribute("data-username");
+                const isFollowing = isFollow;
+                try {
+                    const endpoint = "/follow/follow";
+                    const data = await fetchAPI(endpoint, "POST", { username });
+                    if (data.success) {
+                        followButton.textContent = data.isFollow ? "UnFollow" : "Follow";
+                    }
+                } catch (error) {
+                }
+            });
+        }
 
         // Tab switching
         const tabButtons = document.querySelectorAll(".tab-btn");

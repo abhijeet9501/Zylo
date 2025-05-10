@@ -20,6 +20,11 @@ const getProfileData = async (query, userID=null) => {
             },
             options: {sort: {createdAt: -1}, limit: 10}
         });
+
+        if (user._id == userID) {
+            return 169;
+        };
+
         if (!user) throw new ApiError(400, "user not found");
 
         const followData = await Follow.findOne({user_id: user._id})
@@ -34,13 +39,44 @@ const getProfileData = async (query, userID=null) => {
             };
         };
 
-        const followList = await User.find({_id: {$in: followCount}})
+        let followList = await User.find({_id: {$in: followCount}})
         .select("username name avatar.url")
-        .limit(10);
+        .limit(10)
+        .lean();
 
-        const followingList = await User.find({_id: {$in: followingCount}})
+        let followingList = await User.find({_id: {$in: followingCount}})
         .select("username name avatar.url")
-        .limit(10);
+        .limit(10)
+        .lean();
+
+        if (userID) {
+            const myFollows = await Follow.findOne({user_id: userID}).select("following");
+            const myFollowingList = myFollows.following;
+            
+            followingList.forEach(id => {
+                if (id._id == userID) {
+                    id.self = true;
+                }
+                else if (myFollowingList.includes(id._id))
+                {
+                    id.isFollow =  true;
+                }else {
+                    id.isFollow = false;
+                }
+            });
+
+            followList.forEach(id => {
+                if (id._id == userID) {
+                    id.self = true;
+                }
+                else if (myFollowingList.includes(id._id))
+                {
+                    id.isFollow =  true;
+                }else {
+                    id.isFollow = false;
+                }
+            });   
+        };
 
         const formattedPost = user.posts.map(post => ({
             post_id: post._id,
@@ -86,8 +122,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
     if (!username) throw new ApiError(400, "Username required");
 
     const data = await getProfileData({ username }, req.userID, true);
-
-    res.status(200).json({ success: true, user: data });
+    if (data == 169) return res.status(200).json({success: true ,selfProfile: true});
+    
+    return res.status(200).json({ success: true, user: data });
 });
 
 const updateMyProfile = asyncHandler (async (req, res) => {

@@ -16,7 +16,7 @@ async function loadUserProfile() {
             <div class="profile-info">
                 <div class="username user-name">${user.name}</div>
                 <div class="handle user-username">@${user.username}</div>
-                <p class="bio" id="user-bio">${user.bio || "No bio available"}</p>
+                <p class="bio" id="user-bio">${user.bio || ""}</p>
                 <div class="follow-stats">
                     <span class="stat"><span class="count user-following">${user.followingCount}</span> Following</span>
                     <span class="stat"><span class="count user-followers">${user.followCount}</span> Followers</span>
@@ -206,7 +206,7 @@ async function loadUserProfile() {
                 unfollowButton.addEventListener("click", async () => {
                     const username = unfollowButton.getAttribute("data-username");
                     try {
-                        const data = await fetchAPI("/follow/unfollow", "POST", { username });
+                        const data = await fetchAPI("/follow/follow", "POST", { username });
                         if (data.success) {
                             followItem.remove(); 
                         } else {
@@ -238,6 +238,19 @@ async function loadUserProfile() {
                 </button>
             `;
             followersTab.appendChild(followItem);
+
+            const unfollowButton = followItem.querySelector(".unfollow-btn");
+                unfollowButton.addEventListener("click", async () => {
+                    const username = unfollowButton.getAttribute("data-username");
+                    try {
+                        const data = await fetchAPI("/follow/removefollow", "POST", { username });
+                        if (data.success) {
+                            followItem.remove(); 
+                        } else {
+                        }
+                    } catch (error) {
+                    }
+                });
         });
     
         const tabButtons = document.querySelectorAll(".tab-btn");
