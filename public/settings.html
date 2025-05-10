@@ -26,12 +26,14 @@
 
   <!-- Mobile Header -->
   <header class="mobile-header">
-    <a id="avatara" class="loggedin" href="profile.html">
-      <img src="https://i.pinimg.com/736x/95/3b/3e/953b3e9915c0ea7c187e44789c3ed356.jpg" id="avatar" class="avatar-bounce user-avatar loggedin-avatar" alt="User avatar">
-    </a>
     <div class="header-content">
       <div class="logo">ZYLO</div>
     </div>
+    <a href="./messages.html" aria-label="Messages">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; fill: white;">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
+    </a>
   </header>
 
   <div class="layout-container">
@@ -117,8 +119,8 @@
             <input type="text" id="bio-mobile" aria-label="Bio">
           </div>
           <button type="submit" class="update-btn" id="mobile-update-btn" aria-label="Update account info">UPDATE</button>
+          <button class="back-btn" aria-label="Back to settings menu">BACK</button>
         </form>
-        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
       </div>
       <div class="settings-panel mobile-panel" id="change-password-mobile" style="display: none;">
         <h2>CHANGE PASSWORD</h2>
@@ -132,8 +134,8 @@
             <input type="password" id="new-password-mobile" value="new123" aria-label="New password">
           </div>
           <button type="submit" class="update-btn" id="update-pass-mobile" aria-label="Update password">UPDATE</button>
+          <button class="back-btn" aria-label="Back to settings menu">BACK</button>
         </form>
-        <button class="back-btn" aria-label="Back to settings menu">BACK</button>
       </div>
       <div class="settings-panel mobile-panel" id="mute-mobile" style="display: none;">
         <h2>MUTE</h2>
@@ -177,7 +179,7 @@
             <label for="email">Email:</label>
             <input type="email" id="email" aria-label="Email">
           </div>
-          <button type="submit" id="acc-btn" class="update-btn" aria-label="Update account info">UPDATE</button>
+          <button type="button" id="acc-btn" class="update-btn" aria-label="Update account info">UPDATE</button>
         </form>
       </div>
       <div class="settings-panel" id="change-password" style="display: none;">
@@ -191,7 +193,7 @@
             <label for="new-password">New Password:</label>
             <input type="password" id="new-password" value="new123" aria-label="New password">
           </div>
-          <button type="submit" class="update-btn" id="update-pass-pc" aria-label="Update password">UPDATE</button>
+          <button type="button" class="update-btn" id="update-pass-pc" aria-label="Update password">UPDATE</button>
         </form>
       </div>
       <div class="settings-panel" id="mute" style="display: none;">
@@ -217,11 +219,6 @@
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
       </svg>
     </a>
-    <a href="./messages.html" aria-label="Messages">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-      </svg>
-    </a>
     <a href="./search.html" class="search-btn" aria-label="Search">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -233,7 +230,8 @@
       </svg>
     </a>
     <a href="./profile.html" aria-label="Profile">
-      <img src="https://via.placeholder.com/40x40.png?text=User" alt="User avatar" class="mobile-nav-avatar loggedin-avatar">
+      <img src="/img/png/user.png" alt="User avatar"
+        class="mobile-nav-avatar loggedin-avatar">
     </a>
   </nav>
 
@@ -275,22 +273,6 @@
       });
     });
 
-    // Clear input on click
-    document.querySelectorAll('.settings-form input:not([type="file"])').forEach(input => {
-      input.addEventListener('click', () => {
-        input.value = '';
-      });
-    });
-
-    // Update button sound
-    document.querySelectorAll('.update-btn').forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent form submission for demo
-        showLoading(); // From util.js
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/lvl_complete.wav'); // update-sound
-        setTimeout(() => hideLoading(), 1000); // Simulate API call
-      });
-    });
 
     // Mute toggle sync
     const muteToggle = document.getElementById('mute-toggle');
@@ -315,15 +297,6 @@
       setTimeout(() => hideLoading(), 1000); // Simulate API call
     });
 
-    // Logout button sound
-    document.querySelectorAll('.logout-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        showLoading(); // From util.js
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // logout-sound
-        setTimeout(() => hideLoading(), 1000); // Simulate API call
-        // Add your logout script here
-      });
-    });
   </script>
 </body>
 </html>

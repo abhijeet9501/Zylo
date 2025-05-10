@@ -19,7 +19,7 @@ async function loadUserProfile(username) {
 
 
         profileHeader.innerHTML = `
-            <img src="${user.avatar || 'https://via.placeholder.com/80'}" alt="User avatar" class="avatar-bounce profile-avatar other-avatar">
+            <img src="${user.avatar || "/img/png/user.png"}" alt="User avatar" class="avatar-bounce profile-avatar other-avatar">
             <div class="profile-info">
                 <div class="username user-name profile-name">${user.name}</div>
                 <div class="handle user-username profile-username">@${user.username}</div>

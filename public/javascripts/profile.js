@@ -12,7 +12,7 @@ async function loadUserProfile() {
         
    
             profileHeader.innerHTML = `
-            <img src="${user.avatar || 'https://via.placeholder.com/80'}" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
+            <img src="${user.avatar || "/img/png/user.png"}" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
             <div class="profile-info">
                 <div class="username user-name">${user.name}</div>
                 <div class="handle user-username">@${user.username}</div>
@@ -273,4 +273,5 @@ async function loadUserProfile() {
 
 document.addEventListener("DOMContentLoaded", () => {
     loadUserProfile();
+    renderUser();
 });

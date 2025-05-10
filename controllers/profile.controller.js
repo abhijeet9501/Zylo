@@ -127,6 +127,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
     return res.status(200).json({ success: true, user: data });
 });
 
+const basicData = asyncHandler (async (req, res) => {
+    const userID = req.userID;
+    const user = await User.findById(userID)
+    .select("name username avatar.url bio email");
+    if(!user) throw new ApiError(400, "User not found!");
+    return res.status(200).json({success: true, user});
+});
+
 const updateMyProfile = asyncHandler (async (req, res) => {
     const allowedFields = ["name", "username", "email", "bio"];
     const updates = {};
@@ -218,4 +226,5 @@ export {
     updateMyProfile,
     uploadAvatar,
     updatePassword,
+    basicData,
 };

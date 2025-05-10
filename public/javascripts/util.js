@@ -3,7 +3,7 @@ const profile_url = "/api/v1/profile";
 let localUser = JSON.parse(sessionStorage.getItem("user")) || null;
 let timeoutId;
 
-// Show popup message (success or error)
+
 const showPopUp = (message, isError, isRedirect = null) => {
   if (timeoutId) clearTimeout(timeoutId);
 
@@ -17,21 +17,21 @@ const showPopUp = (message, isError, isRedirect = null) => {
   }, 2000);
 };
 
-// Save to sessionStorage (instead of localStorage)
+
 const saveToLocal = (key, value) => {
   const existing = JSON.parse(sessionStorage.getItem(key)) || {};
   const updated = { ...existing, ...value };
   sessionStorage.setItem(key, JSON.stringify(updated));
 };
 
-// Play sound (centralized)
+
 const playSound = (soundUrl) => {
   const audio = new Audio(soundUrl);
   audio.volume = 0.3;
   audio.play().catch(e => console.log('Audio play failed:', e));
 };
 
-// Show loading screen with digital rain
+
 const showLoading = () => {
   const loader = document.getElementById('loading-screen');
   loader.classList.add('show');
@@ -39,18 +39,18 @@ const showLoading = () => {
   generateDigitalRain();
 };
 
-// Hide loading screen
+
 const hideLoading = () => {
   const loader = document.getElementById('loading-screen');
   loader.classList.remove('show');
   const rain = document.querySelector('.digital-rain');
-  rain.innerHTML = ''; // Clear digital rain when hiding
+  rain.innerHTML = ''; 
 };
 
-// Generate digital rain effect for loading screen
+
 const generateDigitalRain = () => {
   const rain = document.querySelector('.digital-rain');
-  rain.innerHTML = ''; // Clear previous rain
+  rain.innerHTML = ''; 
   const characters = '01ABCDEF';
   for (let i = 0; i < 50; i++) {
     const char = document.createElement('span');
@@ -62,33 +62,25 @@ const generateDigitalRain = () => {
   }
 };
 
-// Render user data (fetches from server if sessionStorage is empty)
-const renderUser = async (isBio = false) => {
-  // Check if user data exists in sessionStorage
+
+const renderUser = async () => {
   localUser = JSON.parse(sessionStorage.getItem("user")) || null;
 
   if (!localUser || !localUser.username) {
     try {
-      showLoading(); // Show loading while fetching
+      showLoading(); 
 
-      const timeout = setTimeout(() => {
-        hideLoading();
-        showPopUp("Request timed out! Please try again.", true);
-        window.location.href = "/login.html";
-      }, 10000); // 10 seconds timeout
-
-      const response = await fetch(`${profile_url}/me`, {
+      const response = await fetch(`${profile_url}/basic`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'
         },
       });
-
-      clearTimeout(timeout);
+      
       hideLoading();
 
       if (!response.ok) {
-        sessionStorage.removeItem("user"); // Clear sessionStorage on failure
+        sessionStorage.removeItem("user"); 
         window.location.href = "/login.html";
         return;
       }
@@ -96,13 +88,13 @@ const renderUser = async (isBio = false) => {
       const data = await response.json();
 
       if (data.success) {
-        const userData = data.data;
+        const userData = data.user;
         saveToLocal("user", { 
           name: userData.name, 
           username: userData.username, 
           avatar: userData.avatar.url, 
           bio: userData.bio,
-          email: userData.email // Include email for settings page
+          email: userData.email 
         });
         localUser = JSON.parse(sessionStorage.getItem("user"));
       } else {
@@ -112,33 +104,23 @@ const renderUser = async (isBio = false) => {
       }
     } catch (error) {
       hideLoading();
+      console.log(error);
       sessionStorage.removeItem("user");
-      showPopUp("Network error! Redirecting to login.", true);
       window.location.href = "/login.html";
       return;
     }
   }
-  renderData(localUser, isBio);
+  renderData(localUser);
 };
 
-function renderData(user, isBio) {
+function renderData(user) {
   const name = user.name;
   const username = user.username;
   const avatar = user?.avatar || null;
-  if (isBio) {
-    const bio = user?.bio || "";
-    const userBio = document.getElementById("user-bio");
-    if (userBio) userBio.textContent = bio;
-  }
 
   const userUsername = document.getElementsByClassName("user-username");
   const userName = document.getElementsByClassName("user-name");
   const userAvatar = document.getElementsByClassName("loggedin-avatar");
-  const follow = document.getElementById("user-following");
-  const follower = document.getElementById("user-followers");
-
-  follow.textContent = user.followCount;
-  follower.textContent = user.followingCount;
 
   for (let el of userUsername) {
     el.textContent = `@${username}`;

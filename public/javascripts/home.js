@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    await renderUser();
     await loadFeed();
     await loadWhoToFollow();
 });

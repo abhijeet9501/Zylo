@@ -20,7 +20,7 @@ async function loadFeed(type="foryou") {
             postArticle.className = "post";
             postArticle.innerHTML = `
                 <div class="post-header"  _id="${post._id}">
-                    <img src="${post.user.avatar.url || 'default.jpg'}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
+                    <img src="${post.user.avatar.url || "/img/png/user.png"}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
                     <div class="username">${post.user.name}</div>
                     <div class="handle">@${post.user.username}</div>
                     <div class="timestamp">· ${post.timeAgo}</div>
@@ -211,7 +211,5 @@ async function loadWhoToFollow() {
             });
         });
     } catch (error) {
-        console.error("Error loading Who to Follow:", error.message);
-        alert("Failed to load Who to Follow: " + error.message);
     }
 }

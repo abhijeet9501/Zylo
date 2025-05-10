@@ -1,7 +1,9 @@
-// Initial render (using renderUser from util.js)
-renderUser();
+document.addEventListener("DOMContentLoaded", async () => {
+  await renderUser();
+  setPlaceholders();
+});
 
-// Set placeholders using data from sessionStorage (via util.js)
+
 const setPlaceholders = () => {
   const user = JSON.parse(sessionStorage.getItem('user')) || {};
 
@@ -14,23 +16,19 @@ const setPlaceholders = () => {
   const inputEmailMobile = document.getElementById("email-mobile");
   const inputBioMobile = document.getElementById("bio-mobile");
 
-  // Set placeholders for PC inputs
   inputName.setAttribute("placeholder", user.name || "Name");
   inputUsername.setAttribute("placeholder", user.username || "Username");
   inputBio.setAttribute("placeholder", user.bio || "Bio");
   inputEmail.setAttribute("placeholder", user.email || "Email");
 
-  // Set placeholders for mobile inputs
   inputNameMobile.setAttribute("placeholder", user.name || "Name");
   inputUsernameMobile.setAttribute("placeholder", user.username || "Username");
   inputBioMobile.setAttribute("placeholder", user.bio || "Bio");
   inputEmailMobile.setAttribute("placeholder", user.email || "Email");
 };
 
-// Call setPlaceholders on page load
 setPlaceholders();
 
-// Update account info (PC and Mobile)
 const updateAccInfo = async (type) => {
   const inputName = document.getElementById(type === "pc" ? "name" : "name-mobile");
   const inputUsername = document.getElementById(type === "pc" ? "username" : "username-mobile");
@@ -51,13 +49,13 @@ const updateAccInfo = async (type) => {
   if (inputBio.value.trim() !== "") updateData.bio = inputBio.value.trim();
 
   if (Object.keys(updateData).length > 0) {
-    showLoading(); // From util.js
+    showLoading();  
 
     try {
       const timeout = setTimeout(() => {
         hideLoading();
         showPopUp("Request timed out! Please try again.", true);
-      }, 10000); // 10 seconds timeout
+      }, 10000);  
 
       const response = await fetch("/api/v1/profile/update", {
         method: "PUT",
@@ -68,7 +66,7 @@ const updateAccInfo = async (type) => {
       });
 
       clearTimeout(timeout);
-      hideLoading(); // From util.js
+      hideLoading();  
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -80,11 +78,10 @@ const updateAccInfo = async (type) => {
       if (data.success) {
         const updates = data.user;
         updates.avatar = data.avatar || JSON.parse(sessionStorage.getItem('user')).avatar;
-        saveToLocal("user", updates); // From util.js
-        showPopUp("Profile updated successfully!", false); // From util.js
-        // Refresh user data and DOM
-        await renderUser(true); // From util.js
-        setPlaceholders(); // Refresh placeholders
+        saveToLocal("user", updates); 
+        showPopUp("Profile updated successfully!", false);  
+        await renderUser();  
+        setPlaceholders();  
       } else {
         showPopUp(data.message || "Failed to update profile!", true);
       }
@@ -95,15 +92,14 @@ const updateAccInfo = async (type) => {
   }
 };
 
-// Update avatar
 const updateAvatar = async (file) => {
-  showLoading(); // From util.js
+  showLoading(); 
 
   try {
     const timeout = setTimeout(() => {
       hideLoading();
       showPopUp("Request timed out! Please try again.", true);
-    }, 10000); // 10 seconds timeout
+    }, 10000);   
 
     const formData = new FormData();
     formData.append("avatar", file);
@@ -114,7 +110,7 @@ const updateAvatar = async (file) => {
     });
 
     clearTimeout(timeout);
-    hideLoading(); // From util.js
+    hideLoading();
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -124,9 +120,9 @@ const updateAvatar = async (file) => {
     const data = await response.json();
 
     if (data.success) {
-      saveToLocal("user", { avatar: data.url }); // From util.js
-      showPopUp("Avatar updated successfully!", false); // From util.js
-      await renderUser(); // From util.js
+      saveToLocal("user", { avatar: data.url });  
+      showPopUp("Avatar updated successfully!", false);  
+      await renderUser(); 
     } else {
       showPopUp(data.message || "Failed to update avatar!", true);
     }
@@ -136,7 +132,6 @@ const updateAvatar = async (file) => {
   }
 };
 
-// Update password
 const updatePassword = async (type) => {
   const currentPass = document.getElementById(type === "pc" ? "current-password" : "current-password-mobile");
   const newPass = document.getElementById(type === "pc" ? "new-password" : "new-password-mobile");
@@ -148,13 +143,13 @@ const updatePassword = async (type) => {
   const currentPassword = currentPass.value.trim();
   const newPassword = newPass.value.trim();
 
-  showLoading(); // From util.js
+  showLoading();  
 
   try {
     const timeout = setTimeout(() => {
       hideLoading();
       showPopUp("Request timed out! Please try again.", true);
-    }, 10000); // 10 seconds timeout
+    }, 10000);  10 
 
     const response = await fetch("/api/v1/profile/password", {
       method: "PUT",
@@ -165,7 +160,7 @@ const updatePassword = async (type) => {
     });
 
     clearTimeout(timeout);
-    hideLoading(); // From util.js
+    hideLoading();  
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -185,7 +180,7 @@ const updatePassword = async (type) => {
   }
 };
 
-// Event listeners
+
 const accBtn = document.getElementById("acc-btn");
 const accBtnMobile = document.getElementById("mobile-update-btn");
 const pcPassBtn = document.getElementById("update-pass-pc");

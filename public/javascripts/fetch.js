@@ -1,4 +1,4 @@
-const API_BASE_URL = "/api/v1"; // Adjust if different
+const API_BASE_URL = "/api/v1"; 
 
 
 async function fetchAPI(endpoint, method = "GET", body = null) {

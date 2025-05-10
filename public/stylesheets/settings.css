@@ -1,6 +1,4 @@
-/* Settings Page Specific Styles */
 
-/* Settings Menu (Main on Mobile, Sidebar on Desktop) */
 .settings-menu {
   padding: 24px;
   border-bottom: var(--border);
@@ -248,16 +246,13 @@
   }
 
   .settings-panel {
+    height: 92dvh;
+    border: none;
     padding: 16px;
   }
 
   .settings-panel h2 {
     font-size: 0.9rem;
-  }
-
-  .form-group img.avatar-preview {
-    width: 36px;
-    height: 36px;
   }
 
   .form-group label {
@@ -313,8 +308,4 @@
     padding: 12px;
   }
 
-  .form-group img.avatar-preview {
-    width: 32px;
-    height: 32px;
-  }
 }

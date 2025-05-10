@@ -216,22 +216,6 @@
     color: var(--primary);
   }
   
-  .delete-btn {
-    background: var(--primary);
-    border: var(--border);
-    padding: 4px 8px;
-    font-family: var(--font-pixel);
-    font-size: 0.6rem;
-    color: var(--text);
-    text-shadow: var(--glow);
-  }
-  
-  .delete-btn:hover {
-    box-shadow: 0 0 15px var(--accent);
-    transform: translateY(-2px);
-    animation: glitch 0.3s;
-  }
-  
   .comments-section {
     margin-top: 12px;
     padding: 12px;
