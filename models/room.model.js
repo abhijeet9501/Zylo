@@ -5,6 +5,7 @@ const roomSchema = new mongoose.Schema(
         users: [
             {
                 type: mongoose.Types.ObjectId,
+                ref: "User",
             },
         ],
     }, 

@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.route.js";
 import profilerouter from "./routes/profile.route.js";
 import followRouter from "./routes/follow.route.js";
 import postRouter from "./routes/post.route.js";
+import chatRouter from "./routes/chat.route.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -21,6 +22,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/profile", profilerouter);
 app.use("/api/v1/follow", followRouter);
 app.use("/api/v1/post", postRouter);
+app.use("/api/v1/chat", chatRouter);
 app.use(errorMiddleware);
 
 export {

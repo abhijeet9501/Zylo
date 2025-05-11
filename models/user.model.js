@@ -36,6 +36,12 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "",
         },
+        rooms: [
+            {
+                type: mongoose.Types.ObjectId,
+                ref: "Room",
+            }
+        ],
         posts: [
             {
                 type: mongoose.Types.ObjectId,
