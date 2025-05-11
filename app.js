@@ -9,8 +9,9 @@ import postRouter from "./routes/post.route.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 
-
+import http from "http";
 const app = express();
+const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cors());
@@ -23,5 +24,5 @@ app.use("/api/v1/post", postRouter);
 app.use(errorMiddleware);
 
 export {
-    app
+    server,
 };

@@ -168,11 +168,13 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/fetch.js"></script>
   <script src="./javascripts/home.js"></script>
   <script>
+    const chatSocket = io("/chat");
     const textarea = document.querySelector('.composer textarea');
     const wordCounter = document.querySelector('.word-counter');
     const maxChars = 80;

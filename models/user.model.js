@@ -42,12 +42,6 @@ const userSchema = new mongoose.Schema(
                 ref: "Post",
             }
         ],
-        chat_room: [
-            {
-                type: mongoose.Types.ObjectId,
-                ref: "Room",
-            },
-        ],
     }, 
     {timestamps: true}
 );
