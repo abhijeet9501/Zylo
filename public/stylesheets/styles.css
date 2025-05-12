@@ -1370,3 +1370,30 @@ main::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 15px var(--accent);
   animation: glitch 0.3s;
 }
+
+
+.has-notification {
+  position: relative;
+}
+
+.has-notification::after {
+  content: "";
+  position: absolute;
+  top: 2px; 
+  right: 4px; 
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  border: 1px solid var(--accent); 
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.has-notification svg {
+  fill: #fff; 
+}
