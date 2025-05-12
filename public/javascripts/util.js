@@ -68,16 +68,12 @@ const renderUser = async () => {
 
   if (!localUser || !localUser.username) {
     try {
-      showLoading(); 
-
       const response = await fetch(`${profile_url}/basic`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'
         },
       });
-      
-      hideLoading();
 
       if (!response.ok) {
         sessionStorage.removeItem("user"); 
@@ -103,7 +99,6 @@ const renderUser = async () => {
         return;
       }
     } catch (error) {
-      hideLoading();
       console.log(error);
       sessionStorage.removeItem("user");
       window.location.href = "/login.html";

@@ -12,7 +12,7 @@ const authSocket = async (socket, next) => {
         socket.userID = decode.id;
         next();
     } catch {
-        throw new ApiError(400, "Auth failed");
+        
     };
 };
 

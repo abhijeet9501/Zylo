@@ -1322,7 +1322,6 @@ main::-webkit-scrollbar-thumb:hover {
   100% { transform: translate(0); }
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .progress-container {
     width: 200px;
@@ -1331,4 +1330,43 @@ main::-webkit-scrollbar-thumb:hover {
   .loading-text {
     font-size: 1rem;
   }
+}
+
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  .search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results .user-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: var(--card-bg);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.search-results .user-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-results .user-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--accent);
+  animation: glitch 0.3s;
 }

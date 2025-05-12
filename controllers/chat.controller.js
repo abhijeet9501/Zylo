@@ -33,8 +33,7 @@ const loadRoom = asyncHandler(async (req, res) => {
     };
 
     let messages = await Message.find({ room_id: isRoomExists._id })
-        .select("message user_id")
-        .sort({ createdAt: -1 });
+        .select("message user_id");
 
     return res.status(200)
         .json(
@@ -78,7 +77,25 @@ const getChats = asyncHandler(async (req, res) => {
         });
 });
 
+const sendMsg = async (userID, roomID, msg) => {
+    try {
+        const room = await Room.findById(roomID);
+        if (!room) throw new ApiError(400, "Room not found");
+
+        const newMsg = new Message({
+            user_id: userID,
+            room_id: room._id,
+            message: msg,
+        });
+        await newMsg.save();
+
+    } catch {
+        throw new ApiError(400, "Can't send message");
+    }
+};
+
 export {
     loadRoom,
     getChats,
+    sendMsg,
 }

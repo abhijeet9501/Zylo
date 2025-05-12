@@ -11,11 +11,15 @@ async function fetchAPI(endpoint, method = "GET", body = null) {
         options.body = JSON.stringify(body);
     }
     const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
-    const data = await response.json();
-
+    
+    if (response.status==401) {
+        sessionStorage.removeItem("user"); 
+        window.location.href = "/login.html";
+    }
     if (!response.ok) {
         throw new Error(data.message || "API request failed");
     }
+    const data = await response.json();
 
     return data;
 }

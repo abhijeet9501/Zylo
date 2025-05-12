@@ -30,7 +30,7 @@ async function loadUserProfile(username) {
                 </div>
                 <div class="profile-actions">
                     <button class="follow-btn profile-follow" data-username=${user.username} aria-label="Follow">${isFollow ? 'UnFollow' : 'Follow'}</button>
-                    <a href="messages.html" class="message-btn" id="profile-msg" data=${user.username} aria-label="Message">
+                    <a href=${`/messages.html?username=${user.username}`} class="message-btn" id="profile-msg" data=${user.username} aria-label="Message">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
                         </svg>
@@ -134,7 +134,6 @@ async function loadUserProfile(username) {
                 }
             });
 
-            // Send comment handler
             const sendButton = postArticle.querySelector(".send-comment-btn");
             sendButton.addEventListener("click", async () => {
                 const postHeader = postArticle.querySelector(".post-header");
@@ -226,7 +225,6 @@ async function loadUserProfile(username) {
 
         });
 
-        // Render followers tab
         const followersTab = document.querySelector("#followers");
         followersTab.innerHTML = "";
         user.followList.forEach(follow => {
