@@ -1,6 +1,5 @@
 import { verifyToken } from "../utils/token.util.js";
 import cookie from "cookie";
-import ApiError from "../utils/apiError.util.js";
 
 const authSocket = async (socket, next) => {
     try{
@@ -12,7 +11,8 @@ const authSocket = async (socket, next) => {
         socket.userID = decode.id;
         next();
     } catch {
-        throw new ApiError(400, "User id not found");
+        console.log("User id not found");
+        return;
     };
 };
 

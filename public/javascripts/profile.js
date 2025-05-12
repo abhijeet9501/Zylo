@@ -33,7 +33,7 @@ async function loadUserProfile() {
             postArticle.className = "post";
             postArticle.innerHTML = `
                 <div class="post-header" _id="${post.post_id}">
-                    <img src="${post.user.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                    <img src="${post.user.avatar.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce other-avatar">
                     <div class="username">${post.user.name}</div>
                     <div class="handle">@${post.user.username}</div>
                     <div class="timestamp">· ${post.timeAgo}</div>
@@ -123,7 +123,7 @@ async function loadUserProfile() {
                             const commentDiv = document.createElement("div");
                             commentDiv.className = "comment";
                             commentDiv.innerHTML = `
-                                <img src="${comment.user_id.avatar.url || 'https://via.placeholder.com/40'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <img src="${comment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                                 <div class="comment-content">
                                     <div class="comment-username">${comment.user_id.name}</div>
                                     <div class="handle">@${comment.user_id.username}</div>
@@ -161,7 +161,7 @@ async function loadUserProfile() {
                     const commentDiv = document.createElement("div");
                     commentDiv.className = "comment";
                     commentDiv.innerHTML = `
-                        <img src="${newComment.user_id.avatar.url || 'https://via.placeholder.com/40'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                        <img src="${newComment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                         <div class="comment-content">
                             <div class="comment-username">${newComment.user_id.name}</div>
                             <div class="handle">@${newComment.user_id.username}</div>
@@ -188,7 +188,7 @@ async function loadUserProfile() {
             const followItem = document.createElement("div");
             followItem.className = "follow-item";
             followItem.innerHTML = `
-                <img src="${follow.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <img src="${follow.avatar.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce other-avatar">
                 <div>
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>
@@ -226,7 +226,7 @@ async function loadUserProfile() {
             const followItem = document.createElement("div");
             followItem.className = "follow-item";
             followItem.innerHTML = `
-                <img src="${follow.avatar.url || 'https://via.placeholder.com/40'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <img src="${follow.avatar.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce other-avatar">
                 <div>
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>

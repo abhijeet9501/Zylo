@@ -85,14 +85,17 @@ const likePost = asyncHandler(async (req, res) => {
     if (!post) throw new ApiError(404, "Post not found!");
     let likeLength = post.like.length;
     let like = false;
+
+    const userid = post.user_id;
+
     if (post.like.includes(userID)) {
         await Post.updateOne(
             { _id: post_id },
             { $pull: { like: userID } },
         );
-        likeLength--;
+        likeLength--; 
         await Notification.deleteOne({
-            user_id: userID,
+            user_id: userid._id,
             notification: "like",
             from_user: userID,
         });
@@ -101,14 +104,18 @@ const likePost = asyncHandler(async (req, res) => {
         await post.save();
         like = true;
         likeLength++;
-        const notify = new Notification(
-            {
-                user_id: userID,
-                notification: "like",
-                from_user: userID,
-            }
-        );
-        await notify.save();
+       
+        if (userid._id.toString() != userID.toString()) {
+            const notify = new Notification(
+                {
+                    user_id: userid._id,
+                    notification: "like",
+                    from_user: userID,
+                    message: "liked your post",
+                }
+            );
+            await notify.save();
+        };
     }
 
     return res.status(200)

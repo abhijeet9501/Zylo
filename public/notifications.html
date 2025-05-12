@@ -71,51 +71,6 @@
       <main>
         <h2>NOTIFICATIONS</h2>
         <div class="notification-list">
-          <div class="notification-item">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="notification-content">
-              <div class="notification-text">
-                <span class="username">retro_ninja</span> started following you
-              </div>
-              <div class="timestamp">· 1h</div>
-            </div>
-          </div>
-          <div class="notification-item">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="notification-content">
-              <div class="notification-text">
-                <span class="username">cyber_pixel</span> liked your post
-              </div>
-              <div class="timestamp">· 2h</div>
-            </div>
-          </div>
-          <div class="notification-item">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="notification-content">
-              <div class="notification-text">
-                <span class="username">neon_gamer</span> sent you a message
-              </div>
-              <div class="timestamp">· 3h</div>
-            </div>
-          </div>
-          <div class="notification-item">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="notification-content">
-              <div class="notification-text">
-                <span class="username">pixel_lover</span> started following you
-              </div>
-              <div class="timestamp">· 4h</div>
-            </div>
-          </div>
-          <div class="notification-item">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="notification-content">
-              <div class="notification-text">
-                <span class="username">8bit_hero</span> liked your post
-              </div>
-              <div class="timestamp">· 5h</div>
-            </div>
-          </div>
         </div>
       </main>
 
@@ -126,18 +81,7 @@
         </div>
         <div class="who-to-follow">
           <h2>WHO TO FOLLOW</h2>
-          <div class="follow-item">
-            <img src="https://via.placeholder.com/40x40.png?text=Other" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
-            <div>
-              <div class="username">cyber_pixel</div>
-              <div class="handle">@cyber_pixel</div>
-            </div>
-            <button class="follow-btn" aria-label="Follow">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-              </svg>
-            </button>
-          </div>
+          
         </div>
       </aside>
     </div>
@@ -169,7 +113,12 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./javascripts/fetch.js"></script>
+  <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/notification.js"></script>
+  <script src="./javascripts/notifySocket.js"></script>
   <script>
     // Notification click interaction
     document.querySelectorAll('.notification-item').forEach(item => {

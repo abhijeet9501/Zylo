@@ -182,7 +182,7 @@ async function loadWhoToFollow() {
             const followItem = document.createElement("div");
             followItem.className = "follow-item";
             followItem.innerHTML = `
-                <img src="${user.avatar.url || 'https://via.placeholder.com/40x40.png?text=Other'}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
+                <img src="${user.avatar.url || './img/png/user.png'}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
                 <div>
                     <div class="username">${user.name}</div>
                     <div class="handle">@${user.username}</div>
