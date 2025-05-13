@@ -1,6 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.util.js";
 import Notification from "../models/notification.model.js";
-import User from "../models/user.model.js";
 import ApiError from "../utils/apiError.util.js";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
