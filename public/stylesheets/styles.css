@@ -627,10 +627,23 @@ main::-webkit-scrollbar-thumb:hover {
   margin-bottom: 4px;
   color: var(--primary);
   text-shadow: var(--glow);
+  margin-right: 6px;
+}
+
+.cmt-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cmt-head .handle {
+  color: var(--text-muted);
+  font-size: 0.7rem;
 }
 
 .comment-content p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  margin: 0px;
+  padding-bottom: 12px;
 }
 
 .comment-composer {

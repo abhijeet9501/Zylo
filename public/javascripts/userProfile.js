@@ -118,11 +118,13 @@ async function loadUserProfile(username) {
                             const commentDiv = document.createElement("div");
                             commentDiv.className = "comment";
                             commentDiv.innerHTML = `
-                                <img src="${comment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <img src="${comment.user_id.avatar.url || 'default.jpg'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                                 <div class="comment-content">
+                                    <div class="cmt-head">
                                     <div class="comment-username">${comment.user_id.name}</div>
                                     <div class="handle">@${comment.user_id.username}</div>
-                                    <p>${comment.comment}</p>
+                                    </div>
+                                    <p class="cmt-p">${comment.comment}</p>
                                 </div>
                             `;
                             commentsList.appendChild(commentDiv);
@@ -155,14 +157,16 @@ async function loadUserProfile(username) {
                     const commentDiv = document.createElement("div");
                     commentDiv.className = "comment";
                     commentDiv.innerHTML = `
-                        <img src="${newComment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-                        <div class="comment-content">
-                            <div class="comment-username">${newComment.user_id.name}</div>
-                            <div class="handle">@${newComment.user_id.username}</div>
-                            <p>${newComment.comment}</p>
+                        <img src="${newComment.user_id.avatar.url || 'default.jpg'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                            <div class="comment-content">
+                                <div class="cmt-head">
+                                <div class="comment-username">${newComment.user_id.name}</div>
+                                <div class="handle">@${newComment.user_id.username}</div>
+                            </div>
+                            <p class="cmt-p">${newComment.comment}</p>
                         </div>
                     `;
-                    commentsList.prepend(commentDiv);
+                    commentsList.appendChild(commentDiv);
 
                     const commentCountSpan = postArticle.querySelector(".comment-btn .action-count");
                     commentCountSpan.textContent = parseInt(commentCountSpan.textContent) + 1;
