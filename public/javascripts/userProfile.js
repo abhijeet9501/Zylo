@@ -3,7 +3,9 @@ async function loadUserProfile(username) {
         const endpoint = `/profile/${username}`;
         const data = await fetchAPI(endpoint);
         if (!data.success) {
-            throw new Error(data.message || "Failed to load profile");
+            showPopUp("User not found", true);
+             window.location.href = "/index.html";
+             return;
         }
 
         if (data?.selfProfile) {
@@ -13,7 +15,6 @@ async function loadUserProfile(username) {
 
         const user = data.user;
         const isFollow = user?.followStatus || null;
-        console.log(isFollow);
 
         const profileHeader = document.querySelector(".profile-header");
 
@@ -97,7 +98,7 @@ async function loadUserProfile(username) {
                         }
                     }
                 } catch {
-
+                    showPopUp("Unable to send like", true);
                 }
             });
 
@@ -130,8 +131,7 @@ async function loadUserProfile(username) {
                             commentsList.appendChild(commentDiv);
                         });
                     } catch (error) {
-                        console.error("Error fetching comments:", error.message);
-                        alert("Failed to load comments.");
+                        showPopUp("Failed to load comments", true);
                     }
                 }
             });
@@ -144,7 +144,7 @@ async function loadUserProfile(username) {
                 const comment = input.value.trim();
 
                 if (!comment) {
-                    alert("Comment cannot be empty!");
+                    showPopUp("Comment can't be empty", true);
                     return;
                 }
 
@@ -172,8 +172,7 @@ async function loadUserProfile(username) {
                     commentCountSpan.textContent = parseInt(commentCountSpan.textContent) + 1;
                     input.value = "";
                 } catch (error) {
-                    console.error("Error sending comment:", error.message);
-                    alert("Failed to send comment.");
+                    showPopUp("Failed to send comments", true);
                 }
             });
         });
@@ -222,6 +221,7 @@ async function loadUserProfile(username) {
                             }
                         }
                     } catch (error) {
+                        showPopUp("Failed to follow", true);
                     }
                 });
             };
@@ -281,7 +281,6 @@ async function loadUserProfile(username) {
         if (followButton) {
             followButton.addEventListener("click", async () => {
                 const username = followButton.getAttribute("data-username");
-                const isFollowing = isFollow;
                 try {
                     const endpoint = "/follow/follow";
                     const data = await fetchAPI(endpoint, "POST", { username });
@@ -306,8 +305,9 @@ async function loadUserProfile(username) {
         });
 
     } catch (error) {
-        console.error("Error loading profile:", error.message);
-        alert("Failed to load profile: " + error.message);
+        showPopUp("user not found", true);
+        window.location.href = "/index.html";
+        return;
     }
 }
 

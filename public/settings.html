@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings - ZYLO (Pixelated Retro)</title>
+  <title>Settings - ZYLO</title>
+  <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/settings.css">
@@ -74,10 +75,10 @@
         </a>
       </nav>
       <div class="user-info info-user">
-        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce loggedin user-avatar loggedin-avatar">
+        <img src="/img/png/user.png" alt="User avatar" class="avatar-bounce loggedin user-avatar loggedin-avatar">
         <div class="loggedin">
-          <div class="username user-name">pixel_guru</div>
-          <div class="user-username">@pixel_guru</div>
+          <div class="username user-name"></div>
+          <div class="user-username"></div>
         </div>
       </div>
     </aside>
@@ -97,7 +98,7 @@
       <div class="settings-panel mobile-panel" id="account-info-mobile" style="display: none;">
         <h2>ACCOUNT INFO</h2>
         <form class="form-group" enctype="multipart/form-data">
-          <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview loggedin-avatar">
+          <img src="/img/png/user.png" alt="Current avatar" class="avatar-preview loggedin-avatar">
           <label for="avatar-upload-mobile">Avatar:</label>
           <input type="file" id="avatar-upload-mobile" accept="image/*" aria-label="Upload avatar">
         </form>
@@ -158,7 +159,7 @@
       <div class="settings-panel" id="account-info" style="display: block;">
         <h2>ACCOUNT INFO</h2>
         <form class="form-group" enctype="multipart/form-data">
-          <img src="https://via.placeholder.com/40" alt="Current avatar" class="avatar-preview loggedin-avatar">
+          <img src="/img/png/user.png" alt="Current avatar" class="avatar-preview loggedin-avatar">
           <label for="avatar-upload">Avatar:</label>
           <input type="file" id="avatar-upload" accept="image/*" name="avatar" aria-label="Upload avatar">
         </form>
@@ -238,67 +239,9 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
-   <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/settings.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/notifySocket.js"></script>
-  <script>
-    // Menu item switching
-    document.querySelectorAll('.menu-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // select-sound
-
-        // Desktop: Switch right sidebar panels
-        document.querySelectorAll('.right-sidebar .settings-panel').forEach(panel => panel.style.display = 'none');
-        const desktopTarget = document.getElementById(button.dataset.target);
-        desktopTarget.style.display = 'block';
-
-        // Mobile: Switch middle panel if in mobile view
-        if (window.innerWidth <= 768) {
-          document.querySelectorAll('.settings-menu, .mobile-panel').forEach(panel => panel.style.display = 'none');
-          const mobileTarget = document.getElementById(button.dataset.target + '-mobile');
-          mobileTarget.style.display = 'block';
-        }
-      });
-    });
-
-    // Back button (mobile only)
-    document.querySelectorAll('.back-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.mobile-panel').forEach(panel => panel.style.display = 'none');
-        document.querySelector('.settings-menu').style.display = 'block';
-        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
-      });
-    });
-
-
-    // Mute toggle sync
-    const muteToggle = document.getElementById('mute-toggle');
-    const muteToggleMobile = document.getElementById('mute-toggle-mobile');
-    const toggleLabel = document.querySelector('#mute .toggle-label');
-    const toggleLabelMobile = document.querySelector('#mute-mobile .toggle-label');
-    const syncToggles = (source, target, labelSource, labelTarget) => {
-      target.checked = source.checked;
-      labelSource.textContent = source.checked ? 'OFF' : 'ON';
-      labelTarget.textContent = source.checked ? 'OFF' : 'ON';
-    };
-    muteToggle.addEventListener('change', () => {
-      showLoading(); // From util.js
-      syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
-      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
-      setTimeout(() => hideLoading(), 1000); // Simulate API call
-    });
-    muteToggleMobile.addEventListener('change', () => {
-      showLoading(); // From util.js
-      syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
-      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
-      setTimeout(() => hideLoading(), 1000); // Simulate API call
-    });
-
-  </script>
 </body>
 </html>

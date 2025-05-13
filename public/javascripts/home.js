@@ -22,7 +22,7 @@ document.querySelector('.post-btn').addEventListener('click', async () => {
                 method: "POST",
                 body: formData,
             });
-    
+
             data = await response.json();
         } else {
             if (!tweet) {
@@ -54,18 +54,34 @@ const tabButtons = document.querySelectorAll('.tab-btn');
 const feeds = document.querySelectorAll('.feed');
 
 tabButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    tabButtons.forEach(btn => btn.classList.remove('active'));
-    feeds.forEach(feed => feed.style.display = 'none');
+    button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        feeds.forEach(feed => feed.style.display = 'none');
 
-    button.classList.add('active');
-    const tabId = button.getAttribute('data-tab');
-    document.getElementById(`${tabId}-feed`).style.display = 'block';
-    if (tabId === "following") loadFollowinPosts();
-  });
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(`${tabId}-feed`).style.display = 'block';
+        if (tabId === "following") loadFollowinPosts();
+    });
 });
 
 const loadFollowinPosts = async () => {
     loadFeed("following");
 };
 
+
+
+const textarea = document.querySelector('.composer textarea');
+const wordCounter = document.querySelector('.word-counter');
+const maxChars = 80;
+
+textarea.addEventListener('input', () => {
+    let text = textarea.value;
+    if (text.length > maxChars) {
+        textarea.value = text.slice(0, maxChars);
+        text = textarea.value;
+    }
+    const charCount = text.length;
+    wordCounter.style.color = charCount === maxChars ? '#FF00FF' : 'var(--text-muted)';
+    wordCounter.textContent = `${charCount}/${maxChars}`;
+});

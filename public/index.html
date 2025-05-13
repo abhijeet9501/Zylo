@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - ZYLO (Cyberpunk Neon Retro)</title>
+  <title>Home - ZYLO</title>
+  <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
@@ -33,7 +34,8 @@
     </div>
     <a href="./messages.html" aria-label="Messages">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; fill: white;">
-        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+        <path
+          d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
       </svg>
     </a>
   </header>
@@ -80,8 +82,7 @@
           </a>
         </nav>
         <div class="user-info info-user">
-          <img src="/img/png/user.png" alt="User avatar"
-            class="avatar-bounce loggedin-avatar user-avatar">
+          <img src="/img/png/user.png" alt="User avatar" class="avatar-bounce loggedin-avatar user-avatar">
           <div class="loggedin">
             <div class="username user-name">pixel_guru</div>
             <div class="user-username">@pixel_guru</div>
@@ -99,15 +100,14 @@
 
         <div class="composer">
           <div class="composer-header">
-            <img src="/img/png/user.png" alt="User avatar"
-              class="avatar-bounce user-avatar loggedin-avatar">
+            <img src="/img/png/user.png" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
             <textarea placeholder="What's up, pixel fam? #ZYLO" class="composer textarea"
               aria-label="Compose post"></textarea>
           </div>
           <div class="composer-actions">
             <label class="upload-btn">
               <form enctype="multipart/form-data">
-              <input type="file" accept="image/*" id="post-img-upload" aria-label="Upload image">
+                <input type="file" accept="image/*" id="post-img-upload" aria-label="Upload image">
               </form>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path
@@ -160,37 +160,19 @@
       </svg>
     </a>
     <a href="./profile.html" aria-label="Profile">
-      <img src="/img/png/user.png" alt="User avatar"
-        class="mobile-nav-avatar loggedin-avatar">
+      <img src="/img/png/user.png" alt="User avatar" class="mobile-nav-avatar loggedin-avatar">
     </a>
   </nav>
 
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
-  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/fetch.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/home.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/notifySocket.js"></script>
-  <script>
-    const textarea = document.querySelector('.composer textarea');
-    const wordCounter = document.querySelector('.word-counter');
-    const maxChars = 80;
-
-    textarea.addEventListener('input', () => {
-      let text = textarea.value;
-      if (text.length > maxChars) {
-        textarea.value = text.slice(0, maxChars);
-        text = textarea.value;
-      }
-      const charCount = text.length;
-      wordCounter.style.color = charCount === maxChars ? '#FF00FF' : 'var(--text-muted)';
-      wordCounter.textContent = `${charCount}/${maxChars}`;
-    });
-   
-  </script>
 </body>
 
 </html>

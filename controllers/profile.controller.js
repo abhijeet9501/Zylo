@@ -49,7 +49,7 @@ const getProfileData = async (query, userID = null) => {
             .limit(10)
             .lean();
 
-        if (userID) {
+        if (userID && followData) {
             const myFollows = await Follow.findOne({ user_id: userID }).select("following");
             const myFollowingList = myFollows.following;
 

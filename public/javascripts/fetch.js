@@ -20,6 +20,5 @@ async function fetchAPI(endpoint, method = "GET", body = null) {
         throw new Error(data.message || "API request failed");
     }
     const data = await response.json();
-
     return data;
 }

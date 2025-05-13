@@ -13,6 +13,10 @@ async function loadFeed(type="foryou") {
         }
         const posts = data.filteredPosts;
 
+        if (posts.length < 1) {
+            feed.innerHTML = "No posts yet. Be the first to share something!";
+            return;
+        };
         feed.innerHTML = "";
 
         posts.forEach(post => {

@@ -49,13 +49,13 @@ const updateAccInfo = async (type) => {
   if (inputBio.value.trim() !== "") updateData.bio = inputBio.value.trim();
 
   if (Object.keys(updateData).length > 0) {
-    showLoading();  
+    showLoading();
 
     try {
       const timeout = setTimeout(() => {
         hideLoading();
         showPopUp("Request timed out! Please try again.", true);
-      }, 10000);  
+      }, 10000);
 
       const response = await fetch("/api/v1/profile/update", {
         method: "PUT",
@@ -66,7 +66,7 @@ const updateAccInfo = async (type) => {
       });
 
       clearTimeout(timeout);
-      hideLoading();  
+      hideLoading();
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -78,10 +78,10 @@ const updateAccInfo = async (type) => {
       if (data.success) {
         const updates = data.user;
         updates.avatar = data.avatar || JSON.parse(sessionStorage.getItem('user')).avatar;
-        saveToLocal("user", updates); 
-        showPopUp("Profile updated successfully!", false);  
-        await renderUser();  
-        setPlaceholders();  
+        saveToLocal("user", updates);
+        showPopUp("Profile updated successfully!", false);
+        await renderUser();
+        setPlaceholders();
       } else {
         showPopUp(data.message || "Failed to update profile!", true);
       }
@@ -93,13 +93,13 @@ const updateAccInfo = async (type) => {
 };
 
 const updateAvatar = async (file) => {
-  showLoading(); 
+  showLoading();
 
   try {
     const timeout = setTimeout(() => {
       hideLoading();
       showPopUp("Request timed out! Please try again.", true);
-    }, 10000);   
+    }, 10000);
 
     const formData = new FormData();
     formData.append("avatar", file);
@@ -120,9 +120,9 @@ const updateAvatar = async (file) => {
     const data = await response.json();
 
     if (data.success) {
-      saveToLocal("user", { avatar: data.url });  
-      showPopUp("Avatar updated successfully!", false);  
-      await renderUser(); 
+      saveToLocal("user", { avatar: data.url });
+      showPopUp("Avatar updated successfully!", false);
+      await renderUser();
     } else {
       showPopUp(data.message || "Failed to update avatar!", true);
     }
@@ -143,13 +143,13 @@ const updatePassword = async (type) => {
   const currentPassword = currentPass.value.trim();
   const newPassword = newPass.value.trim();
 
-  showLoading();  
+  showLoading();
 
   try {
     const timeout = setTimeout(() => {
       hideLoading();
       showPopUp("Request timed out! Please try again.", true);
-    }, 10000);  10 
+    }, 10000); 10
 
     const response = await fetch("/api/v1/profile/password", {
       method: "PUT",
@@ -160,7 +160,7 @@ const updatePassword = async (type) => {
     });
 
     clearTimeout(timeout);
-    hideLoading();  
+    hideLoading();
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -200,4 +200,53 @@ pcPassBtn.addEventListener("click", () => {
 
 mobilePassBtn.addEventListener("click", () => {
   updatePassword("mobile");
+});
+
+
+document.querySelectorAll('.back-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.mobile-panel').forEach(panel => panel.style.display = 'none');
+    document.querySelector('.settings-menu').style.display = 'block';
+    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+    playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav');
+  });
+});
+
+
+document.querySelectorAll('.menu-btn').forEach(button => {
+  button.addEventListener('click', () => {
+
+    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // select-sound
+
+    document.querySelectorAll('.right-sidebar .settings-panel').forEach(panel => panel.style.display = 'none');
+    const desktopTarget = document.getElementById(button.dataset.target);
+    desktopTarget.style.display = 'block';
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.settings-menu, .mobile-panel').forEach(panel => panel.style.display = 'none');
+      const mobileTarget = document.getElementById(button.dataset.target + '-mobile');
+      mobileTarget.style.display = 'block';
+    }
+  });
+});
+
+
+const muteToggle = document.getElementById('mute-toggle');
+const muteToggleMobile = document.getElementById('mute-toggle-mobile');
+const toggleLabel = document.querySelector('#mute .toggle-label');
+const toggleLabelMobile = document.querySelector('#mute-mobile .toggle-label');
+const syncToggles = (source, target, labelSource, labelTarget) => {
+  target.checked = source.checked;
+  labelSource.textContent = source.checked ? 'OFF' : 'ON';
+  labelTarget.textContent = source.checked ? 'OFF' : 'ON';
+};
+muteToggle.addEventListener('change', () => {
+  syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
+  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
+});
+muteToggleMobile.addEventListener('change', () => {
+  syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
+  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
 });

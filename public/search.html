@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search - ZYLO (Pixelated Retro)</title>
+  <title>Search - ZYLO</title>
+  <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/search.css">
@@ -153,136 +154,5 @@
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
   <script src="./javascripts/util.js"></script>
-  <script>
-    // Mock user data for search (replace with actual backend data later)
-    const users = [
-      { username: 'retro_ninja', name: 'Retro Ninja', avatar: 'https://via.placeholder.com/40' },
-      { username: 'cyber_pixel', name: 'Cyber Pixel', avatar: 'https://via.placeholder.com/40' },
-      { username: 'neon_gamer', name: 'Neon Gamer', avatar: 'https://via.placeholder.com/40' },
-      { username: 'pixel_lover', name: 'Pixel Lover', avatar: 'https://via.placeholder.com/40' },
-      { username: '8bit_hero', name: '8-Bit Hero', avatar: 'https://via.placeholder.com/40' }
-    ];
-
-    // Search functionality
-    const searchInput = document.getElementById('search-username');
-    const latestPosts = document.getElementById('latest-posts');
-    const searchResults = document.getElementById('search-results');
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/laser_pf05vu.wav'); // From util.js (search-sound)
-
-      if (query === '') {
-        // Fade in latest posts, fade out search results
-        latestPosts.classList.remove('fade-out');
-        latestPosts.classList.add('fade-in');
-        latestPosts.style.display = 'block';
-        searchResults.classList.remove('fade-in');
-        searchResults.classList.add('fade-out');
-        setTimeout(() => {
-          searchResults.style.display = 'none';
-        }, 300); // Match the fade-out duration
-      } else {
-        // Fade out latest posts, fade in search results
-        latestPosts.classList.remove('fade-in');
-        latestPosts.classList.add('fade-out');
-        setTimeout(() => {
-          latestPosts.style.display = 'none';
-        }, 300); // Match the fade-out duration
-        searchResults.classList.remove('fade-out');
-        searchResults.classList.add('fade-in');
-        searchResults.style.display = 'block';
-
-        // Filter users based on query
-        const filteredUsers = users.filter(user =>
-          user.username.toLowerCase().includes(query) || user.name.toLowerCase().includes(query)
-        );
-
-        // Display filtered users
-        searchResults.innerHTML = '<h2>SEARCH RESULTS</h2>';
-        if (filteredUsers.length === 0) {
-          searchResults.innerHTML += '<p>No users found.</p>';
-        } else {
-          filteredUsers.forEach(user => {
-            const userItem = document.createElement('div');
-            userItem.classList.add('user-item');
-            userItem.innerHTML = `
-              <img src="${user.avatar}" alt="User avatar" class="avatar-bounce other-avatar">
-              <div>
-                <div class="username">${user.name}</div>
-                <div class="handle">@${user.username}</div>
-              </div>
-            `;
-            userItem.addEventListener('click', () => {
-              playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-              // Redirect to user profile page (to be created later)
-              window.location.href = `user-profile.html?username=${user.username}`;
-            });
-            searchResults.appendChild(userItem);
-          });
-        }
-      }
-    });
-
-    // Like button interaction
-    document.querySelectorAll('.like-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        button.classList.toggle('liked');
-        const countSpan = button.querySelector('.action-count');
-        let count = parseInt(countSpan.textContent);
-        countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-      });
-    });
-
-    // Comment button interaction
-    document.querySelectorAll('.comment-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const commentsSection = button.closest('.post').querySelector('.comments-section');
-        commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-        button.classList.toggle('active');
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-      });
-    });
-
-    // Send comment interaction
-    document.querySelectorAll('.send-comment-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const commentInput = button.previousElementSibling;
-        const commentText = commentInput.value.trim();
-        if (commentText) {
-          const commentsList = button.closest('.comments-section').querySelector('.comments-list');
-          const newComment = document.createElement('div');
-          newComment.classList.add('comment');
-          newComment.innerHTML = `
-            <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-            <div class="comment-content">
-              <div class="comment-username">pixel_guru</div>
-              <p>${commentText}</p>
-            </div>
-          `;
-          commentsList.appendChild(newComment);
-          commentInput.value = '';
-          const commentBtn = button.closest('.post').querySelector('.comment-btn');
-          const countSpan = commentBtn.querySelector('.action-count');
-          let count = parseInt(countSpan.textContent);
-          countSpan.textContent = count + 1;
-          playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-        }
-      });
-    });
-
-    // Post load animation
-    const posts = document.querySelectorAll('.post');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('post-appear');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    posts.forEach(post => observer.observe(post));
-  </script>
 </body>
 </html>

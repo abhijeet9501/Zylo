@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile - ZYLO (Pixelated Retro)</title>
+  <title>User Profile - ZYLO</title>
+  <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/user-profile.css">
@@ -76,8 +77,8 @@
       <div class="user-info info-user">
         <img src="/img/png/user.png" alt="User avatar" class="avatar-bounce loggedin user-avatar loggedin-avatar">
         <div class="loggedin">
-          <div class="username user-name">pixel_guru</div>
-          <div class="user-username">@pixel_guru</div>
+          <div class="username user-name"></div>
+          <div class="user-username"></div>
         </div>
       </div>
     </aside>
@@ -156,116 +157,11 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
-   <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/fetch.js"></script>
   <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/util.js"></script>
   <script src="./javascripts/userProfile.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/notifySocket.js"></script>
-  <script>
-    // Load user data from URL parameter
-    
-    // const followBtn = document.querySelector('.follow-btn');
-    // followBtn.textContent = user.isFollowing ? 'UNFOLLOW' : 'FOLLOW';
-    // followBtn.classList.toggle('following', user.isFollowing);
-
-    // // Follow/Unfollow button
-    // followBtn.addEventListener('click', () => {
-    //   showLoading(); // From util.js
-    //   user.isFollowing = !user.isFollowing;
-    //   followBtn.textContent = user.isFollowing ? 'UNFOLLOW' : 'FOLLOW';
-    //   followBtn.classList.toggle('following', user.isFollowing);
-    //   const followersCount = document.querySelector('.user-followers');
-    //   let count = parseInt(followersCount.textContent);
-    //   followersCount.textContent = user.isFollowing ? count + 1 : count - 1;
-    //   playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/kill_iwb4ng.wav'); // From util.js (follow-sound)
-    //   hideLoading(); // From util.js
-    // });
-
-    // // Message button
-    // document.querySelector('.message-btn').addEventListener('click', () => {
-    //   showLoading(); // From util.js
-    //   playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/laser_pf05vu.wav'); // From util.js (message-sound)
-    //   // Redirect to messages page (already linked via href)
-    //   hideLoading(); // From util.js
-    // });
-
-    // // Tab switching
-    document.querySelectorAll('.tab-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById(button.dataset.tab).classList.add('active');
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-      });
-    });
-
-    // // Like button interaction
-    // document.querySelectorAll('.like-btn').forEach(button => {
-    //   button.addEventListener('click', () => {
-    //     showLoading(); // From util.js
-    //     button.classList.toggle('liked');
-    //     const countSpan = button.querySelector('.action-count');
-    //     let count = parseInt(countSpan.textContent);
-    //     countSpan.textContent = button.classList.contains('liked') ? count + 1 : count - 1;
-    //     playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-    //     hideLoading(); // From util.js
-    //   });
-    // });
-
-    // // Comment button interaction
-    // document.querySelectorAll('.comment-btn').forEach(button => {
-    //   button.addEventListener('click', () => {
-    //     showLoading(); // From util.js
-    //     const commentsSection = button.closest('.post').querySelector('.comments-section');
-    //     commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-    //     button.classList.toggle('active');
-    //     playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-    //     hideLoading(); // From util.js
-    //   });
-    // });
-
-    // // Send comment interaction
-    // document.querySelectorAll('.send-comment-btn').forEach(button => {
-    //   button.addEventListener('click', () => {
-    //     const commentInput = button.previousElementSibling;
-    //     const commentText = commentInput.value.trim();
-    //     if (commentText) {
-    //       showLoading(); // From util.js
-    //       const commentsList = button.closest('.comments-section').querySelector('.comments-list');
-    //       const newComment = document.createElement('div');
-    //       newComment.classList.add('comment');
-    //       newComment.innerHTML = `
-    //         <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-    //         <div class="comment-content">
-    //           <div class="comment-username">pixel_guru</div>
-    //           <p>${commentText}</p>
-    //         </div>
-    //       `;
-    //       commentsList.appendChild(newComment);
-    //       commentInput.value = '';
-    //       const commentBtn = button.closest('.post').querySelector('.comment-btn');
-    //       const countSpan = commentBtn.querySelector('.action-count');
-    //       let count = parseInt(countSpan.textContent);
-    //       countSpan.textContent = count + 1;
-    //       playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-    //       hideLoading(); // From util.js
-    //     }
-    //   });
-    // });
-
-    // // Post load animation
-    // const posts = document.querySelectorAll('.post');
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach(entry => {
-    //     if (entry.isIntersecting) {
-    //       entry.target.classList.add('post-appear');
-    //       observer.unobserve(entry.target);
-    //     }
-    //   });
-    // }, { threshold: 0.1 });
-    // posts.forEach(post => observer.observe(post));
-  </script>
 </body>
 </html>

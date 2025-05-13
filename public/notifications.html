@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notifications - ZYLO (Pixelated Retro)</title>
+  <title>Notifications - ZYLO</title>
+  <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/notifications.css">
@@ -113,41 +114,11 @@
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
-  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/fetch.js"></script>
   <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/util.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="./javascripts/notification.js"></script>
   <script src="./javascripts/notifySocket.js"></script>
-  <script>
-    // Notification click interaction
-    document.querySelectorAll('.notification-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const username = item.querySelector('.username').textContent;
-        playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // From util.js (select-sound)
-        // Redirect based on notification type (simplified for now)
-        if (item.textContent.includes('following')) {
-          window.location.href = `user-profile.html?username=${username}`;
-        } else if (item.textContent.includes('message')) {
-          window.location.href = 'messages.html';
-        } else if (item.textContent.includes('liked')) {
-          // Redirect to the post (placeholder for now)
-          window.location.href = 'index.html';
-        }
-      });
-    });
-
-    // Notification load animation
-    const notifications = document.querySelectorAll('.notification-item');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('notification-appear');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    notifications.forEach(notification => observer.observe(notification));
-  </script>
 </body>
 </html>

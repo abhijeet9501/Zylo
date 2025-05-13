@@ -31,11 +31,17 @@ const uploadOnCloudinary = async (filePath, type = "avatar") => {
                     });
         } else {
             upload = await cloudinary.uploader.upload(filePath, {
-                resource_type: "auto",
-                width: 300,
-                height: 300,
-                folder: "post" 
-            });
+        resource_type: "auto",
+        transformation: [
+            {
+                width: 720,
+                quality: "auto",
+                fetch_format: "auto",
+                crop: "limit"
+            }
+        ],
+        folder: "post"
+    });
         }
 
         fs.unlink(path.join(__dir, filePath), (e) => {
