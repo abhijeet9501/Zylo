@@ -68,7 +68,7 @@ main::-webkit-scrollbar-thumb:hover {
   width: 97%;
   padding: 8px;
   font-family: var(--font-main);
-  font-size: 0.9rem;
+  font-size: 16px;
   background: #1A1A3A;
   border: var(--border);
   color: var(--text);

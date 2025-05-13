@@ -23,12 +23,14 @@ async function loadFeed(type="foryou") {
             const postArticle = document.createElement("article");
             postArticle.className = "post";
             postArticle.innerHTML = `
+                <a href="/user-profile.html?username=${post.user.username}">
                 <div class="post-header"  _id="${post._id}">
                     <img src="${post.user.avatar.url || "/img/png/user.png"}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
                     <div class="username">${post.user.name}</div>
                     <div class="handle">@${post.user.username}</div>
                     <div class="timestamp">· ${post.timeAgo}</div>
                 </div>
+                </a>
                 <div class="post-content">
                     <p>${post.tweet}</p>
                     ${post.image ? `<img src="${post.image}" alt="Post image" class="post-image">` : ""}
@@ -192,10 +194,12 @@ async function loadWhoToFollow() {
             followItem.className = "follow-item";
             followItem.innerHTML = `
                 <img src="${user.avatar.url || './img/png/user.png'}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
+                <a href="/user-profile.html?username=${user.username}">
                 <div>
                     <div class="username">${user.name}</div>
                     <div class="handle">@${user.username}</div>
                 </div>
+                </a>
                 <button class="follow-btn" aria-label="Follow" data-username="${user.username}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />

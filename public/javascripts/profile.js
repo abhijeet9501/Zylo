@@ -10,7 +10,6 @@ async function loadUserProfile() {
 
         const profileHeader = document.querySelector(".profile-header");
         
-   
             profileHeader.innerHTML = `
             <img src="${user.avatar || "/img/png/user.png"}" alt="User avatar" class="avatar-bounce user-avatar loggedin-avatar">
             <div class="profile-info">
@@ -198,10 +197,12 @@ async function loadUserProfile() {
             followItem.className = "follow-item";
             followItem.innerHTML = `
                 <img src="${follow.avatar.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <a href="/user-profile.html?username=${follow.username}">
                 <div>
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>
                 </div>
+                </a>
                 <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M19 12H5v2h14v-2z" fill="#000000"/>
@@ -236,10 +237,12 @@ async function loadUserProfile() {
             followItem.className = "follow-item";
             followItem.innerHTML = `
                 <img src="${follow.avatar.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce other-avatar">
+                <a href="/user-profile.html?username=${follow.username}">
                 <div>
                     <div class="username">${follow.name}</div>
                     <div class="handle">@${follow.username}</div>
                 </div>
+                </a>
                 <button class="follow-btn unfollow-btn" aria-label="Unfollow" data-username="${follow.username}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M19 12H5v2h14v-2z" fill="#000000"/>

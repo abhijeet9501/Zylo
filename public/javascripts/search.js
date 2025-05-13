@@ -1,4 +1,5 @@
 loadWhoToFollow();
+renderUser();
 
 
 let timeout;
@@ -34,7 +35,7 @@ document.getElementById("search-users").addEventListener("input", async (e) => {
             li.dataset.username = user.name;
             li.dataset.handle = `@${user.username}`;
             li.innerHTML = `
-              <a href="/profile.html?username=${user.username}">
+              <a href="/user-profile.html?username=${user.username}">
                 <img src="${user.avatar?.url || '/img/png/user.png'}" alt="User avatar" class="avatar-bounce user-avatar other-avatar">
                 <div class="user-info">
                   <div class="username">${user.name}</div>

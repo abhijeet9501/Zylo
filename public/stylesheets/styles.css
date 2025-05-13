@@ -28,6 +28,11 @@ input, textarea, select {
   font-size: 16px; 
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -1092,8 +1097,8 @@ main::-webkit-scrollbar-thumb:hover {
   }
 
   .tab-btn {
-    padding: 6px 12px;
-    font-size: 0.7rem;
+    padding: 12px;
+    font-size: 0.6rem;
   }
 
   .composer {

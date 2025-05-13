@@ -249,3 +249,31 @@ muteToggleMobile.addEventListener('change', () => {
   syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
   playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); 
 });
+
+
+const logOut = async () => {
+    const res = await fetch ("/api/v1/profile/logout", {
+      method: "POST",
+       headers: {
+        'Content-Type': 'application/json'
+      },
+    }); 
+
+    if (res.ok) {
+      showPopUp("Logout", false);
+      sessionStorage.removeItem("user"); 
+      window.location.href = "/login.html";
+    } else {
+      showPopUp("Logout failed", true);
+    }
+};
+
+const lgBtn = document.getElementById("logout-pc");
+const lgBtnM = document.getElementById("logout-mobile");
+
+lgBtn.addEventListener("click", () => {
+  logOut();
+});
+lgBtnM.addEventListener("click", () => {
+  logOut();
+});
