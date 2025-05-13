@@ -163,8 +163,7 @@ const updatePassword = async (type) => {
     hideLoading();
 
     if (!response.ok) {
-      const errorData = await response.json();
-      return showPopUp(errorData.message || "Failed to update password! Server error.", true);
+      return showPopUp("Incorrect password", true);
     }
 
     const data = await response.json();
@@ -244,9 +243,9 @@ const syncToggles = (source, target, labelSource, labelTarget) => {
 };
 muteToggle.addEventListener('change', () => {
   syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
-  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
+  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); 
 });
 muteToggleMobile.addEventListener('change', () => {
   syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
-  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // coin-sound
+  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); 
 });

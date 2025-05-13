@@ -182,6 +182,7 @@ const commentOnPost = asyncHandler(async (req, res) => {
 });
 
 const getPosts = asyncHandler(async (req, res) => {
+    const userID = req.userID.toString();
     const posts = await Post.find()
         .sort({ createdAt: -1 })
         .limit(15)
@@ -193,6 +194,7 @@ const getPosts = asyncHandler(async (req, res) => {
         user: post.user_id,
         tweet: post.tweet,
         image: post.post_img?.url || "",
+        isLiked: post.like.includes(userID),
         likeCount: post.like?.length || 0,
         commentCount: post.comments?.length || 0,
         timeAgo: dayjs(post.createdAt).fromNow(),

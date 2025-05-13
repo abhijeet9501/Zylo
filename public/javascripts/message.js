@@ -155,19 +155,11 @@ document.querySelector(".back-btn").addEventListener("click", () => {
   document.querySelector(".chats-list").style.display = "block";
 });
 
-// document.getElementById("search-users").addEventListener("input", (e) => {
-//   const query = e.target.value.toLowerCase();
-//   document.querySelectorAll(".user-item").forEach((item) => {
-//     const username = item.dataset.username.toLowerCase();
-//     const handle = item.dataset.handle.toLowerCase();
-//     item.style.display = username.includes(query) || handle.includes(query) ? "flex" : "none";
-//   });
-// });
-
 
 let timeout;
 document.getElementById("search-users").addEventListener("input", async (e) => {
   clearTimeout(timeout);
+  console.log(34)
   timeout = setTimeout(async () => {
     const query = e.target.value.trim().toLowerCase();
     const userList = document.querySelector(".user-list");

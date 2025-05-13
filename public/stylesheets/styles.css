@@ -1081,7 +1081,7 @@ main::-webkit-scrollbar-thumb:hover {
   }
 
   main {
-    height: calc(100dvh - 40px - 40px);
+    height: calc(100dvh - 48px - 48px);
     overflow-y: auto;
   }
 

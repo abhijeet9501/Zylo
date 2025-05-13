@@ -76,6 +76,10 @@ const getProfileData = async (query, userID = null) => {
             });
         };
 
+        if (!userID) {
+            userID = user._id;
+        };
+
         const formattedPost = user.posts.map(post => ({
             post_id: post._id,
             user: post.user_id,
@@ -84,6 +88,7 @@ const getProfileData = async (query, userID = null) => {
             likeCount: post.like.length,
             commentCount: post.comments.length,
             timeAgo: dayjs(post.createdAt).fromNow(),
+            isLiked: post.like.includes(userID),
         }));
 
         const data = {

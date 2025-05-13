@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search - ZYLO</title>
   <link rel="icon" href="./img/png/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./stylesheets/styles.css">
   <link rel="stylesheet" href="./stylesheets/search.css">
 </head>
+
 <body>
   <!-- Mobile Header -->
   <header class="mobile-header">
@@ -17,112 +20,37 @@
     </div>
     <a href="./messages.html" aria-label="Messages">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; fill: white;">
-        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+        <path
+          d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
       </svg>
     </a>
   </header>
 
-  <div class="layout-container"> 
-  <div class="app">
-    <!-- Main Search Content -->
-    <main>
-      <div class="search-bar">
-        <input type="text" id="search-username" placeholder="Search username..." aria-label="Search users">
-      </div>
+  <div class="layout-container">
+    <div class="app">
+      <!-- Main Search Content -->
+      <main>
+        <div class="search-bar">
+          <input type="text" id="search-users" placeholder="Search users..." aria-label="Search users">
+        </div>
+        <ul class="user-list"></ul>
+        <ul class="search-results" style="display: none;"></ul>
+        <aside class="rbar" id="rbar">
+          <div class="who-to-follow">
+            <h2>WHO TO FOLLOW</h2>
+            <div class="follow-item">
+              <p>No user found</p>
+            </div>
+          </div>
+        </aside>
+    </div>
 
-      <!-- Latest Posts (Default View) -->
-      <div class="latest-posts" id="latest-posts">
-        <h2>LATEST POSTS</h2>
-        <article class="post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="username">retro_ninja</div>
-            <div class="handle">@retro_ninja</div>
-            <div class="timestamp">· 2h</div>
-          </div>
-          <div class="post-content">
-            <p>Crushed it at #PixelFest! 🕹️ Who's up for a rematch? #RetroGaming</p>
-            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
-          </div>
-          <div class="post-actions">
-            <button class="action-btn like-btn" aria-label="Like">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span class="action-count">5</span>
-            </button>
-            <button class="action-btn comment-btn" aria-label="Comment">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              <span class="action-count">1</span>
-            </button>
-          </div>
-          <div class="comments-section" style="display: none;">
-            <div class="comments-list">
-              <div class="comment">
-                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-                <div class="comment-content">
-                  <div class="comment-username">pixel_guru</div>
-                  <p>Count me in for the rematch!</p>
-                </div>
-              </div>
-            </div>
-            <div class="comment-composer">
-              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
-              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
-            </div>
-          </div>
-        </article>
-        <!-- Additional Post -->
-        <article class="post">
-          <div class="post-header">
-            <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar-bounce other-avatar">
-            <div class="username">cyber_pixel</div>
-            <div class="handle">@cyber_pixel</div>
-            <div class="timestamp">· 3h</div>
-          </div>
-          <div class="post-content">
-            <p>Just found an epic 8-bit gem! 🎮 #RetroGaming</p>
-            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Post image" class="post-image">
-          </div>
-          <div class="post-actions">
-            <button class="action-btn like-btn" aria-label="Like">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span class="action-count">3</span>
-            </button>
-            <button class="action-btn comment-btn" aria-label="Comment">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-              </svg>
-              <span class="action-count">2</span>
-            </button>
-          </div>
-          <div class="comments-section" style="display: none;">
-            <div class="comments-list">
-              <div class="comment">
-                <img src="https://via.placeholder.com/40" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
-                <div class="comment-content">
-                  <div class="comment-username">pixel_guru</div>
-                  <p>Love that game!</p>
-                </div>
-              </div>
-            </div>
-            <div class="comment-composer">
-              <input type="text" placeholder="Write a comment..." aria-label="Write a comment">
-              <button class="send-comment-btn" aria-label="Send comment">SEND</button>
-            </div>
-          </div>
-        </article>
-      </div>
 
-      <!-- Search Results (Hidden by Default) -->
-      <div class="search-results" id="search-results" style="display: none;">
-        <h2>SEARCH RESULTS</h2>
-        <!-- Dynamic content will be added here -->
-      </div>
+    <!-- Search Results (Hidden by Default) -->
+    <div class="search-results" id="search-results" style="display: none;">
+      <h2>SEARCH RESULTS</h2>
+      <!-- Dynamic content will be added here -->
+    </div>
     </main>
   </div>
   </div>
@@ -131,28 +59,33 @@
   <nav class="mobile-nav">
     <a href="./index.html" class="active" aria-current="page" aria-label="Home">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
       </svg>
     </a>
     <a href="./search.html" class="search-btn" aria-label="Search">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        <path
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
       </svg>
     </a>
     <a href="./notifications.html" class="notifications-btn" aria-label="Notifications">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+        <path
+          d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
       </svg>
     </a>
     <a href="./profile.html" aria-label="Profile">
-      <img src="/img/png/user.png" alt="User avatar"
-        class="mobile-nav-avatar loggedin-avatar">
+      <img src="/img/png/user.png" alt="User avatar" class="mobile-nav-avatar loggedin-avatar">
     </a>
   </nav>
 
   <p id="success-msg" class="success-message" role="alert">Success:</p>
   <p id="error-msg" class="error-message" role="alert">Error:</p>
 
+  <script src="./javascripts/fetch.js"></script>
+  <script src="./javascripts/loadFeed.js"></script>
   <script src="./javascripts/util.js"></script>
+  <script src="./javascripts/search.js"></script>
 </body>
+
 </html>

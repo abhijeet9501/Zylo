@@ -107,6 +107,12 @@ const removeFollow = asyncHandler (async (req, res) => {
         {$pull: {following: userID}},
     );
 
+    await Notification.deleteOne({
+        user_id: userID,
+        notification: "like",
+        from_user: userToUnfollowID._id, 
+    });
+
     return res.status(200)
     .json({
         success: true,
