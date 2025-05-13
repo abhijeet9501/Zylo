@@ -1,6 +1,5 @@
 import { sendMsg } from "../controllers/chat.controller.js";
 import { authSocket } from "../middlewares/socket.middleware.js";
-import ApiError from "../utils/apiError.util.js";
 
 let previousID = null;
 
@@ -22,7 +21,7 @@ const chatSocket = (io) => {
 
     socket.on("send-msg", (data) => {
         const { message, roomId } = data;
-        if (!message) throw new ApiError(400, "Message not found!");
+        if (!message) return;
         sendMsg(socket.userID, roomId, message);
         socket.to(roomId).emit("receive-msg", (message));
     })
