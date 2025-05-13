@@ -11,7 +11,7 @@ const getNotification = asyncHandler (async (req, res) => {
     const userID = req.userID;
 
     const notification = await Notification.find({user_id: userID})
-    .select("notification from_user message")
+    .select("notification from_user message createdAt")
     .populate("from_user", "username avatar.url")
     .limit(10)
     .sort({createdAt: -1});
@@ -23,8 +23,6 @@ const getNotification = asyncHandler (async (req, res) => {
         message: item.message,
         timeAgo: dayjs(item.createdAt).fromNow(),
     }));
-
-    console.log(data);
 
     res.status(200)
     .json(

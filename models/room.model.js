@@ -8,8 +8,11 @@ const roomSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
-    }, 
-    {timestamps: true}
+        latestMsgAt: {
+            type: Date,
+            default: Date.now,
+        }
+    },
 );
 
 const Room = mongoose.model("Room", roomSchema);

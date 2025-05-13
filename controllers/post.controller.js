@@ -152,9 +152,25 @@ const commentOnPost = asyncHandler(async (req, res) => {
         throw new ApiError(404, "Post not found!");
     };
 
+    
     const commentData = await Post.findById(post_id)
-        .select("comments")
-        .populate("comments.user_id", "name username avatar.url");
+    .select("comments")
+    .populate("comments.user_id", "name username avatar.url");
+
+    const user_id = await Post.findById(commentData._id)
+    .select("user_id");
+    
+    if (user_id.user_id.toString()!=req.userID) {
+        const notify = new Notification(
+            {
+                user_id: user_id.user_id,
+                notification: "like",
+                from_user: req.userID,
+                message: "commented on your post",
+            }
+        );
+        await notify.save();
+    };
 
     res.status(200)
         .json({

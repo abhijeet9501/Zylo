@@ -31,7 +31,7 @@ notificationSchema.pre("save", async function (next) {
     const notify = getIO(); 
     const notification = this;
 
-    const eventType = notification.notification === "chat" ? "chat-notify" : "notify";
+    const eventType = notification.notification === "chat" ? "notify-chat" : "notify";
 
     notify
       .to(notification.user_id.toString())

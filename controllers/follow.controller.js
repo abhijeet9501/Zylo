@@ -2,6 +2,7 @@ import asyncHandler from "../utils/asyncHandler.util.js";
 import Follow from "../models/follow.model.js";
 import User from "../models/user.model.js";
 import ApiError from "../utils/apiError.util.js";
+import Notification from "../models/notification.model.js";
 
 const follow = asyncHandler (async (req, res) => {
     let isFollow = false;
@@ -23,15 +24,38 @@ const follow = asyncHandler (async (req, res) => {
         );
         await follow.save();
         isFollow = true;
+        const notify = new Notification(
+            {
+                user_id: userToFollow._id,
+                notification: "like",
+                from_user: userID,
+                message: "started following you",
+            }
+        );
+        await notify.save();
     } else if (!isToFollow.follower.includes(userID)) {
         isToFollow.follower.push(userID);
         await isToFollow.save();
         isFollow = true;
+        const notify = new Notification(
+            {
+                user_id: userToFollow._id,
+                notification: "like",
+                from_user: userID,
+                message: "started following you",
+            }
+        );
+        await notify.save();
     } else {
         await Follow.updateOne(
             {user_id: userToFollow._id},
             {$pull: {follower: userID}},
         );
+        await Notification.deleteOne({
+            user_id: userToFollow._id,
+            notification: "like",
+            from_user: userID,
+        });
     }
 
     const isToFollowing = await Follow.findOne({user_id: userID});

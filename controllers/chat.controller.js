@@ -3,6 +3,7 @@ import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import asyncHandler from "../utils/asyncHandler.util.js"
 import ApiError from "../utils/apiError.util.js";
+import Notification from "../models/notification.model.js";
 
 const loadRoom = asyncHandler(async (req, res) => {
     const userID = req.userID;
@@ -30,6 +31,13 @@ const loadRoom = asyncHandler(async (req, res) => {
         const addUser = await User.findById(userToAdd._id);
         addUser.rooms.push(isRoomExists._id);
         await addUser.save();
+        const notify = new Notification({
+            user_id: userToAdd._id,
+            from_user: userID,
+            notification: "chat",
+            message: "started chat with you",
+        });
+        await notify.save();
     };
 
     let messages = await Message.find({ room_id: isRoomExists._id })
@@ -54,6 +62,7 @@ const getChats = asyncHandler(async (req, res) => {
         .populate(
             {
                 path: "rooms",
+                options: { sort: { latestMsgAt: -1 } },
                 populate: {
                     path: "users",
                     select: "name avatar.url username",
@@ -88,6 +97,8 @@ const sendMsg = async (userID, roomID, msg) => {
             message: msg,
         });
         await newMsg.save();
+
+        await room.updateOne({ latestMsgAt: new Date() });
 
     } catch {
         throw new ApiError(400, "Can't send message");
