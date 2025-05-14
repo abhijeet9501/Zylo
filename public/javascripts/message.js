@@ -1,4 +1,6 @@
-renderUser(false);
+document.addEventListener("DOMContentLoaded", async () => {
+    await renderUser();
+});
 document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('username');
@@ -159,7 +161,6 @@ document.querySelector(".back-btn").addEventListener("click", () => {
 let timeout;
 document.getElementById("search-users").addEventListener("input", async (e) => {
   clearTimeout(timeout);
-  console.log(34)
   timeout = setTimeout(async () => {
     const query = e.target.value.trim().toLowerCase();
     const userList = document.querySelector(".user-list");
@@ -185,7 +186,6 @@ document.getElementById("search-users").addEventListener("input", async (e) => {
           };
           searchResults.innerHTML = "";
           users.forEach((user) => {
-            console.log(user);
             const li = document.createElement("li");
             li.classList.add("user-item");
             li.dataset.username = user.name;

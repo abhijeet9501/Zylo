@@ -318,8 +318,11 @@ main {
 }
 
 @media (max-width: 768px) {
+  main {
+    overflow: hidden;
+  }
   .chat-panel.mobile-panel {
-    height: calc(100vh - 60px - 60px);
+    height: calc(100dvh - 80px - 80px);
     display: flex;
     flex-direction: column;
   }
@@ -350,7 +353,11 @@ main {
   }
 
   .chat-header {
+    gap: 8px;
     padding: 12px;
+  }
+  .user-info {
+    gap: 8px;
   }
 
   .chat-header img {
@@ -363,6 +370,8 @@ main {
   }
 
   .chat-input {
+    position: absolute;
+    bottom: 50px;
     padding: 12px;
   }
 
@@ -392,4 +401,24 @@ main {
     width: 32px;
     height: 32px;
   }
+}
+
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 0, 255, 0.2) transparent;
+    display: flex;
+    flex-direction: column;
+} */
+
+.chat-messages-inner {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
 }

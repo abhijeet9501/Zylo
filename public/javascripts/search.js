@@ -1,6 +1,9 @@
-loadWhoToFollow();
-renderUser();
-
+document.addEventListener("DOMContentLoaded", async () => {
+    renderUser();
+    if (window.innerWidth > 768) {
+        await loadWhoToFollow();
+    }
+});
 
 let timeout;
 document.getElementById("search-users").addEventListener("input", async (e) => {

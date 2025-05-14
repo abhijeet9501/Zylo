@@ -80,7 +80,7 @@ async function loadFeed(type="foryou") {
                             const commentDiv = document.createElement("div");
                             commentDiv.className = "comment";
                             commentDiv.innerHTML = `
-                                <img src="${comment.user_id.avatar.url || 'default.jpg'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <img src="${comment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                                 <div class="comment-content">
                                     <div class="cmt-head">
                                     <div class="comment-username">${comment.user_id.name}</div>
@@ -151,6 +151,7 @@ async function loadFeed(type="foryou") {
                         const likeCount = postArticle.querySelector(".action-count");
                         likeCount.textContent = data.likeLength;
                         if (data.like) {
+                            playSound("./wav/coin.wav");
                             likeButton.classList.toggle('liked');
                         } else {
                             likeButton.classList.remove('liked');

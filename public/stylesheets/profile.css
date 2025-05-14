@@ -124,16 +124,6 @@
     background: rgba(255, 0, 255, 0.4);
   }
   
-  /* .post {
-    background: var(--card-bg);
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-   */
   .post.post-appear {
     opacity: 1;
     transform: translateY(0);
@@ -143,16 +133,6 @@
     font-size: 0.9rem;
     color: var(--text);
     margin-bottom: 12px;
-  }
-  
-  .post-image {
-    width: 100%;
-    max-width: 300px;
-    border: var(--border);
-    border-radius: 4px;
-    box-shadow: 0 0 5px var(--accent);
-    image-rendering: pixelated;
-    margin-top: 8px;
   }
   
   .post-actions {
@@ -458,10 +438,6 @@
       font-size: 0.8rem;
     }
   
-    .post-image {
-      max-width: 250px;
-    }
-  
     .action-btn svg {
       width: 20px;
       height: 20px;
@@ -558,10 +534,6 @@
     .post-header img {
       width: 32px;
       height: 32px;
-    }
-  
-    .post-image {
-      max-width: 200px;
     }
   
     .modal-item img {

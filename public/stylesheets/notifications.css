@@ -1,28 +1,33 @@
-/* Notifications Page Specific Styles */
+.noity-s {
+    height: 100dvh; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scrollbar-width: thin; 
+    scrollbar-color: rgba(255, 0, 255, 0.2) transparent; 
+    scroll-behavior: smooth;
+}
 
-/* Main Content */
+.noity-s::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.noity-s::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.noity-s::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 255, 0.2);
+    border-radius: 3px;
+}
+
+.noity-s::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 255, 0.4);
+}
 main {
     padding: 24px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 0, 255, 0.2) transparent;
-  }
-  
-  main::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  main::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  main::-webkit-scrollbar-thumb {
-    background: rgba(255, 0, 255, 0.2);
-    border-radius: 3px;
-  }
-  
-  main::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 0, 255, 0.4);
   }
   
   main h2 {
@@ -32,8 +37,7 @@ main {
     text-shadow: var(--glow);
     margin-bottom: 16px;
   }
-  
-  /* Notification List */
+
   .notification-list {
     display: flex;
     flex-direction: column;

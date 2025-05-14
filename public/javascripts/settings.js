@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  await renderUser();
+  renderUser();
   setPlaceholders();
 });
 
@@ -26,8 +26,6 @@ const setPlaceholders = () => {
   inputBioMobile.setAttribute("placeholder", user.bio || "Bio");
   inputEmailMobile.setAttribute("placeholder", user.email || "Email");
 };
-
-setPlaceholders();
 
 const updateAccInfo = async (type) => {
   const inputName = document.getElementById(type === "pc" ? "name" : "name-mobile");
@@ -207,7 +205,6 @@ document.querySelectorAll('.back-btn').forEach(button => {
     document.querySelectorAll('.mobile-panel').forEach(panel => panel.style.display = 'none');
     document.querySelector('.settings-menu').style.display = 'block';
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-    playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav');
   });
 });
 
@@ -217,7 +214,7 @@ document.querySelectorAll('.menu-btn').forEach(button => {
 
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
     button.classList.add('active');
-    playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); // select-sound
+    playSound("./wav/kill.wav"); 
 
     document.querySelectorAll('.right-sidebar .settings-panel').forEach(panel => panel.style.display = 'none');
     const desktopTarget = document.getElementById(button.dataset.target);
@@ -236,18 +233,27 @@ const muteToggle = document.getElementById('mute-toggle');
 const muteToggleMobile = document.getElementById('mute-toggle-mobile');
 const toggleLabel = document.querySelector('#mute .toggle-label');
 const toggleLabelMobile = document.querySelector('#mute-mobile .toggle-label');
+
 const syncToggles = (source, target, labelSource, labelTarget) => {
-  target.checked = source.checked;
-  labelSource.textContent = source.checked ? 'OFF' : 'ON';
-  labelTarget.textContent = source.checked ? 'OFF' : 'ON';
+    target.checked = source.checked;
+    labelSource.textContent = source.checked ? 'OFF' : 'ON';
+    labelTarget.textContent = source.checked ? 'OFF' : 'ON';
+    localStorage.setItem('mute', source.checked); 
 };
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if mute state exists in localStorage
+    const isMuted = localStorage.getItem('mute') === 'true'; 
+    muteToggle.checked = isMuted;
+    muteToggleMobile.checked = isMuted;
+    toggleLabel.textContent = isMuted ? 'OFF' : 'ON';
+    toggleLabelMobile.textContent = isMuted ? 'OFF' : 'ON';
+});
+
 muteToggle.addEventListener('change', () => {
-  syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
-  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); 
+    syncToggles(muteToggle, muteToggleMobile, toggleLabel, toggleLabelMobile);
 });
 muteToggleMobile.addEventListener('change', () => {
-  syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
-  playSound('https://res.cloudinary.com/dufkkffxd/video/upload/v1746420154/coin_j82rku.wav'); 
+    syncToggles(muteToggleMobile, muteToggle, toggleLabelMobile, toggleLabel);
 });
 
 

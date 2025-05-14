@@ -26,6 +26,8 @@ const saveToLocal = (key, value) => {
 
 
 const playSound = (soundUrl) => {
+  const isMuted = localStorage.getItem('mute') || null;
+  if(isMuted === 'true') return;
   const audio = new Audio(soundUrl);
   audio.volume = 0.3;
   audio.play().catch(e => console.log('Audio play failed:', e));

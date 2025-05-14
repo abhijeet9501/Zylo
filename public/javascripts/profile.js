@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadUserProfile();
+    renderUser();
+    if (window.innerWidth > 768) {
+        await loadWhoToFollow();
+    }
+});
+
+
 async function loadUserProfile() {
     try {
         const endpoint = "/profile/me";
@@ -99,6 +108,7 @@ async function loadUserProfile() {
                         const likeCount = postArticle.querySelector(".action-count");
                         likeCount.textContent = data.likeLength;
                         if (data.like) {
+                            playSound("./wav/coin.wav");
                             likeButton.classList.toggle('liked');
                         } else {
                             likeButton.classList.remove('liked');
@@ -127,7 +137,7 @@ async function loadUserProfile() {
                             const commentDiv = document.createElement("div");
                             commentDiv.className = "comment";
                             commentDiv.innerHTML = `
-                                <img src="${comment.user_id.avatar.url || 'default.jpg'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <img src="${comment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                                 <div class="comment-content">
                                     <div class="cmt-head">
                                     <div class="comment-username">${comment.user_id.name}</div>
@@ -187,8 +197,6 @@ async function loadUserProfile() {
                 }
             });
         });
-
-        await loadWhoToFollow();
 
         const followingTab = document.querySelector("#following");
         followingTab.innerHTML = "";
@@ -281,9 +289,3 @@ async function loadUserProfile() {
         alert("Failed to load profile: " + error.message);
     }
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    loadUserProfile();
-    renderUser();
-});

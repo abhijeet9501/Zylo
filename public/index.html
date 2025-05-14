@@ -33,8 +33,8 @@
       <div class="logo">ZYLO</div>
     </div>
     <a href="./messages.html" aria-label="Messages">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; fill: white;">
-        <path
+      <svg xmlns="http://www.w3.org/2000/svg" class="msg-btn" viewBox="0 0 24 24" style="width: 24px; fill: white;">
+        <path 
           d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
       </svg>
     </a>
@@ -52,7 +52,7 @@
             </svg>
             <span>HOME</span>
           </a>
-          <a href="messages.html" id="msg-btn">
+          <a href="messages.html" class="msg-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
@@ -83,8 +83,8 @@
         <div class="user-info info-user">
           <img src="/img/png/user.png" alt="User avatar" class="avatar-bounce loggedin-avatar user-avatar">
           <div class="loggedin">
-            <div class="username user-name">pixel_guru</div>
-            <div class="user-username">@pixel_guru</div>
+            <div class="username user-name"></div>
+            <div class="user-username"></div>
           </div>
         </div>
       </aside>
@@ -118,7 +118,7 @@
           </div>
         </div>
         <div class="feed" id="for-you-feed">
-          <p>No posts yet.</p>
+          <p>Loading...</p>
         </div>
         <div class="feed" id="following-feed" style="display: none;">
           <p>No posts from accounts you follow yet.</p>

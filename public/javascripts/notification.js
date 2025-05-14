@@ -1,5 +1,10 @@
-renderUser();
-loadWhoToFollow();
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadNotifications();
+    await renderUser();
+    if (window.innerWidth > 768) {
+        await loadWhoToFollow();
+    }
+});
 
 const loadNotifications = async () => {
     const list = document.querySelector(".notification-list");
@@ -24,5 +29,3 @@ const loadNotifications = async () => {
         });
     }
 };
-
-loadNotifications();

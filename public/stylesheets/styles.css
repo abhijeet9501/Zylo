@@ -480,17 +480,20 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .post-header {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .post-header img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  image-rendering: pixelated;
 }
 
 .post-header .username {
@@ -508,6 +511,10 @@ main::-webkit-scrollbar-thumb:hover {
 .post-header .timestamp {
   font-size: 0.8rem;
   color: var(--text-muted);
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
 }
 
 .post-content p {
@@ -564,11 +571,11 @@ main::-webkit-scrollbar-thumb:hover {
   transition: color var(--transition), text-shadow var(--transition);
 }
 
-.post-actions .action-btn:hover {
+/* .post-actions .action-btn:hover {
   color: var(--primary);
   text-shadow: var(--glow);
   animation: glitch 0.3s;
-}
+} */
 
 .post-actions .action-btn.liked,
 .post-actions .action-btn.active {
@@ -583,7 +590,7 @@ main::-webkit-scrollbar-thumb:hover {
   transition: fill var(--transition), filter var(--transition);
 }
 
-.post-actions .action-btn:hover svg {
+.post-actions .comment-btn:hover svg {
   fill: var(--primary);
   filter: drop-shadow(0 0 5px var(--accent));
 }
@@ -1245,6 +1252,30 @@ main::-webkit-scrollbar-thumb:hover {
     width: 32px;
     height: 32px;
   }
+
+  .progress-container {
+    width: 200px;
+    height: 30px;
+  }
+  .loading-text {
+    font-size: 1rem;
+  }
+  .post-header {
+    gap: 6px;
+  }
+  .post-header .username {
+    font-size: 0.55rem;
+  }
+  .post-header .handle {
+    font-size: 0.7rem; 
+    flex-shrink: 0; 
+  }
+  .post-header .timestamp {
+    font-size: 0.7rem; 
+    min-width: 60px; 
+    white-space: nowrap;
+  }
+
 }
 
 
@@ -1340,16 +1371,6 @@ main::-webkit-scrollbar-thumb:hover {
   100% { transform: translate(0); }
 }
 
-@media (max-width: 480px) {
-  .progress-container {
-    width: 200px;
-    height: 30px;
-  }
-  .loading-text {
-    font-size: 1rem;
-  }
-}
-
   textarea,
   select {
     font-size: 16px !important;
@@ -1414,4 +1435,15 @@ main::-webkit-scrollbar-thumb:hover {
 
 .has-notification svg {
   fill: #fff; 
+}
+
+@media (max-width: 768px) {
+  .has-notification::after {
+  content: "";
+  position: absolute;
+  top: 0px; 
+  left: 56px; 
+  width: 7px;
+  height: 7px;
+}
 }

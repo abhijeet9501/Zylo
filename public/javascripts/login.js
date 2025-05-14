@@ -44,6 +44,7 @@ const login = async () => {
     const data = await response.json();
 
     if (data.success) {
+      playSound("./wav/lv.wav");
       showPopUp("LOGIN WIN!", false, "/index.html");
     } else {
       hideLoading();
@@ -51,7 +52,7 @@ const login = async () => {
     }
   } catch (error) {
     hideLoading();
-    showPopUp("Network error! Try again.", true);
+    showPopUp("Invalid credentials!", true);
   }
 };
 

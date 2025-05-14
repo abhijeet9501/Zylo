@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    await loadUserProfile(username);
+    renderUser();
+    if (window.innerWidth > 768) {
+        await loadWhoToFollow();
+    }
+});
+
 async function loadUserProfile(username) {
     try {
         const endpoint = `/profile/${username}`;
@@ -92,6 +102,7 @@ async function loadUserProfile(username) {
                         const likeCount = postArticle.querySelector(".action-count");
                         likeCount.textContent = data.likeLength;
                         if (data.like) {
+                            playSound("./wav/coin.wav");
                             likeButton.classList.toggle('liked');
                         } else {
                             likeButton.classList.remove('liked');
@@ -119,7 +130,7 @@ async function loadUserProfile(username) {
                             const commentDiv = document.createElement("div");
                             commentDiv.className = "comment";
                             commentDiv.innerHTML = `
-                                <img src="${comment.user_id.avatar.url || 'default.jpg'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
+                                <img src="${comment.user_id.avatar.url || '/img/png/user.png'}" alt="Commenter avatar" class="avatar-bounce loggedin-avatar">
                                 <div class="comment-content">
                                     <div class="cmt-head">
                                     <div class="comment-username">${comment.user_id.name}</div>
@@ -176,8 +187,6 @@ async function loadUserProfile(username) {
                 }
             });
         });
-
-        loadWhoToFollow();
 
         const followingTab = document.querySelector("#following");
         followingTab.innerHTML = "";
@@ -314,10 +323,3 @@ async function loadUserProfile(username) {
         return;
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-    loadUserProfile(username);
-    renderUser();
-});
