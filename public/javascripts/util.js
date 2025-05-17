@@ -14,7 +14,7 @@ const showPopUp = (message, isError, isRedirect = null) => {
   timeoutId = setTimeout(() => {
     element.style.display = "none";
     if (isRedirect) window.location.href = isRedirect;
-  }, 2000);
+  }, 1000);
 };
 
 
